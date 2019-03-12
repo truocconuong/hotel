@@ -91,9 +91,9 @@
                     if (data.success) {
                         $('#success-msg').removeClass('hide');
                         setInterval(function () {
-                            $('#add_user').modal('hide');
                             $('#success-msg').addClass('hide');
                         }, 1000);
+                        $('#add_user').modal('hide');
                         datatables.ajax.reload();
                     }
                 },

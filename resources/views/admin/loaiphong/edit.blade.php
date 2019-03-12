@@ -15,7 +15,7 @@
                 </div>
             </div>
             <form id="frm_edit_loaiphong" method="POST" action="" enctype="multipart/form-data">
-
+                {{ method_field('PUT') }}
                 <div class="col-md-12">
                     <div class="widget-body">
                         <div class="row">
@@ -27,6 +27,15 @@
                                     <label for="name">Tên Loại Phòng</label>
                                     <input type="text" class="form-control" id="edit_name" name="edit_name" value="" placeholder="Nhập Tên Loại Phòng"
                                           ">
+                                    <span class="help-block">{{ $errors->first('edit_name') }}</span>
+                                    <span class="text-danger">
+                                             <strong id="gif-error"></strong>
+                                         </span>
+                                </div>
+                                <div class="form-group {{ $errors->has('edit_name') ? 'has-error' : '' }}">
+                                    <label for="name">Slug</label>
+                                    <input type="text" class="form-control" id="edit_slug" name="edit_slug" value="" placeholder="Nhập Tên Loại Phòng"
+                                    ">
                                     <span class="help-block">{{ $errors->first('edit_name') }}</span>
                                     <span class="text-danger">
                                              <strong id="gif-error"></strong>

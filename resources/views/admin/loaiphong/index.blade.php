@@ -29,6 +29,14 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Danh sách Loại Phòng</div>
                             <div class="panel-body">
+                                <div id="success3" class="hide">
+                                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>Success!</strong>
+                                    </div>
+                                </div>
                                 @if (session('message'))
                                     <div class="alert alert-success">
                                         {{ session('message') }}
@@ -89,9 +97,9 @@
 
                     }
                     if (data.success) {
+                        $('#add_user').modal('hide');
                         $('#success-msg').removeClass('hide');
                         setInterval(function () {
-                            $('#add_user').modal('hide');
                             $('#success-msg').addClass('hide');
                         }, 1000);
                         datatables.ajax.reload();
@@ -103,10 +111,10 @@
         $('#frm_edit_loaiphong').on('submit', function(event){
             event.preventDefault();
             var form_data = $(this).serialize();
-            var editUrl = $(this).data('url');
+            var id =  $('#edit_id').val();
             $.ajax({
-                url:"{{ route('admin.loaiphong.update')}}",
-                method:"POST",
+                url:"{{ url('admin/loaiphong')}}/"+id,
+                method:"PUT",
                 data:form_data,
                 dataType:"json",
                 success:function(data)
@@ -116,12 +124,43 @@
                             $('#gif-error').html(data.errors.edit_name[0]);
                         }
                     }
-                    if (data.success) {
+                    else{
+                        $('#frm_edit_loaiphong')[0].reset();
                         $('#success').removeClass('hide');
                         setInterval(function () {
                             $('#success').addClass('hide');
                         }, 1000);
                         $('#edit_loaiphong').modal('hide');
+                        datatables.ajax.reload();
+                    }
+                }
+            })
+        });
+
+
+        $('#del_frm_loaiphong').on('submit', function(event){
+            event.preventDefault();
+            var form_data = $(this).serialize();
+            var id =  $('#delete_id').val();
+            $.ajax({
+                url:"{{url('admin/loaiphong')}}/"+id,
+                method:"delete",
+                data:form_data,
+                dataType:"json",
+                success:function(data)
+                {
+                    console.log(data);
+                    if (data.errors) {
+                        if (data.errors.edit_name) {
+                            $('#gif-error').html(data.errors.edit_name[0]);
+                        }
+                    }
+                    else{
+                        $('#success3').removeClass('hide');
+                        setInterval(function () {
+                            $('#success3').addClass('hide');
+                        }, 3000);
+                        $('#delete_loaiphong').modal('hide');
                         datatables.ajax.reload();
                     }
                 }

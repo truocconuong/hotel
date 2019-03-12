@@ -32,7 +32,7 @@ class KroomController extends Controller
                     'edit' => '#edit_loaiphong',
                     'id' => $loaiphong->id,
                     'urlEdit' => route('admin.loaiphong.update',['id' => $loaiphong->id]),
-                    'detail' => route('admin.loaiphong.show', ['id' => $loaiphong->id]),
+                    'detail' => route('admin.loaiphong.show',['id' => $loaiphong->id]),
                     'delete' => route('admin.loaiphong.delete', ['id' => $loaiphong->id])
                 ]);
         })->rawColumns(['rownum', 'action']);;
@@ -44,8 +44,10 @@ class KroomController extends Controller
 
     public function show($id)
     {
+//  $id = $request->input('id');
         $loaiphong = Kind_of_room::find($id);
         $output = array(
+            'id' => $loaiphong->id,
             'tenloaiphong' => $loaiphong->tenloaiphong,
             'slug' => $loaiphong->slug
         );
@@ -53,7 +55,7 @@ class KroomController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         $valid = Validator::make($request->all(), [
             'edit_name' => 'required',
@@ -64,15 +66,15 @@ class KroomController extends Controller
         if ($valid->fails()) {
             return Response::json(['errors' => $valid->errors()]);
         } else {
-            $id = $request->get('edit_id');
+//            $id = $request->get('edit_id');
             $loaiphong = Kind_of_room::find($id);
             if ($loaiphong !== null) {
                 $loaiphong->tenloaiphong = $request->input('edit_name');
                 $loaiphong->slug = str_slug($request->input('edit_name'));
                 $loaiphong->save();
-                return Response::json(['success' => '1']);
             }
         }
+        return Response::json(['success' => '1']);
 
     }
 
@@ -94,7 +96,11 @@ class KroomController extends Controller
             return Response::json(['success' => '1']);
         }
     }
-    public function delete(){
-
+    public function delete($id){
+        $loaiphong = Kind_of_room::findOrFail($id);
+        if ($loaiphong !== null) {
+            $loaiphong->delete();
+            return Response::json(['success' => '1']);
+        }
     }
 }

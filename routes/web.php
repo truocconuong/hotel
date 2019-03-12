@@ -33,7 +33,7 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/loaiphong/', 'KroomController@store')->name('loaiphong.store');
     Route::get('/loaiphong/listphong', 'KroomController@datalistphong')->name('loaiphong.data');
     Route::get('/loaiphong/{id}', 'KroomController@show')->where('id','[0-9]+')->name('loaiphong.show');
-    Route::post('/loaiphong/update', 'KroomController@update')->name('loaiphong.update');
+    Route::put('/loaiphong/{id}', 'KroomController@update')->name('loaiphong.update');
     Route::delete('/loaiphong/{id}', 'KroomController@delete')->name('loaiphong.delete');
 
 
