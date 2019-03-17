@@ -36,6 +36,22 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::put('/loaiphong/{id}', 'KroomController@update')->name('loaiphong.update');
     Route::delete('/loaiphong/{id}', 'KroomController@delete')->name('loaiphong.delete');
 
+    Route::get('/phong', 'RoomController@index')->name('phong.index');
+    Route::post('/phong/', 'RoomController@store')->name('phong.store');
+    Route::get('/phong/listphong', 'RoomController@datalistroom')->name('phong.data');
+    Route::get('/phong/{id}', 'RoomController@show')->where('id','[0-9]+')->name('phong.show');
+    Route::post('/phong/{id}', 'RoomController@update')->name('phong.update');
+    Route::delete('/phong/{id}', 'RoomController@delete')->name('phong.delete');
+
+
+    Route::get('/dichvu', 'ServiceController@index')->name('dichvu.index');
+    Route::post('/dichvu/', 'ServiceController@store')->name('dichvu.store');
+    Route::get('/dichvu/listdichvu', 'ServiceController@datalistdichvu')->name('dichvu.data');
+    Route::get('/dichvu/{id}', 'ServiceController@show')->where('id','[0-9]+')->name('dichvu.show');
+    Route::post('/dichvu/{id}', 'ServiceController@update')->name('dichvu.update');
+    Route::delete('/dichvu/{id}', 'ServiceController@delete')->name('dichvu.delete');
+
+
 
 });
 

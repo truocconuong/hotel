@@ -22,3 +22,13 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Room::class, function (Faker $faker) {
+    return [
+        'tenphong' => $faker->name,
+        'tinhtrang' => rand(0,1),
+        'mota' =>   $faker->text,
+        'user_id' =>  '25', // secret
+        'loaiphong_id' => rand(1,3),
+    ];
+});

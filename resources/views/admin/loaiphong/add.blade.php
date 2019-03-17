@@ -1,4 +1,4 @@
-<div id="add_user" class="modal fade" role="dialog">
+<div id="add_loaiphong" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
@@ -14,7 +14,7 @@
                     <strong>Success!</strong>
                 </div>
             </div>
-                <form method="POST" action="{{ route('admin.loaiphong.store') }}" id="frm_add_loaiphong" enctype="multipart/form-data">
+                <form method="POST" action="" id="frm_add_loaiphong" enctype="multipart/form-data">
                    <div class="col-md-12">
                        <div class="widget-body">
                            <div class="row">

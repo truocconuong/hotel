@@ -26,4 +26,8 @@ class Kind_of_room extends Model
      */
     protected $hidden = [
     ];
+
+    public function rooms() {
+        return $this->hasMany('App\Room', 'loaiphong_id', 'id');
+    }
 }

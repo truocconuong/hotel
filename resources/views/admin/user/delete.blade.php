@@ -10,12 +10,15 @@
                 {{ method_field('delete') }}
                 <div class="modal-body">
                     <div class="row">
-                        <h4 class="nnbodydelete">Bạn có chắc muốn xóa <i id="deletename"></i></h4>
+                       <div class="col-md-12">
+                           <h4 class="nnbodydelete">Bạn có chắc muốn xóa <i id="deletename"></i></h4>
+                       </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-info" data-dismiss="modal">Đóng cửa sổ</button>
                         <button type="submit" class="btn btn-warning">Xóa</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

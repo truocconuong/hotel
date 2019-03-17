@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_user">
+                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_loaiphong">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Thêm Loại Phòng</button>
                         </div>
                         <br>
@@ -79,93 +79,6 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('js/loaiphong.js') }}"></script>
     <script>
-        $('body').on('click', '#btn_add_loaiphong', function() {
-            var registerForm = $("#frm_add_loaiphong");
-            var formData = registerForm.serialize();
-            $('#name-error').html("");
-
-            $.ajax({
-                url: "{{ url('admin/loaiphong') }}",
-                type: "POST",
-                data: formData,
-                success: function (data) {
-                    console.log(data);
-                    if (data.errors) {
-                        if (data.errors.name) {
-                            $('#name-error').html(data.errors.name[0]);
-                        }
-
-                    }
-                    if (data.success) {
-                        $('#add_user').modal('hide');
-                        $('#success-msg').removeClass('hide');
-                        setInterval(function () {
-                            $('#success-msg').addClass('hide');
-                        }, 1000);
-                        datatables.ajax.reload();
-                    }
-                },
-            });
-        });
-
-        $('#frm_edit_loaiphong').on('submit', function(event){
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            var id =  $('#edit_id').val();
-            $.ajax({
-                url:"{{ url('admin/loaiphong')}}/"+id,
-                method:"PUT",
-                data:form_data,
-                dataType:"json",
-                success:function(data)
-                {    console.log(data);
-                    if (data.errors) {
-                        if (data.errors.edit_name) {
-                            $('#gif-error').html(data.errors.edit_name[0]);
-                        }
-                    }
-                    else{
-                        $('#frm_edit_loaiphong')[0].reset();
-                        $('#success').removeClass('hide');
-                        setInterval(function () {
-                            $('#success').addClass('hide');
-                        }, 1000);
-                        $('#edit_loaiphong').modal('hide');
-                        datatables.ajax.reload();
-                    }
-                }
-            })
-        });
-
-
-        $('#del_frm_loaiphong').on('submit', function(event){
-            event.preventDefault();
-            var form_data = $(this).serialize();
-            var id =  $('#delete_id').val();
-            $.ajax({
-                url:"{{url('admin/loaiphong')}}/"+id,
-                method:"delete",
-                data:form_data,
-                dataType:"json",
-                success:function(data)
-                {
-                    console.log(data);
-                    if (data.errors) {
-                        if (data.errors.edit_name) {
-                            $('#gif-error').html(data.errors.edit_name[0]);
-                        }
-                    }
-                    else{
-                        $('#success3').removeClass('hide');
-                        setInterval(function () {
-                            $('#success3').addClass('hide');
-                        }, 3000);
-                        $('#delete_loaiphong').modal('hide');
-                        datatables.ajax.reload();
-                    }
-                }
-            })
-        });
         $(function(){
             datatables =  $('#loaiphong-table').DataTable({
                 processing: true,
@@ -201,29 +114,6 @@
                 drawCallback: function () {
                 }
             });
-
-
-            //
-            // datatables.on('draw', function () {
-            //     $('.btn-edit').on('click', function () {
-            //         var url = $(this).data('show');
-            //         var editUrl = $(this).data('url');
-            //         $('#edit_frm_user').attr('action', editUrl);
-            //         $.get(url, function (resp) {
-            //             $("#edit_name").val(resp.name);
-            //             $("#edit_email").val(resp.email);
-            //             console.log(resp);
-            //         }, 'json');
-            //     });
-            //
-            //     $("#delete_user").click(function(){
-            //         var delUrl = $(this).data('url');
-            //         $('#del_frm_user').attr('action', delUrl);
-            //         $('#delete_user_modal').modal('show');
-            //
-            //     });
-            // });
-
         });
     </script>
 @endsection

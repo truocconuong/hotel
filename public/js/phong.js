@@ -1,13 +1,13 @@
-$(function (){
-
-    $('#frm_add_dichvu').on('click','#btn_add_dichvu',function (e) {
-        event.preventDefault();
+$(function () {
+    $('#frm_add_phong').on('click', '#btn_add_phong', function(e) {
+        e.preventDefault();
+        var formData = $("#frm_add_phong").serialize();
         $('#name-error').html("");
-        var formData=  new FormData($("#frm_add_dichvu")[0]);
+        var formd=  new FormData($("#frm_add_phong")[0]);
         $.ajax({
-            url: "./dichvu",
+            url: "./phong",
             type: "POST",
-            data:formData,
+            data:formd,
             contentType:false,
             processData:false,
             success: function (data) {
@@ -15,16 +15,15 @@ $(function (){
                 if (data.errors) {
                     if (data.errors.name) {
                         $('#name-error').html(data.errors.name);
-                        $('#donvi-error').html(data.errors.donvi);
-                        $('#soluong-error').html(data.errors.soluong);
-                        $('#gia-error').html(data.errors.gia);
+                        $('#mota-error').html(data.errors.mota);
+                        $('#loaiphong_id-error').html(data.errors.loaiphong_id);
                     }
 
                 }
                 if (data.success) {
                     $(this).html('');
-                    $("#frm_add_dichvu")[0].reset();
-                    $('#add_dichvu').modal('hide');
+                    $("#frm_add_phong")[0].reset();
+                    $('#add_phong').modal('hide');
                     swal({
                         title: "Success!",
                         text: "Thêm Dữ Liệu Thành Công",
@@ -37,32 +36,39 @@ $(function (){
         });
     });
 
+
     $(document).on('click', '.btn-edit', function(){
         var id = $(this).data('id');
         var url = $(this).data('show');
+        var editUrl = $(this).data('url');
+        // $('#frm_edit_loaiphong').attr('action', editUrl);
         $.ajax({
-            url:"dichvu/"+id,
+            url:"phong/"+id,
             method:'get',
             dataType:'json',
             success:function(data)
             {
-                $('#edit_name').val(data.tendichvu);
-                $('#edit_gia').val(data.gia);
-                $('#edit_donvi').val(data.donvi);
-                $('#edit_soluong').val(data.soluong);
+                $('#edit_name').val(data.tenphong);
+                $('#edit_mota').val(data.mota);
+                $('#edit_loaiphong_id').val(data.loaiphong_id);
                 $('#image_thumbnail').attr("src",data.image);
                 $('#edit_id').val(data.id);
                 $('#edit_loaiphong').modal('show');
             }
         })
     });
-    $('#frm_edit_dichvu').on('click', '#btn_edit_dichvu',function(event){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#frm_edit_phong').on('click', '#btn_edit_phong',function(event){
         event.preventDefault();
-        var formd=new FormData($("#frm_edit_dichvu")[0]);
+        var formd=new FormData($("#frm_edit_phong")[0]);
         var form_data = $(this).serialize();
         var id =  $('#edit_id').val();
         $.ajax({
-            url:"dichvu/"+id,
+            url:"./phong/"+id,
             method:"POST",
             data:formd,
             dataType:"json",
@@ -73,18 +79,16 @@ $(function (){
                 if (data.errors) {
                     if (data.errors.edit_name) {
                         $('#edit-name-error').html(data.errors.edit_name);
-                        $('#edit-gia-error').html(data.errors.edit_gia);
-                        $('#edit-donvi-error').html(data.errors.edit_donvi);
-                        $('#edit-soluong-error').html(data.errors.edit_soluong);
-
+                        $('#edit-mota-error').html(data.errors.edit_mota[0]);
+                        $('#ledit-oaiphong_id-error').html(data.errors.edit_loaiphong_id);
                     }
                 }
                 if (data.success) {
 
-                    $('#edit_dichvu').modal('hide');
+                    $('#edit_phong').modal('hide');
                     swal({
                         title: "Success!",
-                        text: "Cập Nhật Dữ Liệu Thành Công",
+                        text: "Thêm Dữ Liệu Thành Công",
                         icon: "success",
                         timer: '2000'
                     });
@@ -94,30 +98,29 @@ $(function (){
         })
     });
 
+
     $(document).on('click', '.btn-delete', function(){
         var id = $(this).data('id');
         var url = $(this).data('show');
         // var editUrl = $(this).data('url');
         // $('#frm_edit_loaiphong').attr('action', editUrl);
         $.ajax({
-            url:"dichvu/"+id,
+            url:"phong/"+id,
             method:'get',
             dataType:'json',
             success:function(data)
             {
                 $('#delete_id').val(data.id);
-                $('#delete_dichvu').modal('show');
+                $('#delete_phong').modal('show');
             }
         })
     });
-
-
-    $('#del_frm_dichvu').on('submit', function(event){
+    $('#del_frm_phong').on('submit', function(event){
         event.preventDefault();
         var form_data = $(this).serialize();
         var id =  $('#delete_id').val();
         $.ajax({
-            url:"dichvu/"+id,
+            url:"./phong/"+id,
             method:"delete",
             data:form_data,
             dataType:"json",
@@ -139,13 +142,12 @@ $(function (){
                         icon: "success",
                         timer: '2000'
                     });
-                    $('#delete_dichvu').modal('hide');
+                    $('#delete_phong').modal('hide');
                     datatables.ajax.reload();
                 }
             }
         })
     });
-
 
 
 
