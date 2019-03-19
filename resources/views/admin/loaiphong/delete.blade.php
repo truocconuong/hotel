@@ -17,8 +17,8 @@
                         <button type="button" class="btn btn-info" data-dismiss="modal">Đóng cửa sổ</button>
                         <button type="submit" class="btn btn-warning">Xóa</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>
-</div>
 </div>

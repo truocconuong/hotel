@@ -25,8 +25,7 @@
                                 <input type="hidden" name="edit_id" id="edit_id" value="" />
                                 <div class="form-group {{ $errors->has('edit_name') ? 'has-error' : '' }}">
                                     <label for="name">Tên Loại Phòng</label>
-                                    <input type="text" class="form-control" id="edit_name" name="edit_name" value="" placeholder="Nhập Tên Loại Phòng"
-                                          ">
+                                    <input type="text" class="form-control" id="edit_name" name="edit_name" value="" placeholder="Nhập Tên Loại Phòng">
                                     <span class="help-block">{{ $errors->first('edit_name') }}</span>
                                     <span class="text-danger">
                                              <strong id="gif-error"></strong>
@@ -34,8 +33,7 @@
                                 </div>
                                 <div class="form-group {{ $errors->has('edit_name') ? 'has-error' : '' }}">
                                     <label for="name">Slug</label>
-                                    <input type="text" class="form-control" id="edit_slug" name="edit_slug" value="" placeholder="Nhập Tên Loại Phòng"
-                                    ">
+                                    <input type="text" class="form-control" id="edit_slug" name="edit_slug" value="" placeholder="Nhập Tên Loại Phòng">
                                     <span class="help-block">{{ $errors->first('edit_name') }}</span>
                                     <span class="text-danger">
                                              <strong id="gif-error"></strong>
@@ -46,7 +44,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_user">Sửa</button>
+                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_user" >sửa</button>
                     <button type="button" class="btn btn-flat btn-danger" data-dismiss="modal">Hủy</button>
                 </div>
             </form>

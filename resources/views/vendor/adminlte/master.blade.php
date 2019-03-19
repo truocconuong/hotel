@@ -348,6 +348,7 @@
                         <li><a href="{{ route('admin.loaiphong.index') }}"><i class="fa fa-circle-o"></i> Loại Phòng</a></li>
                         <li><a href="{{ route('admin.phong.index') }}"><i class="fa fa-circle-o"></i>Phòng</a></li>
                         <li><a href="{{ route('admin.dichvu.index') }}"><i class="fa fa-circle-o"></i>Dịch Vụ</a></li>
+                        <li><a href="{{ route('admin.khachhang.index') }}"><i class="fa fa-circle-o"></i>Khách hàng</a></li>
 
                     </ul>
                 </li>

@@ -39,7 +39,7 @@ class RoomController extends Controller
                         ]);
             })
             ->editColumn('tinhtrang',function (Room $phong){
-                return $phong->tinhtrang == 1 ?'<span class="btn-success"><i class="glyphicon glyphicon-edit"></i>Đã Thuê</span>':'Trống';
+                return $phong->tinhtrang == 1 ?'<span class="btn-success btn btn-xs"><i class="glyphicon glyphicon-edit"></i> Đã Thuê</span>':'<span class="btn-danger btn btn-xs"></i>Trống</span>';
             })
             ->editColumn('created_at', function (Room $phong) {
                 return $phong->created_at ? with(new Carbon($phong->created_at))->format('d/m/Y') : '';

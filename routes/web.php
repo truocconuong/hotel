@@ -51,6 +51,13 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/dichvu/{id}', 'ServiceController@update')->name('dichvu.update');
     Route::delete('/dichvu/{id}', 'ServiceController@delete')->name('dichvu.delete');
 
+    Route::get('/khachhang', 'CustomerController@index')->name('khachhang.index');
+    Route::post('/khachhang/', 'CustomerController@store')->name('khachhang.store');
+    Route::get('/khachhang/listkhachhang', 'CustomerController@datalistkhachhang')->name('khachhang.data');
+    Route::get('/khachhang/{id}', 'CustomerController@show')->where('id','[0-9]+')->name('khachhang.show');
+    Route::put('/khachhang/{id}', 'CustomerController@update')->name('khachhang.update');
+    Route::delete('/khachhang', 'CustomerController@delete')->name('khachhang.delete');
+
 
 
 });

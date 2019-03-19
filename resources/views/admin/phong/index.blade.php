@@ -29,11 +29,6 @@
                         <div class="panel panel-default">
                             <div class="panel-heading"><h4>Danh sách Phòng</h4></div>
                             <div class="panel-body">
-                                <div id="success3" class="hide">
-                                    <div class="alert alert-info alert-dismissible fade in" role="alert">
-                                        <strong>Success!</strong>
-                                    </div>
-                                </div>
                                 @if (session('message'))
                                     <div class="alert alert-success">
                                         {{ session('message') }}
@@ -44,7 +39,7 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <table class="table-responsive table-bordered table-striped" id="phong-table">
+                                <table class="table table-responsive table-bordered table-striped" id="phong-table">
                                     <thead>
                                     <tr>
                                         <th>ID</th>

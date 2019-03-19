@@ -30,28 +30,21 @@
                                     <span class="help-block">{{ $errors->first('name') }}</span>
                                     <span class="text-danger">
                                              <strong id="edit-name-error"></strong>
-                                         </span>
+                                    </span>
                                 </div>
                                 <div class="form-group ">
                                     <label for="edit_gia">Giá</label>
-                                    <input type="number" class="form-control" id="edit_gia" name="edit_gia" min="1" step="any" placeholder="VND"
-                                    ">
-                                    <span class="text-danger">
-                                             <strong id="edit-gia-error"></strong>
-                                         </span>
+                                    <input type="number" class="form-control" id="edit_gia" name="edit_gia" min="1" step="any" placeholder="VND">
+                                    <span class="text-danger"><strong id="edit-gia-error"></strong></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="gia">Số Lượng</label>
-                                    <input type="number" class="form-control" id="edit_soluong" name="edit_soluong" placeholder="Số Lượng"
-                                    ">
-                                    <span class="text-danger">
-                                             <strong id="edit-soluong-error"></strong>
-                                         </span>
+                                    <input type="number" class="form-control" id="edit_soluong" name="edit_soluong" placeholder="Số Lượng">
+                                    <span class="text-danger"><strong id="edit-soluong-error"></strong></span>
                                 </div>
                                 <div class="form-group {{ $errors->has('edit_donvi') ? 'has-error' : '' }}">
                                     <label for="gia">Đơn vị</label>
-                                    <input type="text" class="form-control" id="edit_donvi" name="edit_donvi" placeholder="Dơn Vị"
-                                    ">
+                                    <input type="text" class="form-control" id="edit_donvi" name="edit_donvi" placeholder="Dơn Vị">
                                     <span class="text-danger">
                                              <strong id="edit-donvi-error"></strong>
                                          </span>
@@ -59,15 +52,14 @@
                                 <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                                     <label for="image">Hình Ảnh Dịch Vụ</label>
                                     <div>
-                                        <img id="image_thumbnail" class="img-thumbnail img-responsive" width="50px" height="50px">
+                                        <img id="image_thumbnail" alt="image" class="img-thumbnail img-responsive" width="50px" height="50px">
                                     </div>
                                     <br>
-                                    <input type="file" class="form-control" id="edit_image" name="edit_image"
-                                    >
+                                    <input type="file" class="form-control" id="edit_image" name="edit_image">
                                     <span class="help-block">{{ $errors->first('image') }}</span>
                                     <span class="text-danger">
                                              <strong id="image-error"></strong>
-                                         </span>
+                                    </span>
                                 </div>
                             </div>
                         </div>

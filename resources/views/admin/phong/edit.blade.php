@@ -25,8 +25,7 @@
                                 <input type="hidden" name="edit_id" id="edit_id" value="" />
                                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                                     <label for="name">Tên Phòng</label>
-                                    <input type="text" class="form-control" id="edit_name" name="edit_name" placeholder="Tên Phòng"
-                                    ">
+                                    <input type="text" class="form-control" id="edit_name" name="edit_name" placeholder="Tên Phòng">
                                     <span class="help-block">{{ $errors->first('name') }}</span>
                                     <span class="text-danger">
                                              <strong id="edit-name-error"></strong>
@@ -34,8 +33,7 @@
                                 </div>
                                 <div class="form-group {{ $errors->has('mota') ? 'has-error' : '' }}">
                                     <label for="mota">Mô Tả</label>
-                                    <input type="text" class="form-control" id="edit_mota" name="edit_mota" placeholder="Mô Tả"
-                                    ">
+                                    <input type="text" class="form-control" id="edit_mota" name="edit_mota" placeholder="Mô Tả">
                                     <span class="help-block">{{ $errors->first('mota') }}</span>
                                     <span class="text-danger">
                                              <strong id="edit-mota-error"></strong>
@@ -45,7 +43,7 @@
                                     <label for="image">Hình Ảnh Phòng</label>
 
                                    <div>
-                                       <img id="image_thumbnail" class="img-thumbnail img-responsive" width="50px" height="50px">
+                                       <img id="image_thumbnail" alt="image" class="img-thumbnail img-responsive" width="50px" height="50px">
                                    </div>
                                     <br>
                                      <input type="file" class="form-control" id="edit_image" name="edit_image"
@@ -56,7 +54,7 @@
                                          </span>
                                 </div>
                                 <div class="form-group {{ $errors->has('loaiphong_id') ? 'has-error' : '' }}">
-                                    <label for="name">Loại Phòng</label>
+                                    <label for="edit_loaiphong_id">Loại Phòng</label>
                                     <select name="edit_loaiphong_id" id="edit_loaiphong_id" class="form-control">
                                         <option value="">Vui Lòng Chọn Loại Phòng</option>
                                         @if (count($loaiphongs) > 0)

@@ -22,34 +22,23 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_dichvu">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Thêm Dịch Vụ</button>
+                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_khachhang">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Thêm Khách Hàng</button>
                         </div>
                         <br>
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Danh Sách Dịch Vụ</h4></div>
+                            <div class="panel-heading"><h4>Danh Sách Khách Hàng</h4></div>
                             <div class="panel-body">
-                                @if (session('message'))
-                                    <div class="alert alert-success">
-                                        {{ session('message') }}
-                                    </div>
-                                @endif
-                                @if (session('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
-                                <table class="table-responsive table-bordered table-striped" id="dichvu-table">
+                                <table class="table-responsive table-bordered table-striped" id="khachhang-table">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên Dịch Vụ</th>
-                                        <th>Hình Ảnh</th>
-                                        <th>Giá</th>
-                                        <th>Số Lượng</th>
-                                        <th>Đơn Vị</th>
+                                        <th>Tên Khách Hàng</th>
+                                        <th>CMND</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>Điện Thoại</th>
+                                        <th>Giới Tính</th>
                                         <th>Ngày tạo</th>
-                                        <th>Ngày cập nhật</th>
                                         <th>Thao Tác</th>
 
                                     </tr>
@@ -62,9 +51,9 @@
                     </div>
                 </div>
             </div>
-            @include('admin.dichvu.add')
-            @include('admin.dichvu.edit')
-            @include('admin.dichvu.delete')
+            @include('admin.khachhang.add')
+            @include('admin.khachhang.edit')
+            @include('admin.khachhang.delete')
 
         </section>
         <!-- /.content -->
@@ -72,10 +61,10 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('script')
-    <script type="text/javascript" src="{{ asset('js/dichvu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/khachhang.js') }}"></script>
     <script>
         $(function(){
-            datatables =  $('#dichvu-table').DataTable({
+            datatables =  $('#khachhang-table').DataTable({
                 processing: false,
                 serverSide: true,
                 autoWidth: false,
@@ -96,17 +85,16 @@
                     "infoEmpty": "Trình bày 0 - 0 trong 0 mục"
                 },
                 ajax: {
-                    url:" {{route('admin.dichvu.data') }}",
+                    url:" {{route('admin.khachhang.data') }}",
                 },
                 columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'tendichvu', name: 'tendichvu'},
-                    { data: 'image_show', name:'image_show'},
-                    { data: 'gia', name: 'gia'},
-                    { data: 'soluong', name: 'soluong'},
-                    { data: 'donvi', name:'donvi'},
+                    { data: 'id', name: 'id'},
+                    { data: 'tenkhachhang', name: 'tenkhachhang'},
+                    { data: 'cmnd', name: 'cmnd'},
+                    { data: 'diachi', name: 'diachi'},
+                    { data: 'dienthoai', name:'dienthoai'},
+                    { data: 'gioitinh', name:'gioitinh'},
                     { data: 'created_at', name: 'created_at' },
-                    { data: 'updated_at', name: 'updated_at' },
                     { data: 'action', name: 'action'}
                 ]
             });

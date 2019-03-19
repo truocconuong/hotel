@@ -29,14 +29,6 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Danh sách Loại Phòng</div>
                             <div class="panel-body">
-                                <div id="success3" class="hide">
-                                    <div class="alert alert-info alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong>Success!</strong>
-                                    </div>
-                                </div>
                                 @if (session('message'))
                                     <div class="alert alert-success">
                                         {{ session('message') }}
@@ -47,7 +39,7 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <table class="table-responsive table-bordered table-striped" id="loaiphong-table">
+                                <table class="table table-responsive table-bordered table-striped" id="loaiphong-table">
                                     <thead>
                                     <tr>
                                         <th>ID</th>

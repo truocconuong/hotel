@@ -1,34 +1,38 @@
-$(function () {
-    $('#frm_add_phong').on('submit', function(e) {
-        e.preventDefault();
-        var formData = $("#frm_add_phong").serialize();
+$(function (){
+
+    $('#frm_add_khachhang').on('click','#btn_add_khachhang',function (e) {
+        event.preventDefault();
         $('#name-error').html("");
-        var formd=  new FormData($("#frm_add_phong")[0]);
+        var formData=  $('#frm_add_khachhang').serialize();
         $.ajax({
-            url: "./phong",
+            url: "./khachhang",
             type: "POST",
-            data:formd,
-            contentType:false,
-            processData:false,
+            data:formData,
             success: function (data) {
                 console.log(data);
                 if (data.errors) {
-                    if (data.errors.name) {
                         $('#name-error').html(data.errors.name);
-                        $('#mota-error').html(data.errors.mota);
-                        $('#loaiphong_id-error').html(data.errors.loaiphong_id);
-                    }
+                        $('#dienthoai-error').html(data.errors.dienthoai);
+                        $('#cmnd-error').html(data.errors.cmnd);
+                        $('#diachi-error').html(data.errors.diachi);
+                        $('#gioitinh-error').html(data.errors.gioitinh);
+                    swal({
+                        title: "Errors!",
+                        text: "Có Lỗi Khi Thêm Dữ Liệu",
+                        icon: "error",
+                        timer: '1000'
+                    });
 
                 }
                 if (data.success) {
                     $(this).html('');
-                    $("#frm_add_phong")[0].reset();
-                    $('#add_phong').modal('hide');
+                    $("#frm_add_khachhang")[0].reset();
+                    $('#add_khachhang').modal('hide');
                     swal({
                         title: "Success!",
                         text: "Thêm Dữ Liệu Thành Công",
                         icon: "success",
-                        timer: '2000'
+                        timer: '1000'
                     });
                     datatables.ajax.reload();
                 }
@@ -36,61 +40,59 @@ $(function () {
         });
     });
 
-
     $(document).on('click', '.btn-edit', function(){
         var id = $(this).data('id');
         var url = $(this).data('show');
-        var editUrl = $(this).data('url');
-        // $('#frm_edit_loaiphong').attr('action', editUrl);
         $.ajax({
-            url:"phong/"+id,
+            url:"khachhang/"+id,
             method:'get',
             dataType:'json',
             success:function(data)
             {
-                $('#edit_name').val(data.tenphong);
-                $('#edit_mota').val(data.mota);
-                $('#edit_loaiphong_id').val(data.loaiphong_id);
-                $('#image_thumbnail').attr("src",data.image);
+                $('#edit_name').val(data.tenkhachhang);
+                $('#edit_dienthoai').val(data.dienthoai);
+                $('#edit_diachi').val(data.diachi);
+                $('#edit_gioitinh').val(data.gioitinh);
+                $('#edit_email').val(data.email);
+                $('#edit_cmnd').val(data.cmnd);
                 $('#edit_id').val(data.id);
-                $('#edit_loaiphong').modal('show');
+                $('#edit_khachhang').modal('show');
             }
         })
     });
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#frm_edit_phong').on('click', '#btn_edit_phong',function(event){
+    $('#frm_edit_khachhang').on('submit',function(event){
         event.preventDefault();
-        var formd=new FormData($("#frm_edit_phong")[0]);
-        var form_data = $(this).serialize();
+        var form_data = $('#frm_edit_khachhang').serialize();
         var id =  $('#edit_id').val();
         $.ajax({
-            url:"./phong/"+id,
-            method:"POST",
-            data:formd,
+            url:"khachhang/"+id,
+            method:"PUT",
+            data:form_data,
             dataType:"json",
-            contentType:false,
-            processData:false,
             success:function(data)
-            {    console.log(formd);
+            {    console.log(data);
                 if (data.errors) {
-                    if (data.errors.edit_name) {
                         $('#edit-name-error').html(data.errors.edit_name);
-                        $('#edit-mota-error').html(data.errors.edit_mota[0]);
-                        $('#ledit-oaiphong_id-error').html(data.errors.edit_loaiphong_id);
-                    }
+                        $('#edit-dienthoai-error').html(data.errors.edit_dienthoai);
+                        $('#edit-diachi-error').html(data.errors.edit_diachi);
+                        $('#edit-gioitinh-error').html(data.errors.edit_gioitinh);
+                        $('#edit-cmnd-error').html(data.errors.edit_cmnd);
+                    swal({
+                        title: "Errors!",
+                        text: "Có Lỗi Khi Thêm Dữ Liệu",
+                        icon: "error",
+                        timer: '1300'
+                    });
+
                 }
                 if (data.success) {
 
-                    $('#edit_phong').modal('hide');
+                    $('#edit_khachhang').modal('hide');
                     swal({
                         title: "Success!",
-                        text: "Thêm Dữ Liệu Thành Công",
+                        text: "Cập Nhật Dữ Liệu Thành Công",
                         icon: "success",
-                        timer: '2000'
+                        timer: '1300'
                     });
                     datatables.ajax.reload();
                 }
@@ -98,29 +100,31 @@ $(function () {
         })
     });
 
-
     $(document).on('click', '.btn-delete', function(){
         var id = $(this).data('id');
         var url = $(this).data('show');
         // var editUrl = $(this).data('url');
         // $('#frm_edit_loaiphong').attr('action', editUrl);
         $.ajax({
-            url:"phong/"+id,
+            url:"khachhang/"+id,
             method:'get',
             dataType:'json',
             success:function(data)
             {
                 $('#delete_id').val(data.id);
-                $('#delete_phong').modal('show');
+                $('#khachhang_name').html(data.tenkhachhang);
+                $('#delete_khachhang').modal('show');
             }
         })
     });
-    $('#del_frm_phong').on('submit', function(event){
+
+
+    $('#del_frm_khachhang').on('submit', function(event){
         event.preventDefault();
-        var form_data = $(this).serialize();
+        var form_data = $('#del_frm_khachhang').serialize();
         var id =  $('#delete_id').val();
         $.ajax({
-            url:"./phong/"+id,
+            url:"./khachhang",
             method:"delete",
             data:form_data,
             dataType:"json",
@@ -132,22 +136,24 @@ $(function () {
                         title: "Error!",
                         text: "Xóa Dữ Liệu Không Thành Công",
                         icon: "error",
-                        timer: '2000'
+                        timer: '1000'
                     });
+                    $('#delete_khachhang').modal('hide');
                 }
                 else{
                     swal({
                         title: "Success!",
                         text: "Xóa Dữ Liệu Thành Công",
                         icon: "success",
-                        timer: '2000'
+                        timer: '1000'
                     });
-                    $('#delete_phong').modal('hide');
+                    $('#delete_khachhang').modal('hide');
                     datatables.ajax.reload();
                 }
             }
         })
     });
+
 
 
 
