@@ -19,7 +19,6 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
             <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
@@ -336,7 +335,19 @@
 
                     </a>
                 </li>
-                <li class="treeview menu-open">
+                <li class="treeview menu-open ">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý Phòng</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu" style="display: block;">
+                        <li><a href="{{ route('admin.datphong.index') }}"><i class="fa fa-circle-o"></i> Đặt Phòng</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
                         <span>Quản lý Danh Mục</span>
@@ -344,7 +355,7 @@
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu" style="display: block;">
+                    <ul class="treeview-menu" style="display: none;">
                         <li><a href="{{ route('admin.loaiphong.index') }}"><i class="fa fa-circle-o"></i> Loại Phòng</a></li>
                         <li><a href="{{ route('admin.phong.index') }}"><i class="fa fa-circle-o"></i>Phòng</a></li>
                         <li><a href="{{ route('admin.dichvu.index') }}"><i class="fa fa-circle-o"></i>Dịch Vụ</a></li>

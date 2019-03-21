@@ -31,4 +31,17 @@ class Room extends Model
     {
         return $this->belongsTo('App\Kind_of_room', 'loaiphong_id', 'id');
     }
+
+
+    public function order()
+    {
+        return $this->belongsToMany('App\Order', 'chitietdatphong', 'phong_id', 'datphong_id')
+            ->withPivot('ngaydat','ngaytra')
+            ->withTimestamps();
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
+    }
 }

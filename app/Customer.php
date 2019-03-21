@@ -10,4 +10,7 @@ class Customer extends Model
     protected $fillable  = ['tenkhachhang','cmnd','diachi','gioitinh','dienthoai','email','quoctich','username','password'];
 
     protected $hidden = [];
+
+
+
 }

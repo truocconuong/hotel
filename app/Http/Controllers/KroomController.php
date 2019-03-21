@@ -31,6 +31,7 @@ class KroomController extends Controller
                 [
                     'edit' => '#edit_loaiphong',
                     'id' => $loaiphong->id,
+                    'delete_' => 'delete_loaiphong',
                     'urlEdit' => route('admin.loaiphong.update',['id' => $loaiphong->id]),
                     'detail' => route('admin.loaiphong.show',['id' => $loaiphong->id]),
                     'delete' => route('admin.loaiphong.delete', ['id' => $loaiphong->id])
