@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Order;
 
 class Customer extends Model
 {
@@ -12,5 +13,8 @@ class Customer extends Model
     protected $hidden = [];
 
 
+    public function order() {
+        return $this->hasOne('App\Order', 'khachhang_id', 'id');
+    }
 
 }

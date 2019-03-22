@@ -7,9 +7,13 @@ use App\Room;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Order;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
+use App\Checkin;
+use Illuminate\Database\Capsule\Manager;
+
 
 class OrderController extends Controller
 {
@@ -19,56 +23,44 @@ class OrderController extends Controller
     }
 
     public function index(){
-        $data['phongs']= Room::select('id','tenphong')->where('tinhtrang','=','0')->get();
+        $data['phongs']= Room::select('id','tenphong')->where('tinhtrang','=','1')->get();
         return view('admin.datphong.index',$data);
     }
 
 
     public function datalistroder(){
-        $datphong = Order::with(['rooms','customer'])->get();
+//        $sql = 'SELECT datphong.id,tenkhachhang,tenphong,ngaydat,ngaytra,datphong.created_at FROM khachhang,phong,datphong,chitietdatphong WHERE khachhang.id = datphong.khachhang_id and datphong.id=chitietdatphong.datphong_id and chitietdatphong.phong_id=phong.id';
+//        $datphong = DB::SELECT($sql);
+        $datphong = Order::with('phong','customer');
         $datatables = DataTables::of($datphong)
             ->addColumn('action', function ($datphong) {
 
-                return view('admin.modal.btn-action-modal',
+                return view('admin.modal.btn-add-modal',
                     [
-                        'edit' => '#edit_phong',
-                        'delete_' => '#delete_phong',
+                        'edit' => '#edit_order',
+                        'delete_' => '#delete_order',
                         'id' => $datphong->id,
-                        'urlEdit' => route('admin.phong.update',['id' => $datphong->id]),
-                        'detail' => route('admin.phong.show',['id' => $datphong->id]),
-                        'delete' => route('admin.phong.delete', ['id' => $datphong->id])
+                        'urlEdit' => route('admin.datphong.update',['id' => $datphong->id]),
+                        'detail' => route('admin.datphong.show',['id' => $datphong->id]),
                     ]);
             })
-            ->addColumn('ngaydat',function (Order $datphong){
-               $ngaydat='';
-                foreach ($datphong->rooms as $room){
-                   $ngaydat= $room->pivot->ngaydat;
-               }
-                return $ngaydat ? with(new Carbon($ngaydat))->format('d/m/Y') : '';
-
+            ->editColumn('created_at',function (Order $datphong){
+                return $datphong->created_at ? with(new Carbon($datphong->created_at))->format('d/m/Y') : '';
             })
-            ->addColumn('ngaytra',function (Order $datphong){
-                $ngaytra='';
-                foreach ($datphong->rooms as $room){
-                    $ngaytra= $room->pivot->ngaytra;
-                }
-                return $ngaytra ? with(new Carbon($ngaytra))->format('d/m/Y') : '';
+            ->editColumn('ngaytra',function (Order $datphong){
+                return $datphong->ngaytra ? with(new Carbon($datphong->ngaytra))->format('d/m/Y') : '';
             })
-            ->addColumn('ngaytao',function (Order $datphong){
-                $ngaytao=null;
-                foreach ($datphong->rooms as $room){
-                    $ngaytao= $room->pivot->created_at;
-                }
-                return $ngaytao ? with(new Carbon($ngaytao))->format('d/m/Y') : '';
+            ->editColumn('ngaydat',function (Order $datphong){
+                return $datphong->ngaydat ? with(new Carbon($datphong->ngaydat))->format('d/m/Y') : '';
             })
-            ->addColumn('tenphong',function (Order $datphong){
-                $tenphong='';
-                foreach ($datphong->rooms as $room){
-                    $tenphong= $room->tenphong;
-                }
-                return $tenphong;
-            })
-            ->rawColumns(['ngaydat','ngaytra','ngaytao','action']);
+//            ->addColumn('tenphong',function (Order $datphong){
+//                $tenphong='';
+//                foreach ($datphong->rooms as $room){
+//                    $tenphong= $room->tenphong;
+//                }
+//                return $tenphong;
+//            })
+            ->rawColumns(['ngaydat','ngaytra','created_at','action']);
 
         return $datatables->make(true);
 
@@ -76,13 +68,16 @@ class OrderController extends Controller
 
 
     public function show($id){
-        $phong = Room::find($id);
+        $order = Order::with('phong','customer')->find($id);
         return response()->json([
-            'id' => $phong->id,
-            'tenphong' => $phong->tenphong,
-            'mota' => $phong->mota,
-            'image' => asset('uploads/'.$phong->image.''),
-            'loaiphong_id' => $phong->loaiphong_id
+            'id' => $order->id,
+            'tenkhachhang' => $order->customer->tenkhachhang,
+            'cmnd' => $order->customer->cmnd,
+            'sodienthoai' => $order->customer->dienthoai,
+            'khachhang_id' => $order->khachhang_id,
+            'phong_id' => $order->phong_id,
+            'ngaydat' => $order->ngaydat,
+            'ngaytra' => $order->ngaytra
         ]);
 
     }
@@ -113,9 +108,9 @@ class OrderController extends Controller
 
             $ngaydat = $request->input('checkin');
             $ngaytra =$request->input('checkout');
-
-
             $phong_id = $request->input('phong_id');
+
+
             $khachhang = New Customer();
             $khachhang->tenkhachhang = $request->input('name');
             $khachhang->diachi = $request->input('diachi');
@@ -126,24 +121,61 @@ class OrderController extends Controller
             $khachhang->save();
 
             $datphong = Order::create([
-                'khachhang_id' => $khachhang->id
+                'khachhang_id' => $khachhang->id,
+                'phong_id' => $phong_id,
+                'ngaydat' => $ngaydat,
+                'ngaytra' => $ngaytra
             ]);
 
+            $phong = Room::find($phong_id);
+            $phong->tinhtrang = 1;
+            $phong->save();
+
+            return Response::json(['success' => '1']);
+        }
+    }
+    public function update(Request $request){
+        $valid = Validator::make($request->all(), [
+            'edit_name' => 'required',
+            'edit_dienthoai' => 'required|numeric',
+            'edit_cmnd' => 'required|numeric',
+            'edit_phong_id' => 'required|exists:phong,id'
+
+        ], [
+            'edit_name.required' => 'Vui lòng nhập Tên Dịch Vụ',
+            'edit_name.unique' => 'Tên này đã trùng',
+            'edit_dienthoai.required' => 'Vui Lòng Nhập Điện Thoại',
+            'edit_cmnd.required' => 'Vui Lòng Nhập CMND',
+            'edit_phong_id.required' => 'Vui Lòng Chọn Phòng',
+            'edit_dienthoai.numeric' => 'Điện Thoại Phải Là Số',
+            'edit_cmnd.numeric' => 'CMND Phải Là Số',
+        ]);
+
+        if($valid->fails()){
+            return Response::json(['errors' => $valid->errors()]);
+        }else{
+
+            $ngaydat = $request->input('edit_checkin');
+            $ngaytra =$request->input('edit_checkout');
+            $phong_id = $request->input('edit_phong_id');
 //
-            $datphong->rooms()->attach($phong_id,['ngaydat' => $ngaydat,'ngaytra' => $ngaytra]);
+//
+             $checkin = Checkin::create([
+                 'khachhang_id' => $request->input('edit_khachhang_id'),
+                 'phong_id' => $request->input('edit_phong_id'),
+                 'ngaydat' => $ngaydat,
+                 'ngaytra' => $ngaydat,
+                 'user_id' => auth()->id()
 
+             ]);
+
+            $phong = Room::find($phong_id);
+            $phong->tinhtrang = 1;
+            $phong->save();
 
             return Response::json(['success' => '1']);
         }
     }
 
-
-    public function delete($id){
-        $phong = Order::findOrFail($id);
-        if ($phong !== null) {
-            $phong->delete();
-            return Response::json(['success' => '1']);
-        }
-    }
 
 }

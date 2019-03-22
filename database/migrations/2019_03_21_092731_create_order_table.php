@@ -15,11 +15,10 @@ class CreateOrderTable extends Migration
     {
         Schema::create('datphong', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('khachhang_id')->unsigned()->nullable();
-            $table->foreign('khachhang_id')->references('id')
-                ->on('khachhang')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+            $table->integer('phong_id')->unsigned();
+            $table->integer('khachhang_id')->unsigned();
+            $table->dateTime('ngaydat');
+            $table->dateTime('ngaytra');
             $table->timestamps();
         });
     }

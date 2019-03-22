@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TableRoomRelation extends Migration
+class TableCheckinRelationship extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class TableRoomRelation extends Migration
      */
     public function up()
     {
-        Schema::table('phong', function (Blueprint $table) {
-            $table->foreign('loaiphong_id')->references('id')
-                ->on('loaiphong')
+        Schema::table('thuephong', function (Blueprint $table) {
+            $table->foreign('phong_id')->references('id')
+                ->on('phong')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+            $table->foreign('khachhang_id')->references('id')
+                ->on('khachhang')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreign('user_id')->references('id')
                 ->on('users')
                 ->onDelete('cascade')
@@ -34,9 +38,10 @@ class TableRoomRelation extends Migration
      */
     public function down()
     {
-        Schema::table('phong', function (Blueprint $table) {
+        Schema::table('thuephong', function (Blueprint $table) {
+            $table->dropForeign(['phong_id']);
+            $table->dropForeign(['datphong_id']);
             $table->dropForeign(['user_id']);
-            $table->dropForeign(['loaiphong_id']);
         });
     }
 }

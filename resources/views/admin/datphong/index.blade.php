@@ -42,20 +42,15 @@
                                     </tr>
                                     </thead>
                                     {{--<tbody>--}}
-                                       {{--@foreach($orders as $order)--}}
-                                           {{--<tr>--}}
-                                               {{--<td>{{$order->id}}</td>--}}
-                                               {{--<td>{{$order->customer->tenkhachhang}}</td>--}}
-                                               {{--@foreach($order->rooms as $room)--}}
-                                                   {{--<td>{{ $room->tenphong }}</td>--}}
-                                                   {{--<td>{{ $room->pivot->ngaydat }}</td>--}}
-                                                   {{--<td>{{ $room->pivot->ngaytra }}</td>--}}
-                                                   {{--<td>{{ $room->pivot->created_at }}</td>--}}
-                                               {{--@endforeach--}}
-                                           {{--</tr>--}}
+
+                                    {{--@foreach($datphong as $dat)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{ $dat->tenkhachhang }}</td>--}}
 
 
-                                           {{--@endforeach--}}
+                                        {{--</tr>--}}
+
+                                        {{--@endforeach--}}
                                     {{--</tbody>--}}
                                 </table>
                             </div>
@@ -65,7 +60,6 @@
             </div>
             @include('admin.datphong.add')
             @include('admin.datphong.edit')
-            @include('admin.datphong.delete')
 
         </section>
         <!-- /.content -->
@@ -75,6 +69,14 @@
 @section('script')
     <script type="text/javascript" src="{{ asset('js/datphong.js') }}"></script>
     <script>
+        $('#form_add_datphong').ready(function() {
+            $('#phong_id').select2();
+        });
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD HH:MM:SS'
+                });
+        });
         $(function(){
             datatables =  $('#khachhang-table').DataTable({
                 processing: false,
@@ -102,10 +104,10 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'customer.tenkhachhang', name: 'customer.tenkhachhang'},
-                    { data: 'tenphong', name:'tenphong'},
+                    { data: 'phong.tenphong', name:'phong.tenphong'},
                     { data: 'ngaydat', name:'ngaydat'},
                     { data: 'ngaytra', name:'ngaytra'},
-                    { data: 'ngaytao', name: 'ngaytao' },
+                    { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action'}
                 ]
             });

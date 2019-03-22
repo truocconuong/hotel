@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRoomOrderTable extends Migration
+class CreateCheckinsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateRoomOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('chitietdatphong', function (Blueprint $table) {
+        Schema::create('thuephong', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('phong_id')->unsigned();
-            $table->integer('datphong_id')->unsigned();
+            $table->integer('khachhang_id')->unsigned();
             $table->dateTime('ngaydat');
             $table->dateTime('ngaytra');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateRoomOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chitietdatphong');
+        Schema::dropIfExists('thuephong');
     }
 }

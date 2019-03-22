@@ -23,6 +23,12 @@
         <!-- DataTables -->
             <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     @endif
+    <!--  Select2 -->
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/select2/dist/css/select2.min.css') }}">
+
+    <!--  date time -->
+    <link rel="stylesheet" href="{{ asset('vendor/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+    <!--  Sweet Alert -->
     <link rel="stylesheet" href="{{asset('vendor/sweetalert/sweetalert.min.css')}}">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -578,6 +584,11 @@
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js')  }}"></script>
 <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
+<!--  Select2 -->
+<script src="{{ asset('vendor/adminlte/vendor/select2/dist/js/select2.min.js') }}"></script>
+<!--  datetime -->
+<script src="{{ asset('vendor/datetimepicker/js/moment.js') }}"></script>
+<script src="{{ asset('vendor/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 @yield('script')
 
 </body>

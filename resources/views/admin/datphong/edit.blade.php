@@ -1,13 +1,13 @@
-<div id="edit_khachhang" class="modal fade" role="dialog">
+<div id="edit_order" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><b>Cập nhật thông tin phòng</b></h4>
+                <h4 class="modal-title"><b>thông tin nhận phòng</b></h4>
             </div>
-            <form id="frm_edit_khachhang" method="POST" action="" enctype="multipart/form-data">
-                {{ method_field('put') }}
+            <form id="frm_edit_order" method="POST" action="" enctype="multipart/form-data">
+                {{ method_field('post') }}
                 {{ csrf_field() }}
                 <div class="col-md-12">
                     <div class="widget-body">
@@ -15,31 +15,25 @@
                             <div class="col-md-6 ">
                                 <br>
                                 <input type="hidden" name="edit_id" id="edit_id" value="" />
+                                <input type="hidden" name="edit_khachhang_id" id="edit_khachhang_id" value="" />
                                 <div class="form-group">
                                     <label for="edit_name">Tên Khách Hàng</label>
-                                    <input type="text" class="form-control" id="edit_name" name="edit_name" placeholder="Tên Khách Hàng" value="">
+                                    <input type="text" class="form-control" id="edit_name" name="edit_name" readonly placeholder="Tên Khách Hàng" value="">
                                     <span class="text-danger">
                                              <strong id="edit-name-error"></strong>
                                          </span>
                                 </div>
                                 <div class="form-group">
                                     <label for="edit_cmnd">CMND</label>
-                                    <input type="number" class="form-control" id="edit_cmnd" name="edit_cmnd" placeholder="CMND"
+                                    <input type="number" class="form-control" id="edit_cmnd" name="edit_cmnd" readonly placeholder="CMND"
                                     >
                                     <span class="text-danger">
                                              <strong id="edit-cmnd-error"></strong>
                                          </span>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="edit_diachi">Địa Chỉ</label>
-                                    <input type="text" class="form-control" id="edit_diachi" name="edit_diachi" placeholder="Địa Chỉ">
-                                    <span class="text-danger">
-                                             <strong id="edit-diachi-error"></strong>
-                                         </span>
-                                </div>
-                                <div class="form-group ">
                                     <label for="edit_diachi">Số Điện Thoại</label>
-                                    <input type="tel" class="form-control" id="edit_dienthoai" name="edit_dienthoai" placeholder="Địa Chỉ">
+                                    <input type="tel" class="form-control" id="edit_dienthoai" name="edit_dienthoai" readonly placeholder="Địa Chỉ">
                                     <span class="text-danger">
                                              <strong id="edit-dienthoai-error"></strong>
                                          </span>
@@ -49,23 +43,31 @@
                             <div class="col-md-6">
                                 <br>
                                 <div class="form-group">
-                                    <label for="gioitinh">Giới tính</label>
-
-                                    <br>
-                                    <select name="edit_gioitinh" id="edit_gioitinh">
-                                        <option value="">---- Chọn Giới tính -----</option>
-                                        <option value="0">Nam</option>
-                                        <option value="1">Nữ</option>
+                                    <label for="phong_id" style="display: block">Phòng</label>
+                                    <select name="edit_phong_id" id="edit_phong_id" class="form-control"  readonly="" style="width: 70%">
+                                        <option>---Vui Lòng chọn phòng ---</option>
+                                        @if (count($phongs) > 0)
+                                            @foreach($phongs as $phong)
+                                                <option value="{{ $phong->id }}">{{ $phong->tenphong }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
-                                    <span class="text-danger" style="display: block;">
-                                             <strong id="edit-gioitinh-error"></strong>
+                                    <span class="text-danger">
+                                         <strong id="phong_id-error"></strong>
+                                     </span>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="checkin">Ngày Đặt</label>
+                                    <input type="text" class="form-control" id="edit_checkin" name="edit_checkin" value="" placeholder="Ngày Đặt">
+                                    <span class="text-danger">
+                                             <strong id="edit_checkin-error"></strong>
                                          </span>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="Email">Email</label>
-                                    <input type="email" class="form-control" id="edit_email" name="edit_email" placeholder="Email">
+                                    <label for="checkout">Ngày Trả</label>
+                                    <input type="text" class="form-control" id="edit_checkout" name="edit_checkout" value="" placeholder="Ngày Trả">
                                     <span class="text-danger">
-                                             <strong id="edit-email-error"></strong>
+                                             <strong id="edit_checkin-error"></strong>
                                          </span>
                                 </div>
                             </div>
@@ -73,7 +75,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_khachhang">Sửa</button>
+                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_order">Sửa</button>
                     <button type="button" class="btn btn-flat btn-danger" data-dismiss="modal">Hủy</button>
                 </div>
             </form>

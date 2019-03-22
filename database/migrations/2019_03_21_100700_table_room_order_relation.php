@@ -13,14 +13,14 @@ class TableRoomOrderRelation extends Migration
      */
     public function up()
     {
-        Schema::table('chitietdatphong', function (Blueprint $table) {
+        Schema::table('datphong', function (Blueprint $table) {
             $table->foreign('phong_id')->references('id')
                 ->on('phong')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('datphong_id')->references('id')
-                ->on('datphong')
+            $table->foreign('khachhang_id')->references('id')
+                ->on('khachhang')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

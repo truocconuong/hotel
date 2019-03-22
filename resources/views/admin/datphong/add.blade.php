@@ -68,9 +68,9 @@
                                          </span>
                                    </div>
                                    <div class="form-group">
-                                       <label for="phong_id">Phòng</label>
-                                       <select name="phong_id" id="phong_id" class="form-control">
-                                           <option value="">Vui Lòng Chọn Phòng</option>
+                                       <label for="phong_id" style="display: block">Phòng</label>
+                                       <select name="phong_id" id="phong_id" class="form-control"  style="width: 70%">
+                                           <option>---Vui Lòng chọn phòng ---</option>
                                            @if (count($phongs) > 0)
                                                @foreach($phongs as $phong)
                                                    <option value="{{ $phong->id }}">{{ $phong->tenphong }}</option>
@@ -81,12 +81,13 @@
                                          <strong id="phong_id-error"></strong>
                                      </span>
                                    </div>
-                                   <div class="form-group ">
-                                       <label for="checkin">Ngày Đặt</label>
-                                       <input type="date" class="form-control" id="checkin" name="checkin" value="now()" placeholder="Ngày Đặt">
-                                       <span class="text-danger">
-                                             <strong id="checkin-error"></strong>
-                                         </span>
+                                   <div class="form-group">
+                                       <div class='input-group date' id='datetimepicker1'>
+                                           <input type='text' class="form-control"  name="checkin" />
+                                           <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                       </div>
                                    </div>
                                    <div class="form-group ">
                                        <label for="checkout">Ngày Trả</label>

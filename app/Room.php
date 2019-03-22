@@ -33,6 +33,14 @@ class Room extends Model
     }
 
 
+    public function chitietdatphong()
+    {
+        return $this->belongsTo('App\Orderdetail','phong_id','id');
+            //->withPivot('ngaydat','ngaytra')
+            //->withTimestamps();
+    }
+
+
     public function order()
     {
         return $this->belongsToMany('App\Order', 'chitietdatphong', 'phong_id', 'datphong_id')
@@ -43,5 +51,11 @@ class Room extends Model
     public function customer()
     {
         return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
+    }
+
+
+    public function phong(){
+
+        return $this->belongsToMany('App\Room','phong_id');
     }
 }

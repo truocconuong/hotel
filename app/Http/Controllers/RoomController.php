@@ -24,7 +24,7 @@ class RoomController extends Controller
 
 
     public function datalistroom(){
-        $phong = Room::with('loaiphong','order');
+        $phong = Room::with('loaiphong');
         $datatables = DataTables::of($phong)
             ->addColumn('action', function ($phong) {
 
@@ -39,7 +39,7 @@ class RoomController extends Controller
                         ]);
             })
             ->editColumn('tinhtrang',function (Room $phong){
-                return $phong->tinhtrang == 1 ?'<span class="label label-danger">Đã Thuê</span>':'<span class="label label-success"></i>Trống</span>';
+                return $phong->tinhtrang == 1 ?'<span class="label label-danger">Đang Đặt</span>':'<span class="label label-success"></i>Trống</span>';
             })
             ->editColumn('created_at', function (Room $phong) {
                 return $phong->created_at ? with(new Carbon($phong->created_at))->format('d/m/Y') : '';
