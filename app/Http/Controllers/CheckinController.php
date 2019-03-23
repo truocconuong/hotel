@@ -6,16 +6,15 @@ use App\Customer;
 use App\Room;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
-use App\Order;
+use App\Checkin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
-use App\Checkin;
 use Illuminate\Database\Capsule\Manager;
 
 
-class OrderController extends Controller
+class CheckinController extends Controller
 {
     public function __construct()
     {
@@ -23,57 +22,41 @@ class OrderController extends Controller
     }
 
     public function index(){
-        $data['phongs']= Room::select('id','tenphong')
-//            ->where('tinhtrang','=','0')
-            ->get();
-        return view('admin.datphong.index',$data);
+        $data['phongs']= Room::select('id','tenphong')->where('tinhtrang','=','1')->get();
+        return view('admin.thuephong.index',$data);
     }
 
 
     public function datalistroder(){
-//        $sql = 'SELECT datphong.id,tenkhachhang,tenphong,ngaydat,ngaytra,datphong.created_at FROM khachhang,phong,datphong,chitietdatphong WHERE khachhang.id = datphong.khachhang_id and datphong.id=chitietdatphong.datphong_id and chitietdatphong.phong_id=phong.id';
-//        $datphong = DB::SELECT($sql);
-        $datphong = Order::with('phong','customer');
-        $datatables = DataTables::of($datphong)
-            ->addColumn('action', function ($datphong) {
+//        $sql = 'SELECT thuephong.id,tenkhachhang,tenphong,ngaydat,ngaytra,thuephong.created_at FROM khachhang,phong,thuephong,chitietthuephong WHERE khachhang.id = thuephong.khachhang_id and thuephong.id=chitietthuephong.thuephong_id and chitietthuephong.phong_id=phong.id';
+//        $thuephong = DB::SELECT($sql);
+        $thuephong = Checkin::with('phong','customer');
+        $datatables = DataTables::of($thuephong)
+            ->addColumn('action', function ($thuephong) {
 
-               if($datphong->tinhtrang == 0){
-                   return view('admin.modal.btn-add-modal',
-                       [
-                           'edit' => '#edit_order',
-                           'delete_' => '#delete_order',
-                           'id' => $datphong->id,
-                           'urlEdit' => route('admin.datphong.update',['id' => $datphong->id]),
-                           'detail' => route('admin.datphong.show',['id' => $datphong->id]),
-                       ]);
-               }
-                return view('admin.modal.btn-show-modal',
-                    [
-                        'show' => '#show_order',
-                        'delete_' => '#delete_order',
-                        'id' => $datphong->id,
-                        'detail' => route('admin.datphong.show',['id' => $datphong->id]),
-                    ]);
+                    return view('admin.modal.btn-action-modal',
+                        [
+                            'edit' => '#edit_thuephong',
+                            'delete_' => '#delete_thuephong',
+                            'id' => $thuephong->id,
+                            'urlEdit' => route('admin.thuephong.update',['id' => $thuephong->id]),
+                            'detail' => route('admin.thuephong.show',['id' => $thuephong->id]),
+                            'delete' => route('admin.thuephong.delete',['id' => $thuephong->id]),
+                        ]);
 
             })
-            ->editColumn('created_at',function (Order $datphong){
-                return $datphong->created_at ? with(new Carbon($datphong->created_at))->format('d/m/Y') : '';
+            ->editColumn('created_at',function (Checkin $thuephong){
+                return $thuephong->created_at ? with(new Carbon($thuephong->created_at))->format('d/m/Y') : '';
             })
-            ->editColumn('ngaytra',function (Order $datphong){
-                return $datphong->ngaytra ? with(new Carbon($datphong->ngaytra))->format('d/m/Y') : '';
+            ->editColumn('ngaytra',function (Checkin $thuephong){
+                return $thuephong->ngaytra ? with(new Carbon($thuephong->ngaytra))->format('H:i:s d/m/Y') : '';
             })
-            ->editColumn('ngaydat',function (Order $datphong){
-                return $datphong->ngaydat ? with(new Carbon($datphong->ngaydat))->format('d/m/Y') : '';
+            ->editColumn('ngaydat',function (Checkin $thuephong){
+                return $thuephong->ngaydat ? with(new Carbon($thuephong->ngaydat))->format('H:i:s d/m/Y') : '';
             })
-            ->editColumn('tinhtrang',function (Order $datphong) {
-                if ($datphong->tinhtrang == 1) {
-                    return '<span class="label label-success">Đã Xong</span>';
-                }
-                return '<span class="label label-warning">Đang Chờ</span>';
-            })
-//            ->addColumn('tenphong',function (Order $datphong){
+//            ->addColumn('tenphong',function (Checkin $thuephong){
 //                $tenphong='';
-//                foreach ($datphong->rooms as $room){
+//                foreach ($thuephong->rooms as $room){
 //                    $tenphong= $room->tenphong;
 //                }
 //                return $tenphong;
@@ -86,18 +69,15 @@ class OrderController extends Controller
 
 
     public function show($id){
-        $order = Order::with('phong','customer')->find($id);
+        $Checkin = Checkin::with('phong','customer')->find($id);
         return response()->json([
-            'id' => $order->id,
-            'tenkhachhang' => $order->customer->tenkhachhang,
-            'cmnd' => $order->customer->cmnd,
-            'sodienthoai' => $order->customer->dienthoai,
-            'gioitinh' => $order->customer->gioitinh,
-            'email' => $order->customer->email,
-            'khachhang_id' => $order->khachhang_id,
-            'phong_id' => $order->phong_id,
-            'ngaydat' => $order->ngaydat,
-            'ngaytra' => $order->ngaytra
+            'id' => $Checkin->id,
+            'tenkhachhang' => $Checkin->customer->tenkhachhang,
+            'khachhang_id' => $Checkin->khachhang_id,
+            'phong_id' => $Checkin->phong_id,
+            'tenphong' => $Checkin->phong->tenphong,
+            'ngaydat' => $Checkin->ngaydat,
+            'ngaytra' => $Checkin->ngaytra
         ]);
 
     }
@@ -140,11 +120,12 @@ class OrderController extends Controller
             $khachhang->user_id = auth()->id();
             $khachhang->save();
 
-            $datphong = Order::create([
+            $thuephong = Checkin::create([
                 'khachhang_id' => $khachhang->id,
                 'phong_id' => $phong_id,
                 'ngaydat' => $ngaydat,
-                'ngaytra' => $ngaytra
+                'ngaytra' => $ngaytra,
+                'user_id' => auth()->id()
             ]);
 
             $phong = Room::find($phong_id);
@@ -178,26 +159,21 @@ class OrderController extends Controller
             $ngaydat = $request->input('edit_checkin');
             $ngaytra =$request->input('edit_checkout');
             $phong_id = $request->input('edit_phong_id');
-
+//
+//
             $checkin = Checkin::create([
-                 'khachhang_id' => $request->input('edit_khachhang_id'),
-                 'phong_id' => $request->input('edit_phong_id'),
-                 'ngaydat' => $ngaydat,
-                 'ngaytra' => $ngaydat,
-                 'user_id' => auth()->id()
+                'khachhang_id' => $request->input('edit_khachhang_id'),
+                'phong_id' => $request->input('edit_phong_id'),
+                'ngaydat' => $ngaydat,
+                'ngaytra' => $ngaydat,
+                'user_id' => auth()->id()
 
-             ]);
+            ]);
 
-            if($checkin){
-                $datphong = Order::find($request->input('edit_id'));
-                $datphong->tinhtrang = 1;
-                $datphong->save();
-                $phong = Room::find($phong_id);
-                $phong->tinhtrang = 2;
-                $phong->save();
+            $phong = Room::find($phong_id);
+            $phong->tinhtrang = 1;
+            $phong->save();
 
-
-            }
             return Response::json(['success' => '1']);
         }
     }

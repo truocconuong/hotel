@@ -39,7 +39,13 @@ class RoomController extends Controller
                         ]);
             })
             ->editColumn('tinhtrang',function (Room $phong){
-                return $phong->tinhtrang == 1 ?'<span class="label label-danger">Đang Đặt</span>':'<span class="label label-success"></i>Trống</span>';
+                if($phong->tinhtrang == 1){
+                    return '<span class="label label-warning">Đang Đặt</span>';
+                }elseif ($phong->tinhtrang == 2){
+                    return '<span class="label label-danger">Đang Sử Dụng</span>';
+                }
+                return '<span class="label label-success">Trống</span>';
+//                return $phong->tinhtrang == 1 ?'<span class="label label-danger">Đang Đặt</span>':'<span class="label label-success"></i>Trống</span>';
             })
             ->editColumn('created_at', function (Room $phong) {
                 return $phong->created_at ? with(new Carbon($phong->created_at))->format('d/m/Y') : '';
@@ -61,13 +67,17 @@ class RoomController extends Controller
 
     public function show($id){
         $phong = Room::find($id);
-        return response()->json([
-            'id' => $phong->id,
-            'tenphong' => $phong->tenphong,
-            'mota' => $phong->mota,
-            'image' => asset('uploads/'.$phong->image.''),
-            'loaiphong_id' => $phong->loaiphong_id
-        ]);
+        if($phong !== null){
+            return response()->json([
+                'id' => $phong->id,
+                'tenphong' => $phong->tenphong,
+                'mota' => $phong->mota,
+                'image' => asset('uploads/'.$phong->image.''),
+                'loaiphong_id' => $phong->loaiphong_id
+            ]);
+        }
+
+        return abort(401);
 
     }
 

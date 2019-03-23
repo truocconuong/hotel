@@ -14,11 +14,11 @@ class Checkin extends Model
         //->withPivot('ngaydat','ngaytra')
         //->withTimestamps();
     }
-    public function rooms(){
-        return $this->belongsToMany('App\Room', 'chitietdatphong', 'datphong_id', 'phong_id')
-            ->withPivot('ngaydat','ngaytra')
-            ->withTimestamps();
-    }
+//    public function rooms(){
+//        return $this->belongsToMany('App\Room', 'chitietdatphong', 'datphong_id', 'phong_id')
+//            ->withPivot('ngaydat','ngaytra')
+//            ->withTimestamps();
+//    }
     public function customer() {
         return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
     }

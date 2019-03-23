@@ -22,38 +22,44 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-
+                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_thuephong">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Thuê Phòng</button>
                         </div>
                         <br>
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4 style="display: inline;">Danh Sách Khách Hàng</h4><span class="pull-right"><button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_khachhang">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Thêm Khách Hàng</button></span></div>
+                            <div class="panel-heading"><h4>Danh Sách Thuê Phòng</h4></div>
                             <div class="panel-body">
-                                <table class="table-responsive table-bordered table-striped" id="khachhang-table">
+                                <table class="table-responsive table-bordered table-striped text-center" id="khachhang-table">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên Khách Hàng</th>
-                                        <th>CMND</th>
-                                        <th>Địa Chỉ</th>
-                                        <th>Điện Thoại</th>
-                                        <th>Giới Tính</th>
-                                        <th>Ngày tạo</th>
+                                        <th>Phòng Đặt</th>
+                                        <th>Ngày Vào</th>
+                                        <th>Ngày Ra</th>
+                                        <th>Ngày Đặt</th>
                                         <th>Thao Tác</th>
-
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    </tbody>
+                                    {{--<tbody>--}}
+
+                                    {{--@foreach($datphong as $dat)--}}
+                                        {{--<tr>--}}
+                                            {{--<td>{{ $dat->tenkhachhang }}</td>--}}
+
+
+                                        {{--</tr>--}}
+
+                                        {{--@endforeach--}}
+                                    {{--</tbody>--}}
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @include('admin.khachhang.add')
-            @include('admin.khachhang.edit')
-            @include('admin.khachhang.delete')
+            @include('admin.thuephong.add')
+            @include('admin.thuephong.edit')
 
         </section>
         <!-- /.content -->
@@ -61,8 +67,19 @@
     <!-- /.content-wrapper -->
 @endsection
 @section('script')
-    <script type="text/javascript" src="{{ asset('js/khachhang.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/thuephong.js') }}"></script>
     <script>
+        $('#form_add_datphong').ready(function() {
+            $('#phong_id').select2();
+        });
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                    format: 'YYYY-MM-DD HH:mm:ss'
+            });
+            $('#datetimepicker2').datetimepicker({
+                format: 'YYYY-MM-DD HH:mm:ss'
+            });
+        });
         $(function(){
             datatables =  $('#khachhang-table').DataTable({
                 processing: false,
@@ -85,15 +102,14 @@
                     "infoEmpty": "Trình bày 0 - 0 trong 0 mục"
                 },
                 ajax: {
-                    url:" {{route('admin.khachhang.data') }}",
+                    url:" {{route('admin.thuephong.data') }}",
                 },
                 columns: [
                     { data: 'id', name: 'id'},
-                    { data: 'tenkhachhang', name: 'tenkhachhang'},
-                    { data: 'cmnd', name: 'cmnd'},
-                    { data: 'diachi', name: 'diachi'},
-                    { data: 'dienthoai', name:'dienthoai'},
-                    { data: 'gioitinh', name:'gioitinh'},
+                    { data: 'customer.tenkhachhang', name: 'customer.tenkhachhang'},
+                    { data: 'phong.tenphong', name:'phong.tenphong'},
+                    { data: 'ngaydat', name:'ngaydat'},
+                    { data: 'ngaytra', name:'ngaytra'},
                     { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action'}
                 ]

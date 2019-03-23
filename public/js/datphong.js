@@ -64,6 +64,29 @@ $(function () {
         })
     });
 
+        $(document).on('click', '.btn-show', function(){
+        var id = $(this).data('id');
+        var url = $(this).data('show');
+        $.ajax({
+            url:"datphong/"+id,
+            method:'get',
+            dataType:'json',
+            success:function(data)
+            {
+                $('#show_name').val(data.tenkhachhang);
+                $('#show_dienthoai').val(data.sodienthoai);
+                $('#show_cmnd').val(data.cmnd);
+                $('#show_gioitinh').val(data.gioitinh);
+                $('#show_phong_id').val(data.phong_id);
+                $('#show_checkin').val(data.ngaydat);
+                $('#show_checkout').val(data.ngaytra);
+                $('#show_id').val(data.id);
+                $('#show_order').modal('show');
+            }
+        })
+    });
+
+
 
     $('#frm_edit_order').on('submit',function(event){
         event.preventDefault();

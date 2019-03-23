@@ -19,6 +19,7 @@ class CreateOrderTable extends Migration
             $table->integer('khachhang_id')->unsigned();
             $table->dateTime('ngaydat');
             $table->dateTime('ngaytra');
+            $table->integer('tinhtrang')->default('0');
             $table->timestamps();
         });
     }

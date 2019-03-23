@@ -38,6 +38,7 @@
                                         <th>Ngày Vào</th>
                                         <th>Ngày Ra</th>
                                         <th>Ngày Đặt</th>
+                                        <th>Trạng Thái</th>
                                         <th>Thao Tác</th>
                                     </tr>
                                     </thead>
@@ -60,6 +61,7 @@
             </div>
             @include('admin.datphong.add')
             @include('admin.datphong.edit')
+            @include('admin.datphong.show')
 
         </section>
         <!-- /.content -->
@@ -107,6 +109,7 @@
                     { data: 'phong.tenphong', name:'phong.tenphong'},
                     { data: 'ngaydat', name:'ngaydat'},
                     { data: 'ngaytra', name:'ngaytra'},
+                    { data: 'tinhtrang', name:'tinhtrang'},
                     { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action'}
                 ]

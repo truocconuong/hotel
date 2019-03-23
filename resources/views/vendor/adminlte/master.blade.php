@@ -351,6 +351,7 @@
                     </a>
                     <ul class="treeview-menu" style="display: block;">
                         <li><a href="{{ route('admin.datphong.index') }}"><i class="fa fa-circle-o"></i> Đặt Phòng</a></li>
+                        <li><a href="{{ route('admin.thuephong.index') }}"><i class="fa fa-circle-o"></i> Thuê Phòng</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

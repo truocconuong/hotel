@@ -17,6 +17,7 @@ $(function () {
 
                 }
                 if (data.success) {
+                    $("#frm_add_loaiphong")[0].reset();
                     $('#add_loaiphong').modal('hide');
                     swal({
                         title: "Success!",

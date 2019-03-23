@@ -1,4 +1,4 @@
-<div id="edit_order" class="modal fade" role="dialog">
+<div id="edit_thuephong" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
@@ -6,13 +6,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><b>thông tin nhận phòng</b></h4>
             </div>
-            <form id="frm_edit_order" method="POST" action="" enctype="multipart/form-data">
+            <form id="frm_edit_thuephong" method="POST" action="" enctype="multipart/form-data">
                 {{ method_field('post') }}
                 {{ csrf_field() }}
                 <div class="col-md-12">
                     <div class="widget-body">
                         <div class="row">
-                            <div class="col-md-6 ">
+                            <div class="col-md-6 col-md-offset-2 ">
                                 <br>
                                 <input type="hidden" name="edit_id" id="edit_id" value="" />
                                 <input type="hidden" name="edit_khachhang_id" id="edit_khachhang_id" value="" />
@@ -24,28 +24,13 @@
                                          </span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="edit_cmnd">CMND</label>
-                                    <input type="number" class="form-control" id="edit_cmnd" name="edit_cmnd" readonly  placeholder="CMND"
-                                    >
-                                    <span class="text-danger">
-                                             <strong id="edit-cmnd-error"></strong>
-                                         </span>
+                                    <label for="phong_id" style="display: block" >Phòng</label>
+                                    <input type="text" id="tenphong" class="form-control" readonly>
                                 </div>
-                                <div class="form-group ">
-                                    <label for="edit_diachi">Số Điện Thoại</label>
-                                    <input type="tel" class="form-control" id="edit_dienthoai" name="edit_dienthoai" readonly placeholder="Địa Chỉ">
-                                    <span class="text-danger">
-                                             <strong id="edit-dienthoai-error"></strong>
-                                         </span>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-                                <br>
-                                <div class="form-group">
-                                    <label for="phong_id" style="display: block">Phòng</label>
-                                    <select name="edit_phong_id" id="edit_phong_id" class="form-control"  readonly="" style="width: 70%">
-                                        <option  value=""></option>
+                                <div class="input-group">
+                                    <label for="phong_id" style="display: block">Chọn Phòng Mới</label>
+                                    <select name="edit_phong_id" id="edit_phong_id" class="form-control"  >
+                                        <option>---Vui Lòng chọn phòng ---</option>
                                         @if (count($phongs) > 0)
                                             @foreach($phongs as $phong)
                                                 <option value="{{ $phong->id }}">{{ $phong->tenphong }}</option>
@@ -75,7 +60,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_order">Sửa</button>
+                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_thuephong">Sửa</button>
                     <button type="button" class="btn btn-flat btn-danger" data-dismiss="modal">Hủy</button>
                 </div>
             </form>

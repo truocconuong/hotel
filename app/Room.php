@@ -47,15 +47,12 @@ class Room extends Model
             ->withPivot('ngaydat','ngaytra')
             ->withTimestamps();
     }
-
+    public function checkin(){
+        return $this->belongsTo('App\Checkin','phong_id','id');
+    }
     public function customer()
     {
-        return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
+        return $this->belongsToMany('App\Customer');
     }
 
-
-    public function phong(){
-
-        return $this->belongsToMany('App\Room','phong_id');
-    }
 }

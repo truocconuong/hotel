@@ -65,8 +65,13 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/datphong/{id}', 'OrderController@update')->name('datphong.update');
     Route::delete('/datphong', 'OrderController@delete')->name('datphong.delete');
 
-
-
+    Route::get('/thuephong', 'CheckinController@index')->name('thuephong.index');
+    Route::post('/thuephong/', 'CheckinController@store')->name('thuephong.store');
+    Route::get('/thuephong/listthuephong', 'CheckinController@datalistroder')->name('thuephong.data');
+    Route::get('/thuephong/{id}', 'CheckinController@show')->where('id','[0-9]+')->name('thuephong.show');
+    Route::post('/thuephong/{id}', 'CheckinController@update')->name('thuephong.update');
+    Route::delete('/thuephong', 'CheckinController@delete')->name('thuephong.delete');
+    
 });
 
 
