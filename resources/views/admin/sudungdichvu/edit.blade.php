@@ -7,7 +7,7 @@
                 <h4 class="modal-title"><b>thông tin nhận phòng</b></h4>
             </div>
             <form id="frm_edit_thuephong" method="POST" action="" enctype="multipart/form-data">
-                {{ method_field('put') }}
+                {{ method_field('post') }}
                 {{ csrf_field() }}
                 <div class="col-md-12">
                     <div class="widget-body">
@@ -24,22 +24,21 @@
                                          </span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="p_id" style="display: block" >Phòng</label>
-                                    <input type="hidden" id="p_id" name="p_id" class="form-control">
+                                    <label for="phong_id" style="display: block" >Phòng</label>
                                     <input type="text" id="tenphong" class="form-control" readonly>
                                 </div>
                                 <div class="input-group">
                                     <label for="phong_id" style="display: block">Chọn Phòng Mới</label>
                                     <select name="edit_phong_id" id="edit_phong_id" class="form-control"  >
-                                        <option id="" name="" value="">---Vui Lòng chọn phòng ---</option>
-                                        @if (count($phongs) > 0)
-                                            @foreach($phongs as $phong)
-                                                <option value="{{ $phong->id }}">{{ $phong->tenphong }}</option>
-                                            @endforeach
-                                        @endif
+                                        <option>---Vui Lòng chọn phòng ---</option>
+                                        {{--@if (count($dichvu) > 0)--}}
+                                            {{--@foreach($dichvu as $dv)--}}
+                                                {{--<option value="{{ $dv->id }}">{{ $dv->tendichvu }}</option>--}}
+                                            {{--@endforeach--}}
+                                        {{--@endif--}}
                                     </select>
                                     <span class="text-danger">
-                                         <strong id="edit_phong_id_error"></strong>
+                                         <strong id="phong_id-error"></strong>
                                      </span>
                                 </div>
                                 <div class="form-group ">

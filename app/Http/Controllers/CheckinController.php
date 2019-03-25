@@ -22,7 +22,8 @@ class CheckinController extends Controller
     }
 
     public function index(){
-        $data['phongs']= Room::select('id','tenphong')->where('tinhtrang','=','1')->get();
+        $data['phongs']= Room::select('id','tenphong')->where('tinhtrang','=','0')->get();
+//        $data['phong2s']= Room::select('id','tenphong')->whereIn('tinhtrang',[0,2])->get();
         return view('admin.thuephong.index',$data);
     }
 
@@ -34,19 +35,16 @@ class CheckinController extends Controller
         $datatables = DataTables::of($thuephong)
             ->addColumn('action', function ($thuephong) {
 
-                    return view('admin.modal.btn-action-modal',
+                    return view('admin.modal.btn-action2-modal',
                         [
                             'edit' => '#edit_thuephong',
                             'delete_' => '#delete_thuephong',
                             'id' => $thuephong->id,
                             'urlEdit' => route('admin.thuephong.update',['id' => $thuephong->id]),
                             'detail' => route('admin.thuephong.show',['id' => $thuephong->id]),
-                            'delete' => route('admin.thuephong.delete',['id' => $thuephong->id]),
+                            'delete' => url('admin/thuephong/thanhtoan',['id' => $thuephong->id]),
                         ]);
 
-            })
-            ->editColumn('created_at',function (Checkin $thuephong){
-                return $thuephong->created_at ? with(new Carbon($thuephong->created_at))->format('d/m/Y') : '';
             })
             ->editColumn('ngaytra',function (Checkin $thuephong){
                 return $thuephong->ngaytra ? with(new Carbon($thuephong->ngaytra))->format('H:i:s d/m/Y') : '';
@@ -135,48 +133,56 @@ class CheckinController extends Controller
             return Response::json(['success' => '1']);
         }
     }
-    public function update(Request $request){
+    public function update(Request $request,$id){
         $valid = Validator::make($request->all(), [
             'edit_name' => 'required',
-            'edit_dienthoai' => 'required|numeric',
-            'edit_cmnd' => 'required|numeric',
-            'edit_phong_id' => 'required|exists:phong,id'
 
         ], [
             'edit_name.required' => 'Vui lòng nhập Tên Dịch Vụ',
-            'edit_name.unique' => 'Tên này đã trùng',
-            'edit_dienthoai.required' => 'Vui Lòng Nhập Điện Thoại',
-            'edit_cmnd.required' => 'Vui Lòng Nhập CMND',
-            'edit_phong_id.required' => 'Vui Lòng Chọn Phòng',
-            'edit_dienthoai.numeric' => 'Điện Thoại Phải Là Số',
-            'edit_cmnd.numeric' => 'CMND Phải Là Số',
         ]);
 
         if($valid->fails()){
             return Response::json(['errors' => $valid->errors()]);
         }else{
+            $p_id = $request->input('p_id');
+            $new_phong_id = $request->input('edit_phong_id');
 
-            $ngaydat = $request->input('edit_checkin');
-            $ngaytra =$request->input('edit_checkout');
-            $phong_id = $request->input('edit_phong_id');
-//
-//
-            $checkin = Checkin::create([
-                'khachhang_id' => $request->input('edit_khachhang_id'),
-                'phong_id' => $request->input('edit_phong_id'),
-                'ngaydat' => $ngaydat,
-                'ngaytra' => $ngaydat,
-                'user_id' => auth()->id()
+            $checkin = Checkin::find($id);
+            if($checkin !== null) {
+                if ($request->has('edit_checkin')) {
+                    $ngaydat = $request->input('edit_checkin');
+                }
+                if ($request->has('edit_checkout')) {
+                    $ngaytra = $request->input('edit_checkout');
+                }
+//                $checkin->phong_id = $p_id;
 
-            ]);
+                if ($request->has('edit_phong_id') && ($new_phong_id !== null)){
 
-            $phong = Room::find($phong_id);
-            $phong->tinhtrang = 1;
-            $phong->save();
+                    $newstt = DB::table('phong')
+                            ->where('id','=', $new_phong_id)
+                            ->update(['tinhtrang' => 2]);
+                    $checkin->phong_id = $new_phong_id;
+                    $oldsst =DB::table('phong')
+                        ->where('id','=', $p_id)
+                        ->update(['tinhtrang' => 0]);
+                }
+
+                $checkin->ngaydat = $ngaydat;
+                $checkin->ngaytra = $ngaytra;
+                $checkin->save();
+
+
+            }
 
             return Response::json(['success' => '1']);
         }
     }
+    public function delete($id){
 
+        return view('admin.thuephong.thanhtoan');
+
+
+    }
 
 }

@@ -54,11 +54,11 @@ $(function () {
             {
                 $('#edit_name').val(data.tenkhachhang);
                 $('#edit_khachhang_id').val(data.khachhang_id);
+                $('#p_id').val(data.phong_id);
                 $('#tenphong').val(data.tenphong);
                 $('#edit_checkin').val(data.ngaydat);
                 $('#edit_checkout').val(data.ngaytra);
                 $('#edit_id').val(data.id);
-                $('#edit_order').modal('show');
             }
         })
     });
@@ -71,5 +71,44 @@ $(function () {
             format: 'YYYY-MM-DD HH:mm:ss'
         });
     });
+
+    $('#frm_edit_thuephong').on('submit',function(event){
+        event.preventDefault();
+        var formd=new FormData($("#frm_edit_thuephong")[0]);
+        var form_data = $(this).serialize();
+        var id =  $('#edit_id').val();
+        $.ajax({
+            url:"thuephong/"+id,
+            method:"put",
+            data:form_data,
+            success:function(data)
+            {    console.log(form_data);
+                if (data.errors) {
+                    $('#edit-name-error').html(data.errors.edit_name);
+                    $('#edit-dienthoai-error').html(data.errors.edit_dienthoai);
+                    $('#edit_phong_id_error').html(data.errors.edit_phong_id);
+                    swal({
+                        title: "Errors!",
+                        text: "Có Lỗi Khi Thêm Dữ Liệu",
+                        icon: "error",
+                        timer: '1300'
+                    });
+
+                }
+                if (data.success) {
+
+                    $('#edit_thuephong').modal('hide');
+                    swal({
+                        title: "Success!",
+                        text: "Thêm Dữ Liệu Thành Công",
+                        icon: "success",
+                        timer: '1300'
+                    });
+                    setTimeout(location.reload.bind(location), 1300);
+                }
+            }
+        })
+    });
+
 
 });

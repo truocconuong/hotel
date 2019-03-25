@@ -14,4 +14,8 @@ class Service extends Model
 
     protected $hidden=[];
 
+    public function sddichvu() {
+        return $this->hasMany('App\Useservice', 'dichvu_id','id');
+    }
+
 }

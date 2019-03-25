@@ -341,7 +341,7 @@
 
                     </a>
                 </li>
-                <li class="treeview menu-open ">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Quản lý Phòng</span>
@@ -349,9 +349,10 @@
                           <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu" style="display: block;">
+                    <ul class="treeview-menu" style="display: none;">
                         <li><a href="{{ route('admin.datphong.index') }}"><i class="fa fa-circle-o"></i> Đặt Phòng</a></li>
                         <li><a href="{{ route('admin.thuephong.index') }}"><i class="fa fa-circle-o"></i> Thuê Phòng</a></li>
+                        <li><a href="{{ route('admin.sddichvu.index') }}"><i class="fa fa-circle-o"></i> Sử Dụng Dịch Vụ</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

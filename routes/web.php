@@ -62,15 +62,24 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/datphong/', 'OrderController@store')->name('datphong.store');
     Route::get('/datphong/listdatphong', 'OrderController@datalistroder')->name('datphong.data');
     Route::get('/datphong/{id}', 'OrderController@show')->where('id','[0-9]+')->name('datphong.show');
-    Route::post('/datphong/{id}', 'OrderController@update')->name('datphong.update');
+    Route::post('/datphong', 'OrderController@update')->name('datphong.update');
     Route::delete('/datphong', 'OrderController@delete')->name('datphong.delete');
 
     Route::get('/thuephong', 'CheckinController@index')->name('thuephong.index');
     Route::post('/thuephong/', 'CheckinController@store')->name('thuephong.store');
     Route::get('/thuephong/listthuephong', 'CheckinController@datalistroder')->name('thuephong.data');
     Route::get('/thuephong/{id}', 'CheckinController@show')->where('id','[0-9]+')->name('thuephong.show');
-    Route::post('/thuephong/{id}', 'CheckinController@update')->name('thuephong.update');
-    Route::delete('/thuephong', 'CheckinController@delete')->name('thuephong.delete');
+    Route::put('/thuephong/{id}', 'CheckinController@update')->name('thuephong.update');
+    Route::get('/thuephong/thanhtoan/{id}', 'CheckinController@delete')->name('thuephong.thanhtoan');
+
+
+    Route::get('/sddichvu', 'UseserviceController@index')->name('sddichvu.index');
+    Route::post('/sddichvu/', 'UseserviceController@store')->name('sddichvu.store');
+    Route::get('/sddichvu/add/{id}', 'UseserviceController@add')->name('sddichvu.add');
+    Route::get('/sddichvu/listsddichvu', 'UseserviceController@datalistsddichvu')->name('sddichvu.data');
+    Route::get('/sddichvu/{id}', 'UseserviceController@show')->where('id','[0-9]+')->name('sddichvu.show');
+    Route::post('/sddichvu/{id}', 'UseserviceController@update')->name('sddichvu.update');
+    Route::delete('/sddichvu/{id}', 'UseserviceController@delete')->name('sddichvu.delete');
     
 });
 
