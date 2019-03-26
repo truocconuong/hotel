@@ -13,9 +13,7 @@ class Useservice extends Model
     protected $hidden =[];
 
     public function dichvu() {
-        return $this->belongsTo('App\Service', 'dichvu_id','id')
-        ->withPivot('quantity')
-        ->withTimestamps();
+        return $this->belongsTo('App\Service', 'dichvu_id','id');
     }
     public function checkin() {
         return $this->belongsTo('App\Checkin', 'thuephong_id', 'id');

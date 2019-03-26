@@ -22,4 +22,7 @@ class Checkin extends Model
     public function customer() {
         return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
     }
+    public function sddichvu(){
+        return $this->hasMany('App\Useservice','thuephong_id','id');
+    }
 }

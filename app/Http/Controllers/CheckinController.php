@@ -178,9 +178,12 @@ class CheckinController extends Controller
             return Response::json(['success' => '1']);
         }
     }
-    public function delete($id){
-
-        return view('admin.thuephong.thanhtoan');
+    public function checkout($id){
+        $data['checkin'] = Checkin::with('phong','customer','sddichvu.dichvu')->where('id',$id)->get()->first();
+        $data['mytime'] = Carbon::now();
+//        $data['checkin'] = Checkin::find($id);
+//        dd($data['checkin']);
+        return view('admin.thuephong.thanhtoan',$data);
 
 
     }

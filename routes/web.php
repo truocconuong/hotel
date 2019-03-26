@@ -70,7 +70,7 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::get('/thuephong/listthuephong', 'CheckinController@datalistroder')->name('thuephong.data');
     Route::get('/thuephong/{id}', 'CheckinController@show')->where('id','[0-9]+')->name('thuephong.show');
     Route::put('/thuephong/{id}', 'CheckinController@update')->name('thuephong.update');
-    Route::get('/thuephong/thanhtoan/{id}', 'CheckinController@delete')->name('thuephong.thanhtoan');
+    Route::get('/thuephong/thanhtoan/{id}', 'CheckinController@checkout')->name('thuephong.thanhtoan');
 
 
     Route::get('/sddichvu', 'UseserviceController@index')->name('sddichvu.index');
