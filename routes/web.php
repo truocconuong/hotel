@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
+Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/users/listuser', 'UserController@datalistuser')->name('users.data');
     Route::post('/users/', 'UserController@store')->name('users.store');
@@ -82,5 +82,6 @@ Route::Group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::delete('/sddichvu/{id}', 'UseserviceController@delete')->name('sddichvu.delete');
     
 });
+
 
 

@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><h4>Hóa Đơn Trả Phòng</h4></div>
+                            <div class="panel-heading"><h4>Hóa Đơn Trả Phòng {{ $checkin->phong->tenphong }}</h4></div>
                             <div class="panel-body">
                                 <div class="col-md-6">
                                     <div class="row">
@@ -51,20 +51,42 @@
                                     </div>
                                     <div class="row">
                                         <label class="col-md-4">Ngày Vào</label>
-                                        <div class="col-md-8">{{$checkin->ngaydat}}</div>
+                                        <div class="col-md-8">{{Carbon\Carbon::parse($checkin->ngaydat)->format('d/m/Y') }}</div>
                                     </div>
                                     <div class="row">
                                         <label class="col-md-4">Ngày Dự Kiến Trả</label>
-                                        <div class="col-md-8">{{$checkin->ngaytra}}</div>
+                                        <div class="col-md-8">{{Carbon\Carbon::parse($checkin->ngaytra)->format('d/m/Y')}}</div>
                                     </div>
                                     <div class="row">
                                         <label class="col-md-4">Ngày Trả</label>
-                                        <div class="col-md-8">{{$mytime}}</div>
+                                        <div class="col-md-8">{{$mytime }}</div>
                                     </div>
+
+                                    @php
+
+                                        $ngaydat = Carbon\Carbon::parse($checkin->ngaydat)->format('d');
+                                        $day = $mytime->day - $ngaydat;
+                                        $giaphong = ($checkin->phong->loaiphong->giatien * $day);
+                                    @endphp
                                     <div class="row">
-                                        <table>
-                                            <thead></thead>
-                                        </table>
+                                        <label class="col-md-4">Tiền phòng</label>
+                                        <div class="col-md-8">
+                                            <table class="table table-responsive table-bordered">
+                                                <thead>
+                                                <th>Giá Phòng</th>
+                                                <th>Số Ngày Thuê</th>
+                                                <th>Thành Tiền</th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>{{ $checkin->phong->loaiphong->giatien }}</td>
+                                                        <td>{{ $day }}</td>
+                                                        <td>{{$giaphong}}</td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -86,6 +108,8 @@
                                             @php
                                                 $subtotal = $sddv->quantity * $sddv->dichvu->gia;
                                                 $total += $subtotal;
+
+                                                $maintotal = $total + $giaphong;
                                             @endphp
                                             <tr>
                                                 <td>{{ $sddv->dichvu->tendichvu }}</td>
@@ -97,14 +121,19 @@
                                         @endforeach
                                         <tr>
                                             <td colspan="3">Tổng tiền</td>
-                                            <td>{{$total}}</td>
+                                            <td>{{get_currency_vn($total)}}</td>
                                         </tr>
                                         </tbody>
 
                                     </table>
                                 </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3> Tổng tiền phải thanh toán <span><strong>{{get_currency_vn($maintotal)}}</strong></span></h3>
+                                    </div>
+                                </div>
                             </div>
-
+                            <div class="panel-footer"></div>
                         </div>
                     </div>
                 </div>

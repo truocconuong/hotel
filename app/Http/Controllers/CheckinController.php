@@ -179,8 +179,8 @@ class CheckinController extends Controller
         }
     }
     public function checkout($id){
-        $data['checkin'] = Checkin::with('phong','customer','sddichvu.dichvu')->where('id',$id)->get()->first();
-        $data['mytime'] = Carbon::now();
+        $data['checkin'] = Checkin::with('phong.loaiphong','customer','sddichvu.dichvu')->where('id',$id)->get()->first();
+        $data['mytime'] = Carbon::now('+7');
 //        $data['checkin'] = Checkin::find($id);
 //        dd($data['checkin']);
         return view('admin.thuephong.thanhtoan',$data);
