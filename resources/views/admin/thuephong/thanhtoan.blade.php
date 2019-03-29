@@ -133,7 +133,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer"></div>
+                            <div class="panel-footer">
+                                <form action="{{ route('admin.thuephong.hoadon') }}" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="makhachhang" value="{{$checkin->khachhang_id}}">
+                                    <input type="hidden" name="mathuephong" value="{{$checkin->id}}">
+                                    <input type="hidden" name="maphong" value="{{$checkin->phong_id}}">
+                                    <input type="hidden" name="tongtien" value="{{$maintotal}}">
+                                    <input type="hidden" name="tiendichvu" value="{{$total}}">
+                                    <input type="hidden" name="tienphong" value="{{$giaphong}}">
+                                    <button type="submit" class="btn btn-primary btn-sm">Thanh Toán</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

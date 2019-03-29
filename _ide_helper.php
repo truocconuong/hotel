@@ -17055,7 +17055,6 @@ namespace  {
 
     class Tool extends \App\Khanhvuht\Facades\Tool {}
 
-    class DataTables extends \Yajra\DataTables\Facades\DataTables {}
  
 }
 

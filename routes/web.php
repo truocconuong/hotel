@@ -26,7 +26,16 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/users/', 'UserController@store')->name('users.store');
     Route::get('/users/{id}', 'UserController@show')->where('id','[0-9]+')->name('users.show');
     Route::post('/users/{id}', 'UserController@update')->name('users.update');
-    Route::delete('/users/{id}', 'UserController@delete')->name('users.delete');
+    Route::post('/users/delete/{id}', 'UserController@delete')->name('users.delete');
+    Route::get('/users/create', 'UserController@create')->name('users.create');
+
+    Route::get('/role', 'RoleController@index')->name('role.index');
+    Route::get('/role/listrole', 'RoleController@datalistrole')->name('role.data');
+    Route::post('/role/', 'RoleController@store')->name('role.store');
+    Route::get('/role/{id}', 'RoleController@show')->where('id','[0-9]+')->name('role.show');
+    Route::post('/role/{id}', 'RoleController@update')->name('role.update');
+    Route::delete('/role/{id}', 'RoleController@delete')->name('role.delete');
+    Route::get('/role/create', 'RoleController@create')->name('role.create');
 
     Route::get('/loaiphong', 'KroomController@index')->name('loaiphong.index');
     Route::get('/loaiphong/create', 'KroomController@create')->name('loaiphong.create');
@@ -71,6 +80,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::get('/thuephong/{id}', 'CheckinController@show')->where('id','[0-9]+')->name('thuephong.show');
     Route::put('/thuephong/{id}', 'CheckinController@update')->name('thuephong.update');
     Route::get('/thuephong/thanhtoan/{id}', 'CheckinController@checkout')->name('thuephong.thanhtoan');
+    Route::post('/thuephong/thanhtoan', 'CheckinController@thanhtoan')->name('thuephong.hoadon');
 
 
     Route::get('/sddichvu', 'UseserviceController@index')->name('sddichvu.index');

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
+use Spatie\Permission\Models\Role;
+use DB;
 
 class UserController extends Controller
 {
@@ -21,21 +23,22 @@ class UserController extends Controller
 
         return view('admin.user.index');
     }
+    public function create(){
+        $data['roles'] = Role::pluck('name','name')->all();
+        return view('admin.user.create',$data);
+    }
 
     public function datalistuser(){
 
         $user = User::all();
         $datatables = DataTables::of($user)->addColumn('action', function ($user) {
 
-            return view('admin.modal.btn-action-modal',
+            return view('admin.modal.btn-action3-modal',
                 [
-                    'edit' => '#edit_user',
+                    'delete_' => '#delete_user',
                     'id' => $user->id,
-                    'email' => $user->email,
-                    'name' => $user->name,
                     'urlEdit' => route('admin.users.update', ['id' => $user->id]),
                     'detail' => route('admin.users.show', ['id' => $user->id]),
-                    'delete' => route('admin.users.delete',['id' => $user->id])
                 ]);
              })->rawColumns([ 'rownum', 'action']);
 
@@ -51,7 +54,7 @@ class UserController extends Controller
         $valid = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|confirmed'
+            'password' => 'required|same:password_confirmation',
         ], [
             'name.required' => 'Vui lòng nhập Họ Tên',
             'email.required' => 'Vui lòng nhập Email',
@@ -59,40 +62,32 @@ class UserController extends Controller
             'email.unique' => 'Email này đã trùng vui lòng chọn Email khác',
             'password.required' => 'Vui lòng nhập Mật Khẩu',
         ]);
+
         if ($valid->fails()) {
-            return Response::json(['errors' => $valid->errors()]);
+            return redirect()->back()->withErrors($valid)->withInput();
         } else {
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'password' => bcrypt($request->input('password')),
             ]);
-            return Response::json(['success' => '1']);
+            $user->assignRole($request->input('roles'));
+            return redirect()->route('admin.users.index')
+                ->with('success','User created successfully');
         }
     }
 
 
     public function show($id)
     {
-        $detail = User::find($id);
-        return Response::json($detail);
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('admin.user.edit',compact('user','roles','userRole'));
     }
     public function update(Request $request,$id){
-//        $valid = Validator::make($request->all(), [
-//            'name' => 'required',
-//            'email' => 'required|email|unique:users,email,' . $id,
-//            'password' => 'confirmed'
-//        ], [
-//            'name.required' => 'Vui lòng nhập Họ Tên',
-//            'email.required' => 'Vui lòng nhập Email',
-//            'email.email' => 'Không đúng định dạng Email',
-//            'email.unique' => 'Email này đã trùng vui lòng chọn Email khác'
-//        ]);
 //
-//        if ($valid->fails()) {
-//            return Response::json(['errors' => $valid->errors()]);
-//        } else {
-            $user = User::find($id);
+        $user = User::find($id);
             if ($user !== null) {
                 $user->name = $request->input('edit_name');
                 $user->email = $request->input('edit_email');
@@ -100,12 +95,12 @@ class UserController extends Controller
                     $user->password = bcrypt($request->input('edit_password'));
                 }
                 $user->save();
+
+                DB::table('model_has_roles')->where('model_id',$id)->delete();
+                $user->assignRole($request->input('roles'));
                     return redirect()->route('admin.users.index')->with('message', "Cập nhật người dùng $user->name thành công");
             }
             return redirect()->route('admin.users.index')->with('error', 'không tìm thấy người dùng');
-//                return Response::json(['success' => '1']);
-
-//        }
 
     }
 
@@ -115,8 +110,8 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ($user !== null) {
             $user->delete();
-            return redirect()->route('admin.users.index')->with('message', "Xóa người dùng $user->name thành công");
+            return Response::json(['success' => '1']);
+
         }
-        return redirect()->route('admin.users.index')->with('error', 'Không tìm thấy người dùng này');
     }
 }

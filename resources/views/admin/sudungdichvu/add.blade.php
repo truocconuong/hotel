@@ -18,7 +18,7 @@
                         <div class="col-md-7">
                             <br>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><h4><i class="fa fa-table"></i>  Gọi Dịch Vụ Cho Phòng {{ $thuephong[0]->tenphong }}</h4></div>
+                                <div class="panel-heading"><h4><i class="fa fa-table"></i>  Gọi Dịch Vụ Cho Phòng {{ $thuephong->phong->tenphong }}</h4></div>
                                 <div class="panel-body">
                                     @if (session('message'))
                                         <div class="alert alert-success">
@@ -105,7 +105,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong[0]->id}}"/>
+                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong->id}}"/>
                         <input class="form-control" id="dichvu_id" name="dichvu_id" style="display: none" type="text"/>
                         <label> Số lượng</label>
                         <input class="form-control" id="so_luong" name="so_luong" style="width:50%" type="number" value="1" />
@@ -123,7 +123,7 @@
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('admin.sddichvu.update',['id' => $sddichvu[0]->id]) }}" method="post">
+                <form action="{{ route('admin.sddichvu.update',['id' => $thuephong->id]) }}" method="post">
                     {{ csrf_field() }}
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Chọn số lượng</h5>
@@ -132,7 +132,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong[0]->id}}"/>
+                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong->id}}"/>
                         <input class="form-control" id="sddichvu_id" name="edit_sddichvu_id" style="display:block" type="text" value=""/>
                         <label> Số lượng</label>
                         <input class="form-control" id="edit_so_luong" name="edit_so_luong" style="width:50%" type="number" value="1" />
@@ -161,7 +161,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong[0]->id}}"/>
+                        <input class="form-control" id="thuephong_id" name="thuephong_id" style="display:none" type="text" value="{{$thuephong->id}}"/>
                         <input class="form-control" id="delete_sddichvu_id" name="delete_sddichvu_id" style="display:block" type="text" value=""/>
 
                             <h3> Bạn Có Chắc Muốn Xóa</h3>

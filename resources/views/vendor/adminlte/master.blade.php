@@ -335,11 +335,25 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="{{ route('admin.users.index') }}">
                         <i class="fa fa-dashboard"></i> <span>User</span>
 
                     </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý Người Dùng</span>
+                        <span class="pull-right-container">
+                          <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu" style="display: none;">
+                        <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-circle-o"></i> Người Dùng</a></li>
+                        <li><a href="{{ route('admin.role.index') }}"><i class="fa fa-circle-o"></i>Vai Trò </a></li>
+
+                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">

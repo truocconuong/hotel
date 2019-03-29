@@ -30,8 +30,7 @@ class UseserviceController extends Controller
 
 
     public function datalistsddichvu(){
-//        $sql = 'SELECT thuephong.id,tenkhachhang,tenphong,ngaydat,ngaytra,thuephong.created_at FROM khachhang,phong,thuephong,chitietthuephong WHERE khachhang.id = thuephong.khachhang_id and thuephong.id=chitietthuephong.thuephong_id and chitietthuephong.phong_id=phong.id';
-//        $thuephong = DB::SELECT($sql);
+
         $thuephong = Checkin::with('phong','customer');
         $datatables = DataTables::of($thuephong)
             ->addColumn('action', function ($thuephong) {
@@ -50,13 +49,6 @@ class UseserviceController extends Controller
             ->editColumn('ngaydat',function (Checkin $thuephong){
                 return $thuephong->ngaydat ? with(new Carbon($thuephong->ngaydat))->format('H:i:s d/m/Y') : '';
             })
-//            ->addColumn('tenphong',function (Useservice $thuephong){
-//                $tenphong='';
-//                foreach ($thuephong->rooms as $room){
-//                    $tenphong= $room->tenphong;
-//                }
-//                return $tenphong;
-//            })
             ->rawColumns(['ngaydat','ngaytra','created_at','action','tinhtrang']);
 
         return $datatables->make(true);
@@ -65,17 +57,18 @@ class UseserviceController extends Controller
     public function add($id){
 
         $data['dichvu']=Service::all();
-        $data['thuephong'] = DB::table('thuephong')
-            ->join('phong', 'phong.id', '=', 'thuephong.phong_id')
-            ->select('thuephong.id','tenphong')
-            ->where('thuephong.id','=',$id)
-            ->get();
+//        $data['thuephong'] = DB::table('thuephong')
+//            ->join('phong', 'phong.id', '=', 'thuephong.phong_id')
+//            ->select('thuephong.id','tenphong')
+//            ->where('thuephong.id','=',$id)
+//            ->get();
+        $data['thuephong'] = Checkin::with(['phong:id,tenphong'])->where('id',$id)->first();
         $data['sddichvu'] = DB::table('sudungdichvu')
             ->join('dichvu', 'dichvu.id', '=', 'sudungdichvu.dichvu_id')
             ->join('thuephong', 'thuephong.id', '=', 'sudungdichvu.thuephong_id')
             ->select('sudungdichvu.id as id','tendichvu','gia','dichvu_id','quantity')
             ->where('thuephong_id','=',$id)
-            ->get();;
+            ->get();
         return view('admin.sudungdichvu.add', $data);
 
     }
@@ -151,7 +144,7 @@ class UseserviceController extends Controller
             $sd->quantity = $sl;
             $sd->save();
 
-            return redirect()->route('admin.sddichvu.add',['id' => $request->input('thuephong_id')])->with('message', "Sửa dịch vụ thành công");
+            return redirect()->route('admin.sddichvu.add',['id' => $id])->with('message', "Sửa dịch vụ thành công");
         }
     }
 

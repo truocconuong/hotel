@@ -22,8 +22,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_user">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Thêm người dùng</button>
+                            <a href="{{route('admin.users.create')}}" class="btn bg-olive btn-flat margin btn_add_user">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Thêm người dùng</a>
                         </div>
                         <br>
                         <div class="panel panel-default">
@@ -59,9 +59,31 @@
                     </div>
                 </div>
             </div>
-            @include('admin.user.add')
-            @include('admin.user.edit')
-            @include('admin.user.delete')
+
+            <!-- Modal -->
+            <div id="delete_user" class="modal fade" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Xóa người dùng</h4>
+                        </div>
+                        <form  id="del_frm_user" class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="modal-body">
+                                <div class="row">
+                                    <input type="hidden" id="delete_id" value="">
+                                    <h4 class="nnbodydelete">Bạn có chắc muốn xóa người dùng </h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Đóng cửa sổ</button>
+                                    <button type="submit" class="btn btn-warning">Xóa</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </section>
         <!-- /.content -->
@@ -69,36 +91,9 @@
     <!-- /.content-wrapper -->
  @endsection
 @section('script')
-    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
+    <script src="{{ asset('js/user.js') }}"></script>
     <script>
-        $('body').on('click', '#btn_add_user', function() {
-            var registerForm = $("#frm_add_user");
-            var formData = registerForm.serialize();
-            $('#name-error').html("");
 
-            $.ajax({
-                url: " {{ url('admin/users') }}",
-                type: "POST",
-                data: formData,
-                success: function (data) {
-                    console.log(data);
-                    if (data.errors) {
-                        if (data.errors.name) {
-                            $('#name-error').html(data.errors.name[0]);
-                        }
-
-                    }
-                    if (data.success) {
-                        $('#success-msg').removeClass('hide');
-                        setInterval(function () {
-                            $('#success-msg').addClass('hide');
-                        }, 1000);
-                        $('#add_user').modal('hide');
-                        datatables.ajax.reload();
-                    }
-                },
-            });
-        });
         $(function(){
                 datatables =  $('#users-table').DataTable({
                 processing: true,
@@ -134,27 +129,6 @@
                   drawCallback: function () {
                   }
             });
-
-            datatables.on('draw', function () {
-                $('.btn-edit').on('click', function () {
-                    var url = $(this).data('show');
-                    var editUrl = $(this).data('url');
-                    $('#edit_frm_user').attr('action', editUrl);
-                    $.get(url, function (resp) {
-                            $("#edit_name").val(resp.name);
-                            $("#edit_email").val(resp.email);
-                            console.log(resp);
-                    }, 'json');
-                });
-
-                $("#delete_user").click(function(){
-                    var delUrl = $(this).data('url');
-                    $('#del_frm_user').attr('action', delUrl);
-                    $('#delete_user_modal').modal('show');
-
-                });
-            });
-
         });
     </script>
 @endsection

@@ -7,11 +7,12 @@ use App\Room;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Checkin;
+use App\Bill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
-use Illuminate\Database\Capsule\Manager;
+
 
 
 class CheckinController extends Controller
@@ -31,7 +32,7 @@ class CheckinController extends Controller
     public function datalistroder(){
 //        $sql = 'SELECT thuephong.id,tenkhachhang,tenphong,ngaydat,ngaytra,thuephong.created_at FROM khachhang,phong,thuephong,chitietthuephong WHERE khachhang.id = thuephong.khachhang_id and thuephong.id=chitietthuephong.thuephong_id and chitietthuephong.phong_id=phong.id';
 //        $thuephong = DB::SELECT($sql);
-        $thuephong = Checkin::with('phong','customer');
+        $thuephong = Checkin::with('phong','customer')->where('trangthai',0);
         $datatables = DataTables::of($thuephong)
             ->addColumn('action', function ($thuephong) {
 
@@ -185,6 +186,32 @@ class CheckinController extends Controller
 //        dd($data['checkin']);
         return view('admin.thuephong.thanhtoan',$data);
 
+
+    }
+    public function thanhtoan(Request $request){
+
+       if($request->all()){
+
+           $hoadon = Bill::create([
+               'khachhang_id' => $request->input('makhachhang'),
+               'thuephong_id' => $request->input('mathuephong'),
+               'tienphong' => $request->input('tienphong'),
+               'tiendichvu' => $request->input('tiendichvu'),
+               'tongtien' => $request->input('tongtien'),
+               'user_id' => auth()->id()
+           ]);
+
+            $trangthaiphong = Room::find($request->maphong);
+            $trangthaiphong->tinhtrang = 0;
+            $trangthaiphong->save();
+
+
+            $trangthaithue = Checkin::find($request->input('mathuephong'));
+           $trangthaithue->trangthai = 1;
+           $trangthaithue->save();
+
+
+       }
 
     }
 

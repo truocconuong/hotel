@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Checkin extends Model
 {
     protected $table='thuephong';
-    protected $fillable =['id','khachhang_id','phong_id','ngaydat','ngaytra','created_at','user_id'];
+    protected $fillable =['id','khachhang_id','phong_id','ngaydat','ngaytra','created_at','trangthai','user_id'];
 
     public function phong() {
         return $this->belongsTo('App\Room', 'phong_id','id');
