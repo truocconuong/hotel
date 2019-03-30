@@ -35,9 +35,6 @@ class ServiceController extends Controller
                         'delete' => route('admin.dichvu.delete', ['id' => $dichvu->id])
                     ]);
             })
-            ->editColumn('tinhtrang',function (Service $dichvu){
-                return $dichvu->tinhtrang == 1 ?'<span class="btn-success"><i class="glyphicon glyphicon-edit"></i>Đã Thuê</span>':'Trống';
-            })
             ->editColumn('created_at', function (Service $dichvu) {
                 return $dichvu->created_at ? with(new Carbon($dichvu->created_at))->format('d/m/Y') : '';
             })

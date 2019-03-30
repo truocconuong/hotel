@@ -352,7 +352,7 @@
                     <ul class="treeview-menu" style="display: none;">
                         <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-circle-o"></i> Người Dùng</a></li>
                         <li><a href="{{ route('admin.role.index') }}"><i class="fa fa-circle-o"></i>Vai Trò </a></li>
-
+                        <li><a href="{{ route('admin.permession.index') }}"><i class="fa fa-circle-o"></i>Quyền Hạn</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -391,7 +391,13 @@
         <!-- /.sidebar -->
     </aside>
 
+
     @yield('body')
+
+
+
+
+
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
@@ -598,7 +604,7 @@
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js')  }}"></script>
-<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('vendor/adminlte/dist/js/datatables.js')}}"></script>
 <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
 <!--  Select2 -->
 <script src="{{ asset('vendor/adminlte/vendor/select2/dist/js/select2.min.js') }}"></script>

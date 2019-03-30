@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+
 Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
+    Route::get('/', 'HomeController@admin')->name('admin');
+
+
     Route::get('/users', 'UserController@index')->name('users.index');
     Route::get('/users/listuser', 'UserController@datalistuser')->name('users.data');
     Route::post('/users/', 'UserController@store')->name('users.store');
@@ -34,8 +38,16 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/role/', 'RoleController@store')->name('role.store');
     Route::get('/role/{id}', 'RoleController@show')->where('id','[0-9]+')->name('role.show');
     Route::post('/role/{id}', 'RoleController@update')->name('role.update');
-    Route::delete('/role/{id}', 'RoleController@delete')->name('role.delete');
+    Route::post('/role/delete/{id}', 'RoleController@delete')->name('role.delete');
     Route::get('/role/create', 'RoleController@create')->name('role.create');
+
+    Route::get('/permession', 'PermessionController@index')->name('permession.index');
+    Route::get('/permession/listpermession', 'PermessionController@datalistpermession')->name('permession.data');
+    Route::post('/permession/', 'PermessionController@store')->name('permession.store');
+    Route::get('/permession/{id}', 'PermessionController@show')->where('id','[0-9]+')->name('permession.show');
+    Route::post('/permession/{id}', 'PermessionController@update')->name('permession.update');
+    Route::delete('/permession/{id}', 'PermessionController@delete')->name('permession.delete');
+    Route::get('/permession/create', 'PermessionController@create')->name('permession.create');
 
     Route::get('/loaiphong', 'KroomController@index')->name('loaiphong.index');
     Route::get('/loaiphong/create', 'KroomController@create')->name('loaiphong.create');

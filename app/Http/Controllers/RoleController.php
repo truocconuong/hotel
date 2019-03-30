@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Response;
 use Spatie\Permission\Models\Permission;
 use Yajra\Datatables\Datatables;
 use DB;
@@ -18,7 +19,7 @@ class RoleController extends Controller
 
     function __construct()
     {
-
+            $this->middleware('auth');
 //        $this->middleware('permission:role-create', ['only' => ['create','store']]);
 //        $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
 //        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
@@ -40,7 +41,7 @@ class RoleController extends Controller
             return view('admin.modal.btn-action3-modal',
                 [
                     'edit' => '#edit_role',
-                    'delete_' => '#edit_role',
+                    'delete_' => '#delete_role',
                     'id' => $role->id,
                     'urlEdit' => route('admin.role.update', ['id' => $role->id]),
                     'detail' => route('admin.role.show', ['id' => $role->id]),
@@ -130,10 +131,16 @@ class RoleController extends Controller
     }
 
 
-    public function destroy($id)
+    public function delete($id)
     {
-        DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index')
-            ->with('success','Role deleted successfully');
+//        DB::table("roles")->where('id',$id)->delete();
+//        return redirect()->route('roles.index')
+//            ->with('success','Role deleted successfully');
+        $role = Role::findOrFail($id);
+        if ($role !== null) {
+            $role->delete();
+            return Response::json(['success' => '1']);
+
+        }
     }
 }

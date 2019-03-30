@@ -40,7 +40,20 @@ class UserController extends Controller
                     'urlEdit' => route('admin.users.update', ['id' => $user->id]),
                     'detail' => route('admin.users.show', ['id' => $user->id]),
                 ]);
-             })->rawColumns([ 'rownum', 'action']);
+             })
+
+        ->addColumn('role', function (User $user) {
+
+            if(!empty($user->getRoleNames())){
+                foreach($user->getRoleNames() as $v){
+                    return  '<label class="label label-success">'.$v.'</label>';
+
+                }
+            }
+            return 'Không';
+
+            })
+        ->rawColumns([ 'rownum', 'action','role']);
 
         return $datatables->make(true);
 

@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            <a href="{{route('admin.role.create')}}" class="btn bg-olive btn-flat margin btn_add_user">
+                            <a href="{{route('admin.permession.create')}}" class="btn bg-olive btn-flat margin btn_add_user">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Thêm người dùng</a>
                         </div>
                         <br>
@@ -121,7 +121,7 @@
                     "infoEmpty": "Trình bày 0 - 0 trong 0 mục"
                 },
                 ajax: {
-                    url:" {{route('admin.role.data') }}",
+                    url:" {{route('admin.permession.data') }}",
                 },
                 columns: [
                     { data: 'id', name: 'id' },
