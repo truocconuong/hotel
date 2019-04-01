@@ -44,6 +44,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Tên Loại Phòng</th>
+                                        <th>Giá</th>
                                         <th>slug</th>
                                         <th>Ngày tạo</th>
                                         <th>Ngày cập nhật</th>
@@ -98,6 +99,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'tenloaiphong', name: 'tenloaiphong' },
+                    { data: 'giatien', name: 'giatien' },
                     { data: 'slug', name: 'slug' },
                     { data: 'created_at', name: 'created_at' },
                     { data: 'updated_at', name: 'updated_at' },

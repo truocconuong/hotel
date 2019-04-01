@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
@@ -103,6 +103,12 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/sddichvu/{id}', 'UseserviceController@update')->name('sddichvu.update');
     Route::delete('/sddichvu/{id}', 'UseserviceController@delete')->name('sddichvu.delete');
     
+});
+
+
+Route::group(['as' => 'frontend','namespace' => 'Frontend'],function(){
+    Route::get('/', 'HomeController@index')->name('home.index');
+
 });
 
 
