@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 
@@ -205,13 +206,19 @@ class CheckinController extends Controller
             $trangthaiphong->tinhtrang = 0;
             $trangthaiphong->save();
 
-
             $trangthaithue = Checkin::find($request->input('mathuephong'));
            $trangthaithue->trangthai = 1;
            $trangthaithue->save();
 
+           alert()->success('Đã Thanh Toán thành công');
+           return redirect()->route('admin.thuephong.index');
+
+
 
        }
+        alert()->error('Có lỗi');
+        return redirect()->back();
+
 
     }
 

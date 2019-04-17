@@ -55,4 +55,9 @@ class Room extends Model
         return $this->belongsToMany('App\Customer');
     }
 
+    public function attachments() {
+        return $this->hasMany('App\Attachment', 'phong_id', 'id');
+    }
+
+
 }

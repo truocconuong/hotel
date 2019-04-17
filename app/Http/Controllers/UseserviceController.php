@@ -31,7 +31,7 @@ class UseserviceController extends Controller
 
     public function datalistsddichvu(){
 
-        $thuephong = Checkin::with('phong','customer');
+        $thuephong = Checkin::with('phong','customer')->where('trangthai',0);
         $datatables = DataTables::of($thuephong)
             ->addColumn('action', function ($thuephong) {
 

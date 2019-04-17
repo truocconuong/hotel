@@ -78,34 +78,31 @@
             <div class="container">
                 <!-- HEADER LOGO -->
                 <div class="header_logo">
-                    <a href="#"><img src="{{ asset('theme/asset/images/logo-header.png') }}" alt="" width="100px" height="100px"></a>
+                    <a href="{{ route('frontend.home.index') }}"><img src="{{ asset('theme/asset/images/logo-header.png') }}" alt="" width="100px" height="100px"></a>
                 </div>
                 <!-- END / HEADER LOGO -->
 
                 <!-- HEADER MENU -->
-                <nav class="header_menu">
+                <nav class="header_menu" style=" max-height:90px; ">
                 <ul class="menu">
                     <li class="current-menu-item">
-                        <a href="index-2.html">Home <span class="fa fa-caret-down"></span></a>
+                        <a href="{{ route('frontend.home.index') }}">Trang Chủ</a>
 
                     </li>
                     <li><a href="about.html">About</a></li>
 
                     <li>
-                        <a href="#">Room <span class="fa fa-caret-down"></span></a>
+                        <a href="{{ route('frontend.home.listroom') }}">Phòng <span class="fa fa-caret-down"></span></a>
                         <ul class="sub-menu">
                             <li><a href="room-2.html">Room 2</a></li>
-                            <li><a href="room-detail.html">Room Detail</a></li>
+                            <li><a href="{{ route('frontend.home.detail') }}">Room Detail</a></li>
                         </ul>
                     </li>
                     <li>
                         <a href="#">Reservation <span class="fa fa-caret-down"></span></a>
                         <ul class="sub-menu">
                             <li><a href="reservation-step-1.html">Reservation Step 1</a></li>
-                            <li><a href="reservation-step-2.html">Reservation Step 2</a></li>
-                            <li><a href="reservation-step-3.html">Reservation Step 3</a></li>
-                            <li><a href="reservation-step-4.html">Reservation Step 4</a></li>
-                            <li><a href="reservation-step-5.html">Reservation Step 5</a></li>
+
                         </ul>
                     </li>
                     <li><a href="contact.html">Contact</a></li>

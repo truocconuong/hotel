@@ -15,13 +15,14 @@
 //    return view('welcome');
 //});
 
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 
 Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
+
+    Auth::routes();
     Route::get('/', 'HomeController@admin')->name('admin');
 
 
@@ -106,9 +107,13 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
 });
 
 
-Route::group(['as' => 'frontend','namespace' => 'Frontend'],function(){
-    Route::get('/', 'HomeController@index')->name('home.index');
-
+Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
+    Route::get('/login','HomeController@getLogin')->name('home.login');
+    Route::get('/', 'CustomerloginController@index')->name('home.index');
+    Route::get('/room-detail','HomeController@Roomdetail')->name('home.detail');
+    Route::get('/list-room','HomeController@Listroom')->name('home.listroom');
+    Route::post('/login','HomeController@postLogin')->name('home.postlogin');
+    Route::get('/logout','HomeController@logout');
 });
 
 

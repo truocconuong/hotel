@@ -35,6 +35,16 @@
                                          <strong id="image-error"></strong>
                                      </span>
                                </div>
+
+                               <div class="form-group {{ $errors->has('images') ? 'has-error' : '' }}">
+                                   <label for="images">Thư Viện Hình Ảnh Phòng</label>
+                                   <input type="file" class="form-control" id="images" name="images[]"
+                                   multiple="multiple">
+                                   <span class="help-block">{{ $errors->first('images') }}</span>
+                                   <span class="text-danger">
+                                         <strong id="image-error"></strong>
+                                     </span>
+                               </div>
                                <div class="form-group {{ $errors->has('loaiphong_id') ? 'has-error' : '' }}">
                                    <label for="loaiphong_id">Loại Phòng</label>
                                    <select name="loaiphong_id" id="loaiphong_id" class="form-control">

@@ -65,8 +65,16 @@
                                     @php
 
                                         $ngaydat = Carbon\Carbon::parse($checkin->ngaydat)->format('d');
-                                        $day = $mytime->day - $ngaydat;
-                                        $giaphong = ($checkin->phong->loaiphong->giatien * $day);
+                                        $day = abs($mytime->day - $ngaydat);
+                                        $giaphong=0;
+                                        if($day == 0){
+                                             $giaphong += ($checkin->phong->loaiphong->giatien * 1);
+                                              $day = 1;
+                                        }else{
+                                            $giaphong += ($checkin->phong->loaiphong->giatien * $day);
+
+                                        }
+
                                     @endphp
                                     <div class="row">
                                         <label class="col-md-4">Tiền phòng</label>
@@ -100,36 +108,45 @@
 
                                         </tr>
                                         </thead>
-                                        <tbody>
                                         @php
-                                            $total = 0;
+                                            $totaldv = 0;
                                         @endphp
-                                        @foreach($checkin->sddichvu as $sddv)
-                                            @php
-                                                $subtotal = $sddv->quantity * $sddv->dichvu->gia;
-                                                $total += $subtotal;
+                                        <tbody>
+                                        @if(isset($checkin->sddichvu) && count($checkin->sddichvu))
+                                            @foreach($checkin->sddichvu as $sddv)
+                                                <tr>
+                                                    <td>{{ $sddv->dichvu->tendichvu }}</td>
+                                                    <td>{{ $sddv->dichvu->donvi }}</td>
+                                                    <td>{{ $sddv->quantity }}</td>
+                                                    <td>{{ $sddv->dichvu->gia }}</td>
+                                                </tr>
 
-                                                $maintotal = $total + $giaphong;
-                                            @endphp
+                                            @endforeach
+                                        @php
+
+                                             $subtotal = $sddv->quantity * $sddv->dichvu->gia;
+                                             $totaldv += $subtotal;
+                                        @endphp
                                             <tr>
-                                                <td>{{ $sddv->dichvu->tendichvu }}</td>
-                                                <td>{{ $sddv->dichvu->donvi }}</td>
-                                                <td>{{ $sddv->quantity }}</td>
-                                                <td>{{ $sddv->dichvu->gia }}</td>
+                                                <td colspan="3">Tổng tiền</td>
+                                                <td>{{get_currency_vn($totaldv)}}</td>
                                             </tr>
-
-                                        @endforeach
-                                        <tr>
-                                            <td colspan="3">Tổng tiền</td>
-                                            <td>{{get_currency_vn($total)}}</td>
-                                        </tr>
+                                        @else
+                                            <tr>
+                                                <td colspan="4">Không có dịch vụ đã sử dụng</td>
+                                            </tr>
+                                        @endif
                                         </tbody>
 
                                     </table>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h3> Tổng tiền phải thanh toán <span><strong>{{get_currency_vn($maintotal)}}</strong></span></h3>
+                                        @php
+                                                $maintotal = 0;
+                                               $maintotal += $totaldv + $giaphong;
+                                         @endphp
+                                        <h3> Tổng tiền phải thanh toán <span><strong>{{ get_currency_vn($maintotal) }}</strong></span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -138,13 +155,15 @@
                                     {{ csrf_field() }}
                                     <input type="hidden" name="makhachhang" value="{{$checkin->khachhang_id}}">
                                     <input type="hidden" name="mathuephong" value="{{$checkin->id}}">
+
                                     <input type="hidden" name="maphong" value="{{$checkin->phong_id}}">
                                     <input type="hidden" name="tongtien" value="{{$maintotal}}">
-                                    <input type="hidden" name="tiendichvu" value="{{$total}}">
+                                    <input type="hidden" name="tiendichvu" value="{{$totaldv}}">
                                     <input type="hidden" name="tienphong" value="{{$giaphong}}">
                                     <button type="submit" class="btn btn-primary btn-sm">Thanh Toán</button>
                                 </form>
                             </div>
+
                         </div>
                     </div>
                 </div>

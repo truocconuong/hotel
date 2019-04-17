@@ -1,7 +1,31 @@
 @extends('frontend.master')
 @section('content')
 
-
+    @if(session('success'))
+        <div class="alert primary">
+            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+            {{session('success')}}
+        </div>
+    @endif
+    @if (Auth::guard('web')->check())
+        <p class="text-success">
+            You are Logged In as a <strong>USER</strong>
+        </p>
+    @else
+        <p class="text-danger">
+            You are Logged Out as a <strong>USER</strong>
+        </p>
+    @endif
+    @if (Auth::guard('customer')->check())
+        <p class="text-success">
+            {{ Auth::guard('customer')->user()->tenkhachhang}}
+            You are Logged In as a <strong>ADMIN</strong>
+        </p>
+    @else
+        <p class="text-danger">
+            You are Logged Out as a <strong>ADMIN</strong>
+        </p>
+    @endif
     <section class="section-slider">
         <h1 class="element-invisible">Slider</h1>
         <div id="slider-revolution">

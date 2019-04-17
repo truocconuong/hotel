@@ -1092,8 +1092,9 @@ blockquote p:after{
     width:100%;
     transition:all 1s ease 0s
 }
+
 #header.header-v2 .header_content:after{
-    background:rgba(0,0,0,0.2)
+  background:rgba(0,0,0,0.6)
 }
 #header.header-v2 .header_content .menu li:hover a{
     background:#030404
@@ -1114,10 +1115,10 @@ blockquote p:after{
 }
 #header.header-v2 .header_content .menu li .sub-menu li.current-menu-item a{
     color:#fff;
-    background:#e1bd85
+    background:#e1bd85;
 }
 #header.header-sticky{
-    margin-top:0px
+    margin-top:0px;
 }
 .header_top{
     background:transparent

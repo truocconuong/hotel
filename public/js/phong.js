@@ -36,84 +36,77 @@ $(function () {
         });
     });
 
+    //
+    // $(document).on('click', '.btn-edit', function(){
+    //     var id = $(this).data('id');
+    //     var url = $(this).data('show');
+    //     var editUrl = $(this).data('url');
+    //     // $('#frm_edit_loaiphong').attr('action', editUrl);
+    //     $.ajax({
+    //         url:"phong/"+id,
+    //         method:'get',
+    //         dataType:'json',
+    //         success:function(data)
+    //         {
+    //             $('#edit_name').val(data.tenphong);
+    //             $('#edit_mota').val(data.mota);
+    //             $('#edit_loaiphong_id').val(data.loaiphong_id);
+    //             $('#image_thumbnail').attr("src",data.image);
+    //             $('#edit_id').val(data.id);
+    //             $('#edit_loaiphong').modal('show');
+    //         }
+    //     })
+    // });
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+    // $('#frm_edit_phong').on('click', '#btn_edit_phong',function(event){
+    //     event.preventDefault();
+    //     var formd=new FormData($("#frm_edit_phong")[0]);
+    //     var form_data = $(this).serialize();
+    //     var id =  $('#edit_id').val();
+    //     $.ajax({
+    //         url:"./phong/"+id,
+    //         method:"POST",
+    //         data:formd,
+    //         dataType:"json",
+    //         contentType:false,
+    //         processData:false,
+    //         success:function(data)
+    //         {    console.log(formd);
+    //             if (data.errors) {
+    //                 if (data.errors.edit_name) {
+    //                     $('#edit-name-error').html(data.errors.edit_name);
+    //                     $('#edit-mota-error').html(data.errors.edit_mota[0]);
+    //                     $('#ledit-oaiphong_id-error').html(data.errors.edit_loaiphong_id);
+    //                 }
+    //             }
+    //             if (data.success) {
+    //
+    //                 $('#edit_phong').modal('hide');
+    //                 swal({
+    //                     title: "Success!",
+    //                     text: "Thêm Dữ Liệu Thành Công",
+    //                     icon: "success",
+    //                     timer: '2000'
+    //                 });
+    //                 datatables.ajax.reload();
+    //             }
+    //         }
+    //     })
+    // });
 
-    $(document).on('click', '.btn-edit', function(){
+
+
+
+    $(document).on('click', '#btn_delete', function(){
         var id = $(this).data('id');
-        var url = $(this).data('show');
-        var editUrl = $(this).data('url');
-        // $('#frm_edit_loaiphong').attr('action', editUrl);
-        $.ajax({
-            url:"phong/"+id,
-            method:'get',
-            dataType:'json',
-            success:function(data)
-            {
-                $('#edit_name').val(data.tenphong);
-                $('#edit_mota').val(data.mota);
-                $('#edit_loaiphong_id').val(data.loaiphong_id);
-                $('#image_thumbnail').attr("src",data.image);
-                $('#edit_id').val(data.id);
-                $('#edit_loaiphong').modal('show');
-            }
-        })
-    });
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    $('#frm_edit_phong').on('click', '#btn_edit_phong',function(event){
-        event.preventDefault();
-        var formd=new FormData($("#frm_edit_phong")[0]);
-        var form_data = $(this).serialize();
-        var id =  $('#edit_id').val();
-        $.ajax({
-            url:"./phong/"+id,
-            method:"POST",
-            data:formd,
-            dataType:"json",
-            contentType:false,
-            processData:false,
-            success:function(data)
-            {    console.log(formd);
-                if (data.errors) {
-                    if (data.errors.edit_name) {
-                        $('#edit-name-error').html(data.errors.edit_name);
-                        $('#edit-mota-error').html(data.errors.edit_mota[0]);
-                        $('#ledit-oaiphong_id-error').html(data.errors.edit_loaiphong_id);
-                    }
-                }
-                if (data.success) {
+        var delete_id = $('#delete_id').val(id);
+        $('#delete_phong').modal('show');
+        console.log(delete_id);
 
-                    $('#edit_phong').modal('hide');
-                    swal({
-                        title: "Success!",
-                        text: "Thêm Dữ Liệu Thành Công",
-                        icon: "success",
-                        timer: '2000'
-                    });
-                    datatables.ajax.reload();
-                }
-            }
-        })
-    });
-
-
-    $(document).on('click', '.btn-delete', function(){
-        var id = $(this).data('id');
-        var url = $(this).data('show');
-        // var editUrl = $(this).data('url');
-        // $('#frm_edit_loaiphong').attr('action', editUrl);
-        $.ajax({
-            url:"phong/"+id,
-            method:'get',
-            dataType:'json',
-            success:function(data)
-            {
-                $('#delete_id').val(data.id);
-                $('#delete_phong').modal('show');
-            }
-        })
     });
     $('#del_frm_phong').on('submit', function(event){
         event.preventDefault();

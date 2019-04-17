@@ -930,6 +930,7 @@
             title: title,
         });
     }
+   
 
     /* MAP ATTRACTION */
     function AttractionMap() {

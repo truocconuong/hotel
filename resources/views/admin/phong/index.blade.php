@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 @section('body')
-
+    @include('sweetalert::alert')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -25,7 +25,9 @@
                                 <h3 class="inline">Danh Sách Phòng</h3><button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_phong">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Thêm Phòng</button>
                         </div>
+
                         <div class="box-body">
+
                             <table class="table-responsive table-bordered table-hover text-center" id="phong-table" style="min-width:100%;">
                                 <thead>
                                 <tr>
@@ -52,7 +54,6 @@
     </div>
     <!-- /.content-wrapper -->
     @include('admin.phong.add')
-    @include('admin.phong.edit')
     @include('admin.phong.delete')
 @endsection
 @section('script')
