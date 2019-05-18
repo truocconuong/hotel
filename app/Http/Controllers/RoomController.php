@@ -287,5 +287,9 @@ class RoomController extends Controller
 
         }
     }
+    public function checkroom(){
+
+    }
+
 
 }

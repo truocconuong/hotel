@@ -1,31 +1,24 @@
 @extends('frontend.master')
 @section('content')
-
-    @if(session('success'))
-        <div class="alert primary">
-            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
-            {{session('success')}}
-        </div>
-    @endif
-    @if (Auth::guard('web')->check())
-        <p class="text-success">
-            You are Logged In as a <strong>USER</strong>
-        </p>
-    @else
-        <p class="text-danger">
-            You are Logged Out as a <strong>USER</strong>
-        </p>
-    @endif
-    @if (Auth::guard('customer')->check())
-        <p class="text-success">
-            {{ Auth::guard('customer')->user()->tenkhachhang}}
-            You are Logged In as a <strong>ADMIN</strong>
-        </p>
-    @else
-        <p class="text-danger">
-            You are Logged Out as a <strong>ADMIN</strong>
-        </p>
-    @endif
+    {{--@if (Auth::guard('web')->check())--}}
+        {{--<p class="text-success">--}}
+            {{--You are Logged In as a <strong>USER</strong>--}}
+        {{--</p>--}}
+    {{--@else--}}
+        {{--<p class="text-danger">--}}
+            {{--You are Logged Out as a <strong>USER</strong>--}}
+        {{--</p>--}}
+    {{--@endif--}}
+    {{--@if (Auth::guard('customer')->check())--}}
+        {{--<p class="text-success">--}}
+            {{--{{ Auth::guard('customer')->user()->tenkhachhang}}--}}
+            {{--You are Logged In as a <strong>ADMIN</strong>--}}
+        {{--</p>--}}
+    {{--@else--}}
+        {{--<p class="text-danger">--}}
+            {{--You are Logged Out as a <strong>ADMIN</strong>--}}
+        {{--</p>--}}
+    {{--@endif--}}
     <section class="section-slider">
         <h1 class="element-invisible">Slider</h1>
         <div id="slider-revolution">
@@ -81,26 +74,27 @@
                         <h2 class="title-room">ROOMS & RATES</h2>
                     </div>
                     <div class="col-lg-9">
-                        <div class="availability-form">
-                            <input type="text" class="awe-calendar from" placeholder="Arrival Date">
-                            <input type="text" class="awe-calendar to" placeholder="Departure Date">
+                        <form method="POST" action="{{ route('frontend.home.checkroom') }}" class="availability-form" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="text" name="ngayden" class="awe-calendar from" placeholder="Ngày Đến">
+                            <input type="text" name="ngaytra" class="awe-calendar to" placeholder="Ngày Trả">
 
-                            <select class="awe-select">
-                                <option>Adults</option>
-                                <option>1</option>
+                            <select class="awe-select required" >
+                                <option value="" >Người Lớn</option>
+                                <option >1</option>
                                 <option>2</option>
                                 <option>3</option>
                             </select>
                             <select class="awe-select">
-                                <option>Children</option>
+                                <option>Trẻ Em</option>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
                             </select>
                             <div class="vailability-submit">
-                                <button class="awe-btn awe-btn-13">FIND THE BEST RATE</button>
+                                <button class="awe-btn awe-btn-13" type="submit">FIND THE BEST RATE</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

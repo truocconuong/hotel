@@ -81,10 +81,10 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::delete('/khachhang', 'CustomerController@delete')->name('khachhang.delete');
 
     Route::get('/datphong', 'OrderController@index')->name('datphong.index');
-    Route::post('/datphong/', 'OrderController@store')->name('datphong.store');
+    Route::post('/datphong', 'OrderController@store')->name('datphong.store');
     Route::get('/datphong/listdatphong', 'OrderController@datalistroder')->name('datphong.data');
     Route::get('/datphong/{id}', 'OrderController@show')->where('id','[0-9]+')->name('datphong.show');
-    Route::post('/datphong', 'OrderController@update')->name('datphong.update');
+    Route::post('/datphong/{id}', 'OrderController@update')->name('datphong.update');
     Route::delete('/datphong', 'OrderController@delete')->name('datphong.delete');
 
     Route::get('/thuephong', 'CheckinController@index')->name('thuephong.index');
@@ -113,7 +113,11 @@ Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/room-detail','HomeController@Roomdetail')->name('home.detail');
     Route::get('/list-room','HomeController@Listroom')->name('home.listroom');
     Route::post('/login','HomeController@postLogin')->name('home.postlogin');
-    Route::get('/logout','HomeController@logout');
+    Route::get('/logout','HomeController@logout')->name('home.logout');
+    Route::get('/info','CustomerloginController@info')->name('home.info');
+    Route::get('/about','HomeController@about')->name('home.about');
+    Route::post('/checkroom','HomeController@checkRoom')->name('home.checkroom');
+    Route::get('/datphong','HomeController@datphong')->name('home.datphong');
 });
 
 

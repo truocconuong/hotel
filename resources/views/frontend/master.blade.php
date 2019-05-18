@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{asset('theme/asset/images/favicon.png')}}"/>
 
     <!-- GOOGLE FONT -->
@@ -54,22 +55,30 @@
     <header id="header" class="header-v2">
 
         <!-- HEADER TOP -->
-        <!--  <div class="header_top">
+     <div class="header_top">
              <div class="container">
                  <div class="header_left float-left">
                      <span><i class="lotus-icon-location"></i> 225 Beach Street, Australian</span>
                      <span><i class="lotus-icon-phone"></i> 1-548-854-8898</span>
                  </div>
-                 <div class="header_right float-right">
+                 @if (Auth::guard('customer')->check())
+                     <div class="header_right float-right">
+                        <span  class="login-register">
+                           <a class="text-capitalize">Xin Chào <strong>{{ Auth::guard('customer')->user()->tenkhachhang}}</strong></a>
+                            <a href="{{ route("frontend.home.logout") }}">Logout</a>
+                        </span>
+                     </div>
+                 @else
+                     <div class="header_right float-right">
+                         <span class="login-register">
+                             <a href="{{ route('frontend.home.login') }}">Login</a>
+                             <a href="register.html">register</a>
+                         </span>
+                     </div>
 
-                     <span class="login-register">
-                         <a href="login.html">Login</a>
-                         <a href="register.html">register</a>
-                     </span>
-
-                 </div>
+                 @endif
              </div>
-         </div> -->
+         </div>
         <!-- END / HEADER TOP -->
 
         <!-- HEADER LOGO & MENU -->
@@ -89,7 +98,7 @@
                         <a href="{{ route('frontend.home.index') }}">Trang Chủ</a>
 
                     </li>
-                    <li><a href="about.html">About</a></li>
+                    <li><a href="{{ route('frontend.home.about') }}">About</a></li>
 
                     <li>
                         <a href="{{ route('frontend.home.listroom') }}">Phòng <span class="fa fa-caret-down"></span></a>

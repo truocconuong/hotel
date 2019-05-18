@@ -4,11 +4,11 @@ $(function () {
         $('#name-error').html("");
         var formData=  $('#frm_add_datphong').serialize();
         $.ajax({
-            url: "./datphong",
+            url: "/datphong",
             type: "POST",
             data:formData,
             success: function (data) {
-                console.log(data);
+
                 if (data.errors) {
                     $('#name-error').html(data.errors.name);
                     $('#dienthoai-error').html(data.errors.dienthoai);

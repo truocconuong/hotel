@@ -212,8 +212,7 @@ class CheckinController extends Controller
 
            alert()->success('Đã Thanh Toán thành công');
            return redirect()->route('admin.thuephong.index');
-
-
+           
 
        }
         alert()->error('Có lỗi');
