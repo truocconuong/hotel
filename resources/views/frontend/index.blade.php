@@ -74,10 +74,10 @@
                         <h2 class="title-room">ROOMS & RATES</h2>
                     </div>
                     <div class="col-lg-9">
-                        <form method="POST" action="{{ route('frontend.home.checkroom') }}" class="availability-form" enctype="multipart/form-data">
+                        <form method="POST" id="checkroomform" action="{{ route('frontend.home.checkroom') }}" class="availability-form" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <input type="text" name="ngayden" class="awe-calendar from" placeholder="Ngày Đến">
-                            <input type="text" name="ngaytra" class="awe-calendar to" placeholder="Ngày Trả">
+                            <input type="text" name="ngayden" id="ngayden" class="awe-calendar from" placeholder="Ngày Đến">
+                            <input type="text" name="ngaytra" id="ngaytra" class="awe-calendar to" placeholder="Ngày Trả">
 
                             <select class="awe-select required" >
                                 <option value="" >Người Lớn</option>

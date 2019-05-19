@@ -109,6 +109,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
 
 Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/login','HomeController@getLogin')->name('home.login');
+    Route::get('/register','HomeController@getRegister')->name('home.login');
     Route::get('/', 'CustomerloginController@index')->name('home.index');
     Route::get('/room-detail','HomeController@Roomdetail')->name('home.detail');
     Route::get('/list-room','HomeController@Listroom')->name('home.listroom');
@@ -117,7 +118,11 @@ Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/info','CustomerloginController@info')->name('home.info');
     Route::get('/about','HomeController@about')->name('home.about');
     Route::post('/checkroom','HomeController@checkRoom')->name('home.checkroom');
-    Route::get('/datphong','HomeController@datphong')->name('home.datphong');
+    Route::get('/checkroom/{id}','HomeController@checkRoom2')->name('home.checkroom2');
+    Route::post('/thongtindatphong','HomeController@checkInfoCustomer')->name('home.checkinfo');
+    Route::post('/comfirm','HomeController@postReservation')->name('home.comfirm');
+
+
 });
 
 

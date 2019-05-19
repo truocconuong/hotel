@@ -30,10 +30,11 @@
     <!-- MAIN STYLE -->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/asset/css/style.css') }}">
 
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-    <![endif]-->
+
+
+    {{--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>--}}
+    {{--<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>--}}
+   {{----}}
 </head>
 
 <!--[if IE 7]> <body class="ie7 lt-ie8 lt-ie9 lt-ie10"> <![endif]-->
@@ -64,7 +65,7 @@
                  @if (Auth::guard('customer')->check())
                      <div class="header_right float-right">
                         <span  class="login-register">
-                           <a class="text-capitalize">Xin Chào <strong>{{ Auth::guard('customer')->user()->tenkhachhang}}</strong></a>
+                           <a class="text-capitalize">Xin Chào <strong>{{ Auth::guard('customer')->user()->email}}</strong></a>
                             <a href="{{ route("frontend.home.logout") }}">Logout</a>
                         </span>
                      </div>
@@ -264,6 +265,7 @@
 <!-- LOAD JQUERY -->
 <script type="text/javascript" src="{{ asset('theme/asset/js/lib/jquery-1.11.0.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('theme/asset/js/lib/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('theme/asset/js/lib/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('theme/asset/js/lib/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('theme/asset/js/lib/bootstrap-select.js') }}"></script>
 <script type="text/javascript" src="{{ asset('theme/asset/js/lib/isotope.pkgd.min.js') }}"></script>

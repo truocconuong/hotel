@@ -183,7 +183,7 @@ class OrderController extends Controller
                  'khachhang_id' => $request->input('edit_khachhang_id'),
                  'phong_id' => $request->input('edit_phong_id'),
                  'ngaydat' => $ngaydat,
-                 'ngaytra' => $ngaydat,
+                 'ngaytra' => $ngaytra,
                  'user_id' => auth()->id()
 
              ]);

@@ -24,6 +24,26 @@
         }
     }
 
+    // form validate
+    //
+    // $('#checkroomform').submit(function(){
+    //
+    //     var ngayden = $('#ngayden').val();
+    //     var ngaytra = $('#ngaytra').val();
+    //
+    //
+    //
+    // });
+
+    $("#checkroomform").validate({
+        rules: {
+            ngayden: "required",
+            ngaytra: "required",
+        }
+    });
+
+
+
     /* Datepicker */
     DatePicker();
     function DatePicker() {
@@ -1181,6 +1201,29 @@
 
     });
 
+    $(document).on('click','#btn-book', function(){
+        var id = $(this).data('id');
+
+        $.ajax({
+            url:"checkroom/"+id,
+            method:'get',
+            dataType:'json',
+            success:function(data)
+            {   if(data)
+                $('#selectroom').empty();
+                data.forEach(function(data){
+                    $('#selectroom').append($('<option>', {value:data.id, text:data.tenphong}));
+                    console.log('id: ' + data.id);
+                    console.log('tenphong: ' + data.tenphong);
+                });
+
+                $('.check_availability-field').css("display","block");
+
+
+            }
+        })
+    });
+
 })(jQuery);
 
 // function for ajax 
@@ -1229,6 +1272,10 @@ function sendBooking() {
             return false;
         }
     });
+
+
+
+
 
     $('#ajax-form-search-send').submit();
     return false;

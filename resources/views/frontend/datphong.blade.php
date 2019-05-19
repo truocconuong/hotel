@@ -64,8 +64,8 @@
                             <!-- END / ROOM SELECT -->
 
                             <!-- SIDEBAR AVAILBBILITY -->
-                            <div class="reservation-sidebar_availability bg-gray">
-
+                            <form method="post" action="{{route('frontend.home.checkinfo')}}" class="reservation-sidebar_availability bg-gray">
+                             {{ csrf_field() }}
                             <!-- HEADING -->
                                 <h2 class="reservation-heading">YOUR RESERVATION</h2>
                                 <!-- END / HEADING -->
@@ -74,25 +74,25 @@
 
                                 <div class="check_availability-field">
                                     <label>Arrive</label>
-                                    <input type="text" class="awe-calendar awe-input from" placeholder="Arrive" value="{{ $ngayden }}">
+                                    <input type="text" name="ngayden" class="awe-calendar awe-input from" placeholder="Arrive" value="{{ $ngayden }}">
                                 </div>
 
                                 <div class="check_availability-field">
                                     <label>Depature</label>
-                                    <input type="text" class="awe-calendar awe-input to" placeholder="Depature" value="{{ $ngaytra }}">
+                                    <input type="text" name="ngaytra" class="awe-calendar awe-input to" placeholder="Depature" value="{{ $ngaytra }}">
                                 </div>
 
                                 <h6 class="check_availability_title">ROOMS &amp; GUest</h6>
 
-                                <div class="check_availability-field">
+                                <div class="check_availability-field" style="display: none">
                                     <label>ROOMS</label>
-                                    <select class="awe-select">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
+                                    <select id="selectroom" name="maphong"class="">
+                                        {{--<option>1</option>--}}
+                                        {{--<option>2</option>--}}
+                                        {{--<option>3</option>--}}
+                                        {{--<option>4</option>--}}
+                                        {{--<option>5</option>--}}
+                                        {{--<option>6</option>--}}
                                     </select>
                                 </div>
 
@@ -129,9 +129,9 @@
                                     {{--</div>--}}
 
                                 {{--</div>--}}
-                                <button class="awe-btn awe-btn-13">CHECK AVAILABLE</button>
+                                <button type="submit" class="awe-btn awe-btn-13">CHECK AVAILABLE</button>
 
-                            </div>
+                            </form>
                             <!-- END / SIDEBAR AVAILBBILITY -->
 
                         </div>
@@ -143,7 +143,6 @@
                     <div class="col-md-8 col-lg-9">
 
                         <div class="reservation_content">
-
                             <!-- RESERVATION ROOM -->
                             <div class="reservation-room">
                             @if(isset($phong) && count($phong))
@@ -158,7 +157,7 @@
                                                          alt=""></a>
                                     </div>
 
-                                    <div class="reservation-room_text">
+                                    <div id="book-room" class="reservation-room_text">
 
                                         <div class="reservation-room_desc">
                                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -180,7 +179,8 @@
                                             <span class="reservation-room_amout">${{ $p['giatien'] }}</span> / days
                                         </p>
 
-                                        <a href="#" class="awe-btn awe-btn-default">BOOK ROOM</a>
+                                        <a id="btn-book" data-id="{{ $p['id'] }}" type="submit" class="awe-btn awe-btn-default">BOOK ROOM</a>
+
 
                                     </div>
                                 </div>

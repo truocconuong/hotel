@@ -2844,6 +2844,14 @@ blockquote p:after{
     color:#898989;
     font-weight:500
 }
+#selectroom{
+    width:100%;
+    background-color:#fff;
+    height:30px;
+    border-width:0;
+    border-radius:unset;
+    line-height:30px;
+}
 .sidebar .widget.widget_check_availability .check_availability .check_availability-field .bootstrap-select.btn-group.awe-select{
     width:100%
 }
