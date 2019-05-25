@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Customer;
 use Illuminate\Support\Facades\DB;
 use App\Orderdetail;
+use Laravel\Socialite\Facades\Socialite;
 
 
 class HomeController extends Controller
@@ -36,6 +37,36 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleFacebookCallback()
+    {
+        try {
+            $user = Socialite::driver('facebook')->user();
+            $create['hoten'] = $user->getName();
+            $create['email'] = $user->getEmail();
+            $create['facebook_id'] = $user->getId();
+
+
+            $userModel = new User;
+            $createdUser = $userModel->addNew($create);
+            Auth::loginUsingId($createdUser->id);
+
+
+            return redirect()->route('frontend.home.index');
+
+
+        } catch (Exception $e) {
+
+
+            return redirect('auth/facebook');
+
+
+        }
+    }
 
     public function Roomdetail(){
         return view('frontend.room_detail');
@@ -43,7 +74,7 @@ class HomeController extends Controller
     public function Listroom(){
         return view('frontend.list-room');
     }
-    public function getRegister{
+    public function getRegister(){
         return view('frontend.register');
     }
 
@@ -67,16 +98,17 @@ class HomeController extends Controller
     public function checkRoom(Request $request){
         $data['ngayden']= $request->input('ngayden');
         $data['ngaytra']= $request->input('ngaytra');
-        $data['phong'] = Kind_of_room::with(['rooms' => function($query){
-            $query->where('tinhtrang','0');
-        }])->get()->toArray();
+//        $data['phong'] = Kind_of_room::with(['rooms' => function($query){
+//            $query->where('tinhtrang','0');
+//        }])->get()->toArray();
 
 
 //        dd($data['phong2']);
-//        $phong = DB::table('loaiphong')
-//            ->join('phong', 'phong.loaiphong_id', '=', 'loaiphong.id')
-//            ->where('tinhtrang',0)
-//            ->get();
+        $data['phong'] = DB::table('loaiphong')->select('loaiphong.id','giatien','tenloaiphong')
+            ->join('phong', 'phong.loaiphong_id', '=', 'loaiphong.id')
+            ->where('tinhtrang',0)
+            ->get();
+
         return view('frontend.datphong',$data);
     }
 

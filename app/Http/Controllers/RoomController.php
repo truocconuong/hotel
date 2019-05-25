@@ -160,8 +160,7 @@ class RoomController extends Controller
             'edit_image' => 'image|max:2048',
             'edit_mota' => 'required',
             'edit_loaiphong_id' => 'required|exists:loaiphong,id',
-            'edit_images.*' => 'image|max:2048',
-            'edit_images' => 'image|max:2048'
+
 
         ], [
             'edit_name.required' => 'Vui lòng nhập Tên Phòng',

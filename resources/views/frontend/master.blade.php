@@ -26,6 +26,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/asset/css/lib/settings.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/asset/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/asset/css/helper.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Hind:400,500,700&display=swap" rel="stylesheet">
+
 
     <!-- MAIN STYLE -->
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/asset/css/style.css') }}">
@@ -59,7 +61,7 @@
      <div class="header_top">
              <div class="container">
                  <div class="header_left float-left">
-                     <span><i class="lotus-icon-location"></i> 225 Beach Street, Australian</span>
+                     <span><i class="lotus-icon-location"></i> 225 Hạ Long, Quảng Ninh</span>
                      <span><i class="lotus-icon-phone"></i> 1-548-854-8898</span>
                  </div>
                  @if (Auth::guard('customer')->check())
@@ -72,8 +74,8 @@
                  @else
                      <div class="header_right float-right">
                          <span class="login-register">
-                             <a href="{{ route('frontend.home.login') }}">Login</a>
-                             <a href="register.html">register</a>
+                             <a href="{{ route('frontend.home.login') }}">Đăng nhập</a>
+                             <a href="{{ route('frontend.home.register') }}">Đăng kí</a>
                          </span>
                      </div>
 
@@ -99,23 +101,20 @@
                         <a href="{{ route('frontend.home.index') }}">Trang Chủ</a>
 
                     </li>
-                    <li><a href="{{ route('frontend.home.about') }}">About</a></li>
+                    <li><a href="{{ route('frontend.home.about') }}">Về Chúng Tôi</a></li>
 
                     <li>
-                        <a href="{{ route('frontend.home.listroom') }}">Phòng <span class="fa fa-caret-down"></span></a>
-                        <ul class="sub-menu">
-                            <li><a href="room-2.html">Room 2</a></li>
-                            <li><a href="{{ route('frontend.home.detail') }}">Room Detail</a></li>
-                        </ul>
+                        <a href="{{ route('frontend.home.listroom') }}">Phòng </a>
+
                     </li>
                     <li>
-                        <a href="#">Reservation <span class="fa fa-caret-down"></span></a>
+                        <a href="#">Đặt Phòng</a>
                         <ul class="sub-menu">
-                            <li><a href="reservation-step-1.html">Reservation Step 1</a></li>
+                            <li><a href="reservation-step-1.html">Đặt Phòng </a></li>
 
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="contact.html">Liên Hệ</a></li>
                 </ul>
                 </nav>
                 <!-- END / HEADER MENU -->
@@ -150,11 +149,12 @@
                     <!-- WIDGET MAILCHIMP -->
                     <div class="col-lg-9">
                         <div class="mailchimp">
-                            <h4>News &amp; Offers</h4>
+                            <h4>TIN TỨC & ƯU ĐÃI
+                            </h4>
                             <div class="mailchimp-form">
                                 <form action="#" method="POST">
                                     <input type="text" name="email" placeholder="Your email address" class="input-text">
-                                    <button class="awe-btn">SIGN UP</button>
+                                    <button class="awe-btn">Đăng kí</button>
                                 </form>
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                                     <a href="#"><img src="{{asset('theme/asset/images/logo-footer.png')}}" alt=""></a>
                                 </div>
                                 <div class="text">
-                                    <p><i class="lotus-icon-location"></i> 225 Beach Street, Australian</p>
+                                    <p><i class="lotus-icon-location"></i> 225 Hạ Long,Quảng Ninh</p>
                                     <p><i class="lotus-icon-phone"></i> 1-548-854-8898</p>
                                     <p><i class="fa fa-envelope-o"></i> <a href="mailto:hello@thelotushotel.com">hello@thelotushotel.com</a></p>
                                 </div>
@@ -202,24 +202,24 @@
 
                     <div class="col-xs-4 col-lg-2">
                         <div class="widget">
-                            <h4 class="widget-title">Page site</h4>
+                            <h4 class="widget-title">Trang Web</h4>
                             <ul>
-                                <li><a href="#">Guest Book</a></li>
-                                <li><a href="#">Gallery</a></li>
-                                <li><a href="#">Restaurant</a></li>
-                                <li><a href="#">Event</a></li>
+                                <li><a href="#">Khách Đặt</a></li>
+                                <li><a href="#">Thư Viện Ảnh</a></li>
+                                <li><a href="#">Nhà Hàng</a></li>
+                                <li><a href="#">Sự Kiện</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-xs-4 col-lg-2">
                         <div class="widget">
-                            <h4 class="widget-title">ABOUT</h4>
+                            <h4 class="widget-title">Về Chúng Tôi</h4>
                             <ul>
-                                <li><a href="">About</a></li>
+                                <li><a href="">Về chúng tôi</a></li>
                                 <li><a href="">Blog</a></li>
-                                <li><a href="">Contact Us</a></li>
-                                <li><a href="">Comming Soon</a></li>
+                                <li><a href="">Liên Hệ</a></li>
+                                <li><a href="">Sắp tới</a></li>
                             </ul>
                         </div>
                     </div>
@@ -228,7 +228,8 @@
                         <div class="widget widget_tripadvisor">
                             <h4 class="widget-title">Tripadvisor</h4>
                             <div class="tripadvisor">
-                                <p>Now with hotel reviews by</p>
+                                <p>Ngay bây giờ với review từ Tripadvisor
+                                </p>
                                 <img src="{{asset('theme/asset/images/tripadvisor.png')}}" alt="">
                                 <span class="tripadvisor-circle">
                                         <i></i>

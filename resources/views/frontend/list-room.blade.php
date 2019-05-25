@@ -6,8 +6,9 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>ROOMS &amp; RATES</h2>
-                    <p>Lorem Ipsum is simply dummy text</p>
+                    <h2>PHÒNG & GIÁ
+                    </h2>
+                    <p>Những gì bạn cần</p>
                 </div>
             </div>
         </div>
@@ -28,10 +29,10 @@
                     </div>
 
                     <div class="text">
-                        <h2><a href="#">LUXURY ROOM</a></h2>
-                        <span class="price">Start form <span class="amout">$120</span> per day</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a <b>more-or-less</b> normal <b>distribution</b> of letters.</p>
-                        <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
+                        <h2><a href="#">Phòng Hạng Sang</a></h2>
+                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
+                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
+                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
                     </div>
                 </div>
                 <!-- ITEM -->
@@ -44,10 +45,10 @@
                     </div>
 
                     <div class="text">
-                        <h2><a href="#">FAMILY ROOM</a></h2>
-                        <span class="price">Start form <span class="amout">$120</span> per day</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a <b>more-or-less</b> normal <b>distribution</b> of letters.</p>
-                        <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
+                        <h2><a href="#">Phòng gia đình</a></h2>
+                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
+                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
+                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
                     </div>
                 </div>
                 <!-- ITEM -->
@@ -60,10 +61,10 @@
                     </div>
 
                     <div class="text">
-                        <h2><a href="#">COUPLE ROOM</a></h2>
-                        <span class="price">Start form <span class="amout">$120</span> per day</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a <b>more-or-less</b> normal <b>distribution</b> of letters.</p>
-                        <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
+                        <h2><a href="#">Phòng Đôi</a></h2>
+                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
+                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
+                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
                     </div>
                 </div>
                 <!-- ITEM -->
@@ -76,10 +77,10 @@
                     </div>
 
                     <div class="text">
-                        <h2><a href="#">STANDARD ROOM</a></h2>
-                        <span class="price">Start form <span class="amout">$120</span> per day</span>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a <b>more-or-less</b> normal <b>distribution</b> of letters.</p>
-                        <a href="#" class="awe-btn awe-btn-13">VIEW DETAILS</a>
+                        <h2><a href="#">Phòng Chuẩn</a></h2>
+                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
+                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
+                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
                     </div>
                 </div>
                 <!-- ITEM -->

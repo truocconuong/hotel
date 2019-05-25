@@ -12,4 +12,12 @@ class Bill extends Model
      protected $hidden =[];
 
 
+    public function phieuthue() {
+        return $this->belongsTo('App\Checkin', 'thuephong_id','id');
+    }
+    public function customer() {
+        return $this->belongsTo('App\Customer', 'khachhang_id', 'id');
+    }
+
+
 }

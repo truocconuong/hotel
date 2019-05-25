@@ -96,6 +96,12 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
     Route::post('/thuephong/thanhtoan', 'CheckinController@thanhtoan')->name('thuephong.hoadon');
 
 
+    Route::get('/hoadon', 'InvoiceController@index')->name('hoadon.index');
+    Route::get('/hoadon/listhoadon', 'InvoiceController@datalisthoadon')->name('hoadon.data');
+    Route::get('/hoadon/{id}', 'InvoiceController@show')->where('id','[0-9]+')->name('hoadon.show');
+    Route::delete('/hoadon', 'InvoiceController@delete')->name('hoadon.delete');
+
+
     Route::get('/sddichvu', 'UseserviceController@index')->name('sddichvu.index');
     Route::post('/sddichvu/', 'UseserviceController@store')->name('sddichvu.store');
     Route::get('/sddichvu/add/{id}', 'UseserviceController@add')->name('sddichvu.add');
@@ -109,7 +115,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
 
 Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/login','HomeController@getLogin')->name('home.login');
-    Route::get('/register','HomeController@getRegister')->name('home.login');
+    Route::get('/register','HomeController@getRegister')->name('home.register');
     Route::get('/', 'CustomerloginController@index')->name('home.index');
     Route::get('/room-detail','HomeController@Roomdetail')->name('home.detail');
     Route::get('/list-room','HomeController@Listroom')->name('home.listroom');

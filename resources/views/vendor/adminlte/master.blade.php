@@ -18,10 +18,11 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/skins/_all-skins.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/datatablse.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables -->
-            <link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+            {{--<link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">--}}
     @endif
     <!--  Select2 -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/select2/dist/css/select2.min.css') }}">
@@ -32,6 +33,7 @@
     <link rel="stylesheet" href="{{asset('vendor/sweetalert/sweetalert.min.css')}}">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
 
 
 
@@ -47,7 +49,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Quản lý khách sạn</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -352,6 +354,7 @@
                         <li><a href="{{ route('admin.datphong.index') }}"><i class="fa fa-circle-o"></i> Đặt Phòng</a></li>
                         <li><a href="{{ route('admin.thuephong.index') }}"><i class="fa fa-circle-o"></i> Thuê Phòng</a></li>
                         <li><a href="{{ route('admin.sddichvu.index') }}"><i class="fa fa-circle-o"></i> Sử Dụng Dịch Vụ</a></li>
+                        <li><a href="{{ route('admin.hoadon.index') }}"><i class="fa fa-circle-o"></i> Hóa đơn</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -377,6 +380,7 @@
     </aside>
 
 
+
     @yield('body')
 
 
@@ -387,8 +391,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; 2019 <a href="https://adminlte.io">Khanhvuht</a>.</strong>
     </footer>
 
     <!-- Control Sidebar -->
@@ -590,12 +593,14 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js')  }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/datatables.js')}}"></script>
+<script src="{{ asset('vendor/adminlte/dist/js/printThis.js')}}"></script>
 <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
 <!--  Select2 -->
 <script src="{{ asset('vendor/adminlte/vendor/select2/dist/js/select2.min.js') }}"></script>
 <!--  datetime -->
 <script src="{{ asset('vendor/datetimepicker/js/moment.js') }}"></script>
 <script src="{{ asset('vendor/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+
 @yield('script')
 
 </body>

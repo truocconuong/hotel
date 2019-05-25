@@ -143,8 +143,8 @@ class OrderController extends Controller
             $datphong = Order::create([
                 'khachhang_id' => $khachhang->id,
                 'phong_id' => $phong_id,
-                'ngaydat' => $ngaydat,
-                'ngaytra' => $ngaytra
+                'ngaydat' => Carbon::parse($ngaydat)->format('Y/m/d'),
+                'ngaytra' => Carbon::parse($ngaytra)->format('Y/m/d')
             ]);
 
             $phong = Room::find($phong_id);

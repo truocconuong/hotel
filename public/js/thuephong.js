@@ -40,6 +40,11 @@ $(function () {
             },
         });
     });
+    $(document).ready(function(){
+        $('#inhoadon').click(function () {
+            $('#invoiceheader,#invoicebody').printThis();
+        });
+    });
 
 
 

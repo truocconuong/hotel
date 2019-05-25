@@ -59,7 +59,7 @@ class CustomerController extends Controller
 
     public function store(Request $request){
         $valid = Validator::make($request->all(), [
-            'name' => 'required|unique:khachhang,tenkhachhang',
+            'name' => 'required',
             'dienthoai' => 'required|numeric',
             'cmnd' => 'required|numeric',
             'gioitinh' => 'required',
@@ -67,7 +67,6 @@ class CustomerController extends Controller
 
         ], [
             'name.required' => 'Vui lòng nhập Tên Dịch Vụ',
-            'name.unique' => 'Tên này đã trùng',
             'gioitinh.required' => 'Vui Lòng Chọn Giới tính',
             'diachi.required' => 'Vui Lòng Nhập Địa Chỉ',
             'dienthoai.required' => 'Vui Lòng Nhập Điện Thoại',
@@ -118,7 +117,6 @@ class CustomerController extends Controller
 
         ], [
             'edit_name.required' => 'Vui lòng nhập Tên Dịch Vụ',
-            'edit_name.unique' => 'Tên này đã trùng',
             'edit_gioitinh.required' => 'Vui Lòng Chọn Giới tính',
             'edit_diachi.required' => 'Vui Lòng Nhập Địa Chỉ',
             'edit_dienthoai.required' => 'Vui Lòng Nhập Điện Thoại',

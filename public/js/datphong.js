@@ -4,7 +4,7 @@ $(function () {
         $('#name-error').html("");
         var formData=  $('#frm_add_datphong').serialize();
         $.ajax({
-            url: "/datphong",
+            url: "./datphong",
             type: "POST",
             data:formData,
             success: function (data) {

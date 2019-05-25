@@ -7,8 +7,7 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>RESERVATION</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing</p>
+                    <h2>Đặt Phòng</h2>
                 </div>
             </div>
 
@@ -26,10 +25,10 @@
                 <!-- STEP -->
                 <div class="reservation_step">
                     <ul>
-                        <li><a href="#"><span>1.</span> Choose Date</a></li>
-                        <li class="active"><a href="#"><span>2.</span> Choose Room</a></li>
-                        <li><a href="#"><span>3.</span> Make a Reservation</a></li>
-                        <li><a href="#"><span>4.</span> Confirmation</a></li>
+                        <li><a href="#"><span>1.</span> Chọn ngày</a></li>
+                        <li class="active"><a href="#"><span>2.</span> Chọn phòng</a></li>
+                        <li><a href="#"><span>3.</span>Điền Thông Tin</a></li>
+                        <li><a href="#"><span>4.</span> Xác Nhận</a></li>
                     </ul>
                 </div>
                 <!-- END / STEP -->
@@ -41,48 +40,48 @@
 
                         <div class="reservation-sidebar">
 
-                            <!-- ROOM SELECT -->
-                            <div class="reservation-room-selected bg-gray">
-                                <!-- HEADING -->
-                                <h2 class="reservation-heading">Select Rooms</h2>
-                                <!-- END / HEADING -->
+                            {{--<!-- ROOM SELECT -->--}}
+                            {{--<div class="reservation-room-selected bg-gray">--}}
+                                {{--<!-- HEADING -->--}}
+                                {{--<h2 class="reservation-heading">Select Rooms</h2>--}}
+                                {{--<!-- END / HEADING -->--}}
 
-                                <!-- CURRENT -->
-                                <div class="reservation-room-seleted_current bg-blue">
-                                    <h6>YOU ARE BOOKING ROOM 2</h6>
-                                    <span>2 Adult, 1 Chirld</span>
-                                </div>
-                                <!-- CURRENT -->
+                                {{--<!-- CURRENT -->--}}
+                                {{--<div class="reservation-room-seleted_current bg-blue">--}}
+                                    {{--<h6>YOU ARE BOOKING ROOM 2</h6>--}}
+                                    {{--<span>2 Adult, 1 Chirld</span>--}}
+                                {{--</div>--}}
+                                {{--<!-- CURRENT -->--}}
 
-                                <!-- ITEM -->
-                                <div class="reservation-room-seleted_item reservation_disable">
-                                    <h6>ROOM 2</h6> <span class="reservation-option">2 Adult, 1 Child</span>
-                                </div>
-                                <!-- END / ITEM -->
+                                {{--<!-- ITEM -->--}}
+                                {{--<div class="reservation-room-seleted_item reservation_disable">--}}
+                                    {{--<h6>ROOM 2</h6> <span class="reservation-option">2 Adult, 1 Child</span>--}}
+                                {{--</div>--}}
+                                {{--<!-- END / ITEM -->--}}
 
-                            </div>
-                            <!-- END / ROOM SELECT -->
+                            {{--</div>--}}
+                            {{--<!-- END / ROOM SELECT -->--}}
 
                             <!-- SIDEBAR AVAILBBILITY -->
                             <form method="post" action="{{route('frontend.home.checkinfo')}}" class="reservation-sidebar_availability bg-gray">
                              {{ csrf_field() }}
                             <!-- HEADING -->
-                                <h2 class="reservation-heading">YOUR RESERVATION</h2>
+                                <h2 class="reservation-heading">ĐẶT PHÒNG CỦA BẠN</h2>
                                 <!-- END / HEADING -->
 
-                                <h6 class="check_availability_title">your stay dates</h6>
+                                <h6 class="check_availability_title">Ngày ở</h6>
 
                                 <div class="check_availability-field">
                                     <label>Arrive</label>
-                                    <input type="text" name="ngayden" class="awe-calendar awe-input from" placeholder="Arrive" value="{{ $ngayden }}">
+                                    <input type="text" name="ngayden" class="awe-calendar awe-input from" placeholder="Ngày Đặt" value="{{ $ngayden }}">
                                 </div>
 
                                 <div class="check_availability-field">
                                     <label>Depature</label>
-                                    <input type="text" name="ngaytra" class="awe-calendar awe-input to" placeholder="Depature" value="{{ $ngaytra }}">
+                                    <input type="text" name="ngaytra" class="awe-calendar awe-input to" placeholder="Ngày Trả" value="{{ $ngaytra }}">
                                 </div>
 
-                                <h6 class="check_availability_title">ROOMS &amp; GUest</h6>
+                                <h6 class="check_availability_title">Phòng & Số Người</h6>
 
                                 <div class="check_availability-field" style="display: none">
                                     <label>ROOMS</label>
@@ -129,7 +128,7 @@
                                     {{--</div>--}}
 
                                 {{--</div>--}}
-                                <button type="submit" class="awe-btn awe-btn-13">CHECK AVAILABLE</button>
+                                <button type="submit" class="awe-btn awe-btn-13">Đặt phòng</button>
 
                             </form>
                             <!-- END / SIDEBAR AVAILBBILITY -->
@@ -150,7 +149,7 @@
                                 <!-- ITEM -->
                                 <div class="reservation-room_item">
 
-                                    <h2 class="reservation-room_name"><a href="#">{{ $p['tenloaiphong'] }}</a></h2>
+                                    <h2 class="reservation-room_name"><a href="#">{{ $p->tenloaiphong }}</a></h2>
 
                                     <div class="reservation-room_img">
                                         <a href="#"><img src="{{asset('theme/asset/images/reservation/img-1.jpg')}}"
@@ -160,26 +159,24 @@
                                     <div id="book-room" class="reservation-room_text">
 
                                         <div class="reservation-room_desc">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                                since the 1500s, when an unknown printer took a galley of type ...</p>
+                                            <p>Nhiều tiện ích đi kiềm với dịch vụ chuẩn mực ...</p>
                                             <ul>
-                                                <li>1 King Bed</li>
-                                                <li>Free Wi-Fi in all guest rooms</li>
-                                                <li>Separate sitting area</li>
+                                                <li>1 Giường lớn</li>
+                                                <li>Miễn Phí ăn sáng</li>
+                                                <li>View biển</li>
 
                                             </ul>
                                         </div>
 
-                                        <a href="#" class="reservation-room_view-more">View More Infomation</a>
+                                        <a href="#" class="reservation-room_view-more">Xem Thêm Thông tin</a>
 
                                         <div class="clear"></div>
 
                                         <p class="reservation-room_price">
-                                            <span class="reservation-room_amout">${{ $p['giatien'] }}</span> / days
+                                            <span class="reservation-room_amout">$ {{ get_currency_vn($p->giatien) }}</span> / Ngày
                                         </p>
 
-                                        <a id="btn-book" data-id="{{ $p['id'] }}" type="submit" class="awe-btn awe-btn-default">BOOK ROOM</a>
+                                        <a id="btn-book" data-id="{{ $p->id }}" type="submit" class="awe-btn awe-btn-default">Đặt Ngay</a>
 
 
                                     </div>

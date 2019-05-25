@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
+use App\Order;
+use App\Room;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,6 +30,10 @@ class HomeController extends Controller
     }
 
     public function admin(){
-        return view('admin.home');
+        $data['phong'] = Room::all()->where('tinhtrang',2)->count();
+        $data['order'] = Order::all()->where('tinhtrang',0)->count();
+        $data['phongtrong'] =Room::all()->where('tinhtrang',0)->count();
+        $data['tongtien']= Bill::all()->sum('tongtien');
+        return view('admin.home',$data);
     }
 }

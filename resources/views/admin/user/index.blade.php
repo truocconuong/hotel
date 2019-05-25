@@ -45,6 +45,7 @@
                                             <th>ID</th>
                                             <th>Tên</th>
                                             <th>Email</th>
+                                            <th>Vai trò</th>
                                             <th>Ngày tạo</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Thao Tác</th>

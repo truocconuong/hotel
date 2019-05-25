@@ -82,8 +82,9 @@
                                      </span>
                                    </div>
                                    <div class="form-group">
-                                       <div class='input-group date' id='datetimepicker1'>
-                                           <input type='text' class="form-control"  name="checkin" />
+                                       <label for="checkout">Ngày Đặt</label>
+                                       <div class="input-group" id="datetimepicker1">
+                                           <input type='text' class="form-control datetimepicker1 from"  name="checkin"  placeholder="Ngày đặt"/>
                                            <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
@@ -91,10 +92,13 @@
                                    </div>
                                    <div class="form-group ">
                                        <label for="checkout">Ngày Trả</label>
-                                       <input type="date" class="form-control" id="checkout" name="checkout" placeholder="Ngày Trả">
-                                       <span class="text-danger">
-                                             <strong id="checkin-error"></strong>
-                                         </span>
+                                       <div class="input-group" id="datetimepicker2">
+
+                                           <input type="text" class="form-control to" id="checkout" name="checkout" placeholder="Ngày Trả">
+                                               <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                       </div>
                                    </div>
                                </div>
                            </div>

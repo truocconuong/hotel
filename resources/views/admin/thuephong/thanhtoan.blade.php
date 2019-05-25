@@ -15,13 +15,14 @@
         </section>
 
         <!-- Main content -->
-        <section class="content">
+        <section id="content" class="content">
             <div class="pull-right-container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading"><h4>Hóa Đơn Trả Phòng {{ $checkin->phong->tenphong }}</h4></div>
-                            <div class="panel-body">
+                            <div id="invoiceheader" class="panel-heading"><h4>Hóa Đơn Trả
+                                    Phòng {{ $checkin->phong->tenphong }}</h4></div>
+                            <div id="invoicebody" class="panel-body">
                                 <div class="col-md-6">
                                     <div class="row">
                                         <label class="col-md-4">Họ tên</label>
@@ -43,9 +44,9 @@
                                         <label class="col-md-4">Tài khoản</label>
                                         <div class="col-md-8">
                                             @if ($checkin->customer->username !== null)
-                                            {{ $checkin->customer->username }}
+                                                {{ $checkin->customer->username }}
                                             @else
-                                             Không
+                                                Không
                                             @endif
                                         </div>
                                     </div>
@@ -86,15 +87,15 @@
                                                 <th>Thành Tiền</th>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>{{ $checkin->phong->loaiphong->giatien }}</td>
-                                                        <td>{{ $day }}</td>
-                                                        <td>{{$giaphong}}</td>
+                                                <tr>
+                                                    <td>{{ $checkin->phong->loaiphong->giatien }}</td>
+                                                    <td>{{ $day }}</td>
+                                                    <td>{{$giaphong}}</td>
 
-                                                    </tr>
+                                                </tr>
                                                 </tbody>
                                             </table>
-                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -122,11 +123,11 @@
                                                 </tr>
 
                                             @endforeach
-                                        @php
+                                            @php
 
-                                             $subtotal = $sddv->quantity * $sddv->dichvu->gia;
-                                             $totaldv += $subtotal;
-                                        @endphp
+                                                $subtotal = $sddv->quantity * $sddv->dichvu->gia;
+                                                $totaldv += $subtotal;
+                                            @endphp
                                             <tr>
                                                 <td colspan="3">Tổng tiền</td>
                                                 <td>{{get_currency_vn($totaldv)}}</td>
@@ -143,15 +144,17 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         @php
-                                                $maintotal = 0;
-                                               $maintotal += $totaldv + $giaphong;
-                                         @endphp
-                                        <h3> Tổng tiền phải thanh toán <span><strong>{{ get_currency_vn($maintotal) }}</strong></span></h3>
+                                            $maintotal = 0;
+                                           $maintotal += $totaldv + $giaphong;
+                                        @endphp
+                                        <h3> Tổng tiền phải thanh toán
+                                            <span><strong>{{ get_currency_vn($maintotal) }}</strong></span></h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel-footer">
-                                <form action="{{ route('admin.thuephong.hoadon') }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('admin.thuephong.hoadon') }}" method="post"
+                                      enctype="multipart/form-data" style="display:inline;">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="makhachhang" value="{{$checkin->khachhang_id}}">
                                     <input type="hidden" name="mathuephong" value="{{$checkin->id}}">
@@ -160,8 +163,9 @@
                                     <input type="hidden" name="tongtien" value="{{$maintotal}}">
                                     <input type="hidden" name="tiendichvu" value="{{$totaldv}}">
                                     <input type="hidden" name="tienphong" value="{{$giaphong}}">
-                                    <button type="submit" class="btn btn-primary btn-sm">Thanh Toán</button>
+                                    <button type="submit" class="btn btn-primary btn-sm" >Thanh Toán</button>
                                 </form>
+                                <button id="inhoadon" class="btn btn-primary btn-sm">In hóa đơn</button>
                             </div>
 
                         </div>
@@ -171,4 +175,7 @@
         </section>
         <!-- /.content -->
     </div>
+@endsection
+@section('script')
+    <script type="text/javascript" src="{{ asset('js/thuephong.js') }}"></script>
 @endsection

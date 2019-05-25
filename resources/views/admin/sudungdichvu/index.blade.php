@@ -7,12 +7,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Dashboard
-                <small>Control panel</small>
+               Bảng Điều Khiển
+                <small>Sử Dụng Dịch Vụ</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Dashboard</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+                <li class="active">Sử dụng dịch vụ</li>
             </ol>
         </section>
 
@@ -23,15 +23,16 @@
                     <div class="col-md-12">
                         <br>
                         <div class="panel panel-default">
-                            <div class="panel-heading"><h4>Danh Sách Thuê Phòng</h4></div>
+                            <div class="panel-heading"><h4>Danh Sách Sử Dụng Dịch Vụ</h4></div>
                             <div class="panel-body">
                                 <table class="table-responsive table-bordered table-striped text-center" id="khachhang-table">
                                     <thead>
                                     <tr>
+                                        <th>Phiếu Thuê Phòng</th>
                                         <th>Phòng Sử Dụng</th>
                                         <th>Tên Khách Hàng</th>
                                         <th>Ngày Vào</th>
-                                        <th>Thao Tác</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                     </thead>
                                 </table>

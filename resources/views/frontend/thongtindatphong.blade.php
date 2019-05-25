@@ -7,8 +7,8 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>RESERVATION</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing</p>
+                    <h2>Đặt phòng</h2>
+
                 </div>
             </div>
 
@@ -26,10 +26,10 @@
                 <!-- STEP -->
                 <div class="reservation_step">
                     <ul>
-                        <li><a href="#"><span>1.</span> Choose Date</a></li>
-                        <li><a href="#"><span>2.</span> Choose Room</a></li>
-                        <li class="active"><a href="#"><span>3.</span> Make a Reservation</a></li>
-                        <li><a href="#"><span>4.</span> Confirmation</a></li>
+                        <li><a href="#"><span>1.</span> Chọn ngày</a></li>
+                        <li><a href="#"><span>2.</span> Chọn Phòng</a></li>
+                        <li class="active"><a href="#"><span>3.</span> Điền Thông tin</a></li>
+                        <li><a href="#"><span>4.</span> Xác nhận</a></li>
                     </ul>
                 </div>
                 <!-- END / STEP -->
@@ -45,12 +45,12 @@
                             <div class="reservation-date bg-gray">
 
                                 <!-- HEADING -->
-                                <h2 class="reservation-heading">Dates</h2>
+                                <h2 class="reservation-heading">Ngày tháng</h2>
                                 <!-- END / HEADING -->
 
                                 <ul>
                                     <li>
-                                        <span>Check-In</span>
+                                        <span>Ngày Đặt</span>
                                         @if(isset($ngayden))
                                             <span>{{ Carbon\Carbon::parse($ngayden)->format('d/m/Y') }}</span>
                                         @else
@@ -58,7 +58,7 @@
                                         @endif
                                     </li>
                                     <li>
-                                        <span>Check-Out</span>
+                                        <span>Ngày Trả</span>
                                         @if(isset($ngaytra))
                                             <span>{{ Carbon\Carbon::parse($ngaytra)->format('d/m/Y')}}</span>
                                         @else
@@ -66,13 +66,19 @@
                                         @endif
                                     </li>
                                     <li>
-                                        <span>Total Nights</span>
-                                        <span>2</span>
+                                        @php
+                                            $checkin = Carbon\Carbon::parse($ngayden)->format('d');
+                                            $checkout= Carbon\Carbon::parse($ngaytra)->format('d');
+                                                $day = abs($checkin - $checkout);
+
+                                        @endphp
+                                        <span>Ngày Đêm</span>
+                                        <span>{{$day}}</span>
                                     </li>
                                     <li>
-                                        <span>Rooms</span>
-                                        @if(isset($phong_id))
-                                            <span>{{ $phong_id }}</span>
+                                        <span>Phòng</span>
+                                        @if(isset($thongtin))
+                                            <span>{{ $thongtin->tenphong }}</span>
                                         @else
                                             <span>Bạn Chưa chọn</span>
                                         @endif
@@ -90,7 +96,7 @@
                             <div class="reservation-room-selected bg-gray">
 
                                 <!-- HEADING -->
-                                <h2 class="reservation-heading">Select Rooms</h2>
+                                <h2 class="reservation-heading">Phòng Đã Chọn</h2>
                                 <!-- END / HEADING -->
 
                                 <!-- ITEM -->
@@ -115,7 +121,7 @@
                                 <!-- TOTAL -->
                                 <div class="reservation-room-seleted_total bg-blue">
                                     <label>TOTAL</label>
-                                    <span class="reservation-total">{{get_currency_vn($thongtin->loaiphong->giatien)}}</span>
+                                    <span class="reservation-total">{{get_currency_vn($thongtin->loaiphong->giatien * $day)}}</span>
                                 </div>
                                 <!-- END / TOTAL -->
 
@@ -145,11 +151,11 @@
                                     <p class="reservation-login">Xin Chào<strong>{{ Auth::guard('customer')->user()->email}}</strong></p>
 
                                 @else
-                                    <p class="reservation-login">Returning customer? <a href="#">Click here to login</a>
+                                    <p class="reservation-login">Bạn là thành viên? <a href="#">nhấn vào đây để đăng nhập</a>
                                     </p>
 
                                 @endif
-                                <h4>BILLING DETAILS</h4>
+                                <h4>Chi tiết Đặt phòng</h4>
 
                                 <div class="row">
                                     <div class="col-sm-12">
