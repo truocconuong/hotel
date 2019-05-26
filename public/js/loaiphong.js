@@ -76,6 +76,7 @@ $(function () {
                 $('#edit_name').val(data.tenloaiphong);
                 $('#edit_slug').val(data.slug);
                 $('#edit_id').val(data.id);
+                $('#edit_giatien').val(data.giatien);
                 $('#edit_loaiphong').modal('show');
             }
         })

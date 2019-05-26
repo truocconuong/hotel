@@ -11,14 +11,22 @@
                         {{ csrf_field() }}
                         <div class="field-form">
                             <input type="text" name="username" class="field-text" placeholder="User name">
+                            <strong><span class="help-block alert-danger">{{ $errors->first('username') }}</span></strong>
                         </div>
                         <div class="field-form">
                             <input type="password" name="password" class="field-text" placeholder="Password">
+                            <strong><span class="help-block alert-danger">{{ $errors->first('password') }}</span></strong>
                         </div>
-                        <div class="field-form field-submit">
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {!! session('error') !!}
+                            </div>
+                        @endif
+                        <div class="field-form field-submit row d-flex justify-content-between">
                             <button type="submit" class="awe-btn awe-btn-13">Login</button>
+                            <a  href="{{ url('register/facebook') }}" class="awe-btn awe-btn-13">Đăng nhập với facebook </a>
                         </div>
-                        <span class="account-desc">I don’t have an account  -  <a href="#">Forgot Password</a></span>
+                        <span class="account-desc">Bạn không có tài khoản  -  <a href="/register">Đăng kí ngay</a></span>
                     </form>
                 </div>
             </div>

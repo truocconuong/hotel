@@ -23,8 +23,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div>
-                            <button type="button" class="btn bg-olive btn-flat margin btn_add_user" data-toggle="modal" data-target="#add_thuephong">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Hóa Đơn</button>
+
                         </div>
                         <br>
                         <div class="panel panel-default">

@@ -14,6 +14,9 @@ class ServiceController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:dichvu-list',['only' => ['index']]);
+        $this->middleware('permission:dichvu-update', ['only' => ['update','store']]);
+        $this->middleware('permission:dichvu-delete', ['only' => ['delete']]);
     }
 
     public function index(){

@@ -20,9 +20,11 @@
                             <span class="view-pass"><i class="lotus-icon-view"></i></span>
                         </div>
                         <div class="field-form field-submit">
-                            <button class="awe-btn awe-btn-13">REGISTER</button>
+                            <button class="awe-btn awe-btn-13">Đăng kí</button>
+
                         </div>
                     </form>
+                    <a  href="{{ url('register/facebook') }}" class="awe-btn awe-btn-13">Đăng kí với facebook </a>
                 </div>
             </div>
         </div>

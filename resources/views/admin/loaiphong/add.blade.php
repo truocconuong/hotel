@@ -18,6 +18,12 @@
                                                    value="{{ old('name') }}">
                                        <span class="text-danger"><strong id="name-error"></strong></span>
                                    </div>
+                                   <div class="form-group">
+                                       <label for="giatien">Giá Tiền</label>
+                                       <span class="text-danger"><strong id="name-error"></strong></span>
+                                       <input type="number" class="form-control" id="giatien" name="giatien" placeholder="Giá Tiền"
+                                              value="{{ old('giatien') }}">
+                                   </div>
                                </div>
                            </div>
                        </div>

@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
 
     Auth::routes();
-    Route::get('/', 'HomeController@admin')->name('admin');
+    Route::get('/', 'HomeController@admin')->name('home');
 
 
     Route::get('/users', 'UserController@index')->name('users.index');
@@ -113,6 +113,7 @@ Route::group(['prefix' => 'admin','as' => 'admin.'], function (){
 });
 
 
+
 Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/login','HomeController@getLogin')->name('home.login');
     Route::get('/register','HomeController@getRegister')->name('home.register');
@@ -127,7 +128,9 @@ Route::group(['as' => 'frontend.','namespace' => 'Frontend'],function(){
     Route::get('/checkroom/{id}','HomeController@checkRoom2')->name('home.checkroom2');
     Route::post('/thongtindatphong','HomeController@checkInfoCustomer')->name('home.checkinfo');
     Route::post('/comfirm','HomeController@postReservation')->name('home.comfirm');
-
+//    Route::get('/register/facebook','HomeController@redirectToFacebook')->name('home.facebook');
+    Route::get('register/facebook', 'HomeController@redirectToFacebook');
+    Route::get('register/facebook/callback', 'HomeController@handleFacebookCallback');
 
 });
 

@@ -161,7 +161,7 @@
                                     <div class="col-sm-12">
                                         @if(Auth::guard('customer')->check())
                                             <label>Họ Tên<sup>*</sup></label>
-                                            <input type="text" class="input-text" name="hoten"
+                                            <input type="text" class="input-text" name="hoten" required
                                                    value="{{ Auth::guard('customer')->user()->email}}">
                                         @else
                                             <label>Họ Tên<sup>*</sup></label>
@@ -171,7 +171,7 @@
                                     <div class="col-sm-12">
                                         @if(Auth::guard('customer')->check())
                                             <label>Chứng Minh Nhân Dân<sup>*</sup></label>
-                                            <input type="text" class="input-text" name="cmnd"
+                                            <input type="text" class="input-text" name="cmnd" required
                                                    value="{{ Auth::guard('customer')->user()->cmnd}}">
                                         @else
                                             <label>Chứng Minh Nhân Dân<sup>*</sup></label>
@@ -182,12 +182,12 @@
 
 
                                 <label>Địa chỉ<sup>*</sup></label>
-                                <input type="text" class="input-text" placeholder="Street Address">
+                                <input type="text" class="input-text" placeholder="Street Address" required>
                                 <br><br>
                                 <label>Số điện thoại<sup>*</sup></label>
                                 @if(Auth::guard('customer')->check())
 
-                                    <input type="text" class="input-text" name="sdt"
+                                    <input type="text" class="input-text" name="sdt" required
                                            value="{{ Auth::guard('customer')->user()->dienthoai}}">
                                 @else
 

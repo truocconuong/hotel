@@ -14,6 +14,9 @@ class CustomerController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:khachhang-list',['only' => ['index']]);
+        $this->middleware('permission:khachhang-update', ['only' => ['update','store']]);
+        $this->middleware('permission:khachhang-delete', ['only' => ['delete']]);
     }
 
     public function index(){

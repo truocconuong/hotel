@@ -16,7 +16,7 @@ class Kind_of_room extends Model
      */
     protected $table='loaiphong';
     protected $fillable = [
-        'tenloaiphong', 'slug',
+        'tenloaiphong', 'slug','giatien'
     ];
 
     /**

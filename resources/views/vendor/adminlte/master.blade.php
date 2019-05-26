@@ -321,10 +321,10 @@
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
-                <li class="treeview">
-                    <a href="{{ route('admin.users.index') }}">
-                        <i class="fa fa-dashboard"></i> <span>User</span>
+                <li class="header">Menu</li>
+                <li class="">
+                    <a href="{{ route('admin.home') }}">
+                        <i class="fa fa-dashboard"></i> <span>Thống Kê</span>
 
                     </a>
                 </li>
@@ -337,9 +337,11 @@
                         </span>
                     </a>
                     <ul class="treeview-menu" style="display: none;">
+                        @role('admin')
                         <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-circle-o"></i> Người Dùng</a></li>
                         <li><a href="{{ route('admin.role.index') }}"><i class="fa fa-circle-o"></i>Vai Trò </a></li>
-                        <li><a href="{{ route('admin.permession.index') }}"><i class="fa fa-circle-o"></i>Quyền Hạn</a></li>
+
+                        @endrole
                     </ul>
                 </li>
                 <li class="treeview">

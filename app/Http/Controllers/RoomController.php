@@ -18,6 +18,9 @@ class RoomController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:phong-list',['only' => ['index']]);
+        $this->middleware('permission:phong-update', ['only' => ['update','store']]);
+        $this->middleware('permission:phong-delete', ['only' => ['delete']]);
     }
 
     public function index(){

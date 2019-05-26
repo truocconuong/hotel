@@ -39,6 +39,14 @@
                                              <strong id="gif-error"></strong>
                                          </span>
                                 </div>
+                                <div class="form-group {{ $errors->has('edit_giatien') ? 'has-error' : '' }}">
+                                    <label for="name">Tên Loại Phòng</label>
+                                    <input type="text" class="form-control" id="edit_giatien" name="edit_giatien" value="" placeholder="Nhập Giá tiền">
+                                    <span class="help-block">{{ $errors->first('edit_giatien') }}</span>
+                                    <span class="text-danger">
+                                             <strong id="gif-error"></strong>
+                                         </span>
+                                </div>
                             </div>
                         </div>
                     </div>

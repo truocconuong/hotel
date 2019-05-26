@@ -13,6 +13,9 @@ class KroomController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:loaiphong-list',['only' => ['index']]);
+        $this->middleware('permission:loaiphong-update', ['only' => ['update','store']]);
+        $this->middleware('permission:loaiphong-delete', ['only' => ['delete']]);
 
     }
 
@@ -51,7 +54,8 @@ class KroomController extends Controller
         $output = array(
             'id' => $loaiphong->id,
             'tenloaiphong' => $loaiphong->tenloaiphong,
-            'slug' => $loaiphong->slug
+            'slug' => $loaiphong->slug,
+            'giatien' => $loaiphong->giatien
         );
         echo json_encode($output);
 
@@ -73,6 +77,7 @@ class KroomController extends Controller
             if ($loaiphong !== null) {
                 $loaiphong->tenloaiphong = $request->input('edit_name');
                 $loaiphong->slug = str_slug($request->input('edit_name'));
+                $loaiphong->giatien= $request->input('edit_giatien');
                 $loaiphong->save();
             }
         }
@@ -93,7 +98,8 @@ class KroomController extends Controller
         } else {
             $loaiphong = Kind_of_room::create([
                 'tenloaiphong' => $request->input('name'),
-                'slug' => str_slug($request->input('name'))
+                'slug' => str_slug($request->input('name')),
+                'giatien' => $request->input('giatien')
             ]);
             return Response::json(['success' => '1']);
         }

@@ -18,6 +18,7 @@ use App\Orderdetail;
 use Laravel\Socialite\Facades\Socialite;
 
 
+
 class HomeController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $except= array('logout','Roomdetail','Listroom','about','checkRoom','datphong','checkRoom2','checkInfoCustomer','postReservation');
+        $except= array('logout','Roomdetail','Listroom','about','checkRoom','datphong','checkRoom2','checkInfoCustomer','postReservation','redirectToFacebook','handleFacebookCallback');
         $this->middleware('guest:customer',['except' => $except]);
     }
 
@@ -44,28 +45,49 @@ class HomeController extends Controller
 
     public function handleFacebookCallback()
     {
-        try {
+//        try {
+//            $user = Socialite::driver('facebook')->user();
+//            $create['hoten'] = $user->getName();
+//            $create['email'] = $user->getEmail();
+//            $create['facebook_id'] = $user->getId();
+//
+//
+//            $userModel = new User;
+//            $createdUser = $userModel->addNew($create);
+//            Auth::loginUsingId($createdUser->id);
+//
+//
+//            return redirect()->route('frontend.home.index');
+//
+//
+//        } catch (Exception $e) {
+//
+//
+//            return redirect('auth/facebook');
+//
+//
+//        }
             $user = Socialite::driver('facebook')->user();
-            $create['hoten'] = $user->getName();
-            $create['email'] = $user->getEmail();
-            $create['facebook_id'] = $user->getId();
+            $authUser = Customer::where('id',$user->id)->first();
+            if($authUser){
+                Auth::guard('customer')->loginUsingId($user->id);
+
+                return redirect()->route('frontend.home.index');
+            }else{
+                $create['tenkhachhang'] = $user->getName();
+                $create['email'] = $user->getEmail();
+                $create['facebook_id'] = $user->getId();
 
 
-            $userModel = new User;
-            $createdUser = $userModel->addNew($create);
-            Auth::loginUsingId($createdUser->id);
+                $userModel = new Customer();
+                $createdUser = $userModel->addNew($create);
+                Auth::guard('customer')->loginUsingId($createdUser->id);
 
 
-            return redirect()->route('frontend.home.index');
+                return redirect()->route('frontend.home.index');
 
+            }
 
-        } catch (Exception $e) {
-
-
-            return redirect('auth/facebook');
-
-
-        }
     }
 
     public function Roomdetail(){
@@ -154,7 +176,17 @@ class HomeController extends Controller
                 $khachhang_id = $request->input('khachhang_id');
                 if(isset($khachhang_id) && !empty($khachhang_id )){
 
-
+                    $customer = Customer::find($khachhang_id);
+                    if($request->has('cmnd')){
+                        $customer->cmnd = $request->input('cmnd');
+                    }
+                    if($request->has('sdt')){
+                        $customer->dienthoai = $request->input('sdt');
+                    }
+                    if($request->has('email')){
+                        $customer->email = $request->input('email');
+                    }
+                    $customer->save();
 
                     $order = Order::create([
                         'khachhang_id' => $request->input('khachhang_id'),
@@ -168,9 +200,9 @@ class HomeController extends Controller
                     $phong->tinhtrang = 1;
                     $phong->save();
 
-                    $email = Customer::find($khachhang_id);
 
-                    Mail::to($email->email)
+
+                    Mail::to($customer->email)
                         ->send(new OrderShipped($order));
 
                     return view('frontend.comfirm')->with('message', "Cập nhật  thành công");
@@ -214,8 +246,8 @@ class HomeController extends Controller
             'password' => 'required'
 
         ], [
-            'username.required' => 'Vui Lòng Nhập Username',
-            'password.required' => 'Vui Lòng Nhập Password',
+            'username.required' => 'Vui Lòng Nhập Tài Khoản',
+            'password.required' => 'Vui Lòng Nhập Mật Khẩu',
         ]);
 
         if ($valid->fails()) {
@@ -226,7 +258,7 @@ class HomeController extends Controller
                return redirect()->back();
 
             } else {
-                return redirect('/login');
+                return redirect()->back()->with('error', 'Tài Khoản hoặc mật khẩu không đúng');;
 
             }
 
