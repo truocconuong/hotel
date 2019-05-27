@@ -43,7 +43,9 @@ class OrderController extends Controller
                            'edit' => '#edit_order',
                            'delete_' => '#delete_order',
                            'id' => $datphong->id,
+                           'phong_id' => $datphong->phong->id,
                            'urlEdit' => route('admin.datphong.update',['id' => $datphong->id]),
+                           'delete' => route('admin.datphong.delete', ['id' => $datphong->id]),
                            'detail' => route('admin.datphong.show',['id' => $datphong->id]),
                        ]);
                }
@@ -198,6 +200,22 @@ class OrderController extends Controller
 
 
             }
+            return Response::json(['success' => '1']);
+        }
+    }
+
+
+
+    public function delete($id){
+
+        $order = Order::findOrFail($id);
+        if ($order !== null) {
+
+                $phong_id = Room::find($order->phong_id);
+                $phong_id->tinhtrang = 0;
+                $phong_id->save();
+
+            $order->delete();
             return Response::json(['success' => '1']);
         }
     }

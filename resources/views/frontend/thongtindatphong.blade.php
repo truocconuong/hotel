@@ -84,8 +84,8 @@
                                         @endif
                                     </li>
                                     <li>
-                                        <span>Total Guests</span>
-                                        <span>4 Adults 1 Children</span>
+                                        <span>Tổng cộng khách</span>
+                                        <span>2 Người lớn 1 Trẻ em</span>
                                     </li>
                                 </ul>
 
@@ -110,7 +110,7 @@
 
 
                                     <div class="reservation-room-seleted_total-room">
-                                        TOTAL Room 1
+                                        {{ get_currency_vn($thongtin->loaiphong->giatien)}} * {{  $day}} Ngày
                                     </div>
 
                                 </div>
@@ -120,7 +120,7 @@
 
                                 <!-- TOTAL -->
                                 <div class="reservation-room-seleted_total bg-blue">
-                                    <label>TOTAL</label>
+                                    <label>Tổng Tiền</label>
                                     <span class="reservation-total">{{get_currency_vn($thongtin->loaiphong->giatien * $day)}}</span>
                                 </div>
                                 <!-- END / TOTAL -->
@@ -151,7 +151,7 @@
                                     <p class="reservation-login">Xin Chào<strong>{{ Auth::guard('customer')->user()->email}}</strong></p>
 
                                 @else
-                                    <p class="reservation-login">Bạn là thành viên? <a href="#">nhấn vào đây để đăng nhập</a>
+                                    <p class="reservation-login">Bạn là thành viên? <a href="/login">nhấn vào đây để đăng nhập</a>
                                     </p>
 
                                 @endif
@@ -182,7 +182,7 @@
 
 
                                 <label>Địa chỉ<sup>*</sup></label>
-                                <input type="text" class="input-text" placeholder="Street Address" required>
+                                <input type="text" class="input-text" placeholder="Địa chỉ"  required>
                                 <br><br>
                                 <label>Số điện thoại<sup>*</sup></label>
                                 @if(Auth::guard('customer')->check())
@@ -210,7 +210,7 @@
                                 <textarea class="input-textarea"
                                           placeholder="Notes about your order, eg. special notes for delivery"></textarea>
 
-                                <button class="awe-btn awe-btn-13">PLACE ORDER</button>
+                                <button class="awe-btn awe-btn-13">Đặt Phòng</button>
                             </div>
 
                         </form>

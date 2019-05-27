@@ -72,12 +72,12 @@
                                 <h6 class="check_availability_title">Ngày ở</h6>
 
                                 <div class="check_availability-field">
-                                    <label>Arrive</label>
+                                    <label>Ngày Đặt</label>
                                     <input type="text" name="ngayden" class="awe-calendar awe-input from" placeholder="Ngày Đặt" value="{{ $ngayden }}">
                                 </div>
 
                                 <div class="check_availability-field">
-                                    <label>Depature</label>
+                                    <label>Ngày Trả</label>
                                     <input type="text" name="ngaytra" class="awe-calendar awe-input to" placeholder="Ngày Trả" value="{{ $ngaytra }}">
                                 </div>
 

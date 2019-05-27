@@ -121,11 +121,56 @@ $(function () {
                         icon: "success",
                         timer: '2000'
                     });
+                    $('#edit_order').modal('hide');
                     datatables.ajax.reload();
                 }
             }
         })
     });
+
+    $(document).on('click', '.btn_delete', function(){
+        var id = $(this).data('id');
+        var phong_id = $(this).data('phongid');
+        var delete_id = $('#delete_id').val(id);
+        var phong = $('#phong_id2').val(phong_id);
+        $('#delete_datphong').modal('show');
+''
+    });
+''
+    $('#del_frm_datphong').on('submit', function(event){
+        event.preventDefault();
+        var form_data = $('#del_frm_datphong').serialize();
+        var id =  $('#delete_id').val();
+        $.ajax({
+            url:"./datphong/"+id,
+            method:"delete",
+            data:form_data,
+            dataType:'json',
+            success:function(data)
+            {
+
+                if (data.errors) {
+                    swal({
+                        title: "Error!",
+                        text: "Xóa Dữ Liệu Không Thành Công",
+                        icon: "error",
+                        timer: '2000'
+                    });
+                }
+                else{
+                    swal({
+                        title: "Success!",
+                        text: "Xóa Dữ Liệu Thành Công",
+                        icon: "success",
+                        timer: '2000'
+                    });
+                    $('#delete_datphong').modal('hide');
+                    datatables.ajax.reload();
+                }
+            }
+        })
+    });
+
 
 
 

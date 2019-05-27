@@ -202,8 +202,7 @@ class HomeController extends Controller
 
 
 
-                    Mail::to($customer->email)
-                        ->send(new OrderShipped($order));
+
 
                     return view('frontend.comfirm')->with('message', "Cập nhật  thành công");
                 }else{

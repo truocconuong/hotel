@@ -35,9 +35,8 @@
                                         <th>ID</th>
                                         <th>Tên Khách Hàng</th>
                                         <th>Phòng Đặt</th>
-                                        <th>Ngày Vào</th>
-                                        <th>Ngày Ra</th>
                                         <th>Ngày Đặt</th>
+                                        <th>Ngày Trả</th>
                                         <th>Trạng Thái</th>
                                         <th>Thao Tác</th>
                                     </tr>
@@ -62,6 +61,7 @@
             @include('admin.datphong.add')
             @include('admin.datphong.edit')
             @include('admin.datphong.show')
+            @include('admin.datphong.delete')
 
         </section>
         <!-- /.content -->
@@ -116,7 +116,6 @@
                     { data: 'ngaydat', name:'ngaydat'},
                     { data: 'ngaytra', name:'ngaytra'},
                     { data: 'tinhtrang', name:'tinhtrang'},
-                    { data: 'created_at', name: 'created_at' },
                     { data: 'action', name: 'action'}
                 ]
             });

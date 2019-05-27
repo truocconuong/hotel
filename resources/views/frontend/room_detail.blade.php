@@ -7,8 +7,7 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>LUXURY ROOM</h2>
-                    <p>Lorem Ipsum is simply dummy text</p>
+                    <h2>Phòng Hạng Sang</h2>
                 </div>
             </div>
 
@@ -30,23 +29,23 @@
                         <div class="room-detail_img">
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-1.jpg') }}" alt="">
-                                <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+                                <h6>Đây là mô tả</h6>
                             </div>
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-2.jpg') }}" alt="">
-                                <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+                                <h6>Đây là mô tả</h6>
                             </div>
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-3.jpg') }}" alt="">
-                                <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+                                <h6>Đây là mô tả</h6>
                             </div>
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-5.jpg') }}" alt="">
-                                <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+                                <h6>Đây là mô tả</h6>
                             </div>
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-6.jpg') }}" alt="">
-                                <h6>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h6>
+                                <h6>Đây là mô tả</h6>
                             </div>
                             <div class="room_img-item">
                                 <img src="{{ asset('theme/asset/images/room/detail/lager/img-7.jpg') }}" alt="">
@@ -82,35 +81,37 @@
                             <div class="room-detail_total">
                                 <img src="images/icon-logo.png" alt="" class="icon-logo">
 
-                                <h6>STARTING ROOM FROM</h6>
+                                <h6>Giá chỉ từ</h6>
 
                                 <p class="price">
-                                    <span class="amout">$260</span>  /days
+                                    <span class="amout">2.3 Triệu VND</span>  /ngày
                                 </p>
                             </div>
-
+                            <form method="POST" id="checkroomform" action="{{ route('frontend.home.checkroom') }}" >
+                                {{ csrf_field() }}
                             <div class="room-detail_form">
-                                <label>Arrive</label>
-                                <input type="text" class="awe-calendar from" placeholder="Arrive Date">
-                                <label>Depature</label>
-                                <input type="text" class="awe-calendar to" placeholder="Departure Date">
-                                <label>Adult</label>
-                                <select class="awe-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option selected>3</option>
-                                    <option>4</option>
-                                </select>
-                                <label>Chirld</label>
-                                <select class="awe-select">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option selected>3</option>
-                                    <option>4</option>
-                                </select>
-                                <button class="awe-btn awe-btn-13">Book Now</button>
-                            </div>
 
+                                <label>Ngày Đặt</label>
+                                <input type="text" class="awe-calendar from" name="ngayden" id="ngayden" placeholder="Ngày Đặt">
+                                <label>Ngày Tra</label>
+                                <input type="text" class="awe-calendar to" name="ngaytra" id="ngaytra"  placeholder="Ngay Trả">
+                                <label>Người Lớn</label>
+                                <select class="awe-select">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option selected>3</option>
+                                    <option>4</option>
+                                </select>
+                                <label>Trẻ Em</label>
+                                <select class="awe-select">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option selected>3</option>
+                                    <option>4</option>
+                                </select>
+                                <button class="awe-btn awe-btn-13" type="submit">Đặt Ngay</button>
+                            </div>
+                            </form>
                         </div>
                         <!-- END / FORM BOOK -->
 
@@ -125,11 +126,8 @@
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="room-detail_tab-header">
-                            <li><a href="#overview" data-toggle="tab">OVERVIEW</a></li>
-                            <li class="active"><a href="#amenities" data-toggle="tab">amenities</a></li>
-                            <li><a href="#package" data-toggle="tab">PACKAGE</a></li>
-                            <li><a href="#rates" data-toggle="tab">RATES</a></li>
-                            <li><a href="#calendar" data-toggle="tab">Calendar</a></li>
+                            <li class="active"><a href="#overview" data-toggle="tab">Tổng Quan</a></li>
+
                         </ul>
                     </div>
 
@@ -137,29 +135,29 @@
                         <div class="room-detail_tab-content tab-content">
 
                             <!-- OVERVIEW -->
-                            <div class="tab-pane fade" id="overview">
+                            <div class="tab-pane fade active in" id="overview">
 
                                 <div class="room-detail_overview">
                                     <h5 class='text-uppercase
-                                        '>de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h5>
-                                    <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
+                                        '>Giới thiệu phòng</h5>
+                                    <p> Đây là mô tả.</p>
 
                                     <div class="row">
                                         <div class="col-xs-6 col-md-4">
-                                            <h6>SPECIAL ROOM</h6>
+                                            <h6>Thông tin phòng chung</h6>
                                             <ul>
-                                                <li>Max: 4 Person(s)</li>
-                                                <li>Size: 35 m2 / 376 ft2</li>
-                                                <li>View: Ocen</li>
-                                                <li>Bed: King-size or twin beds</li>
+                                                <li>Tối Đa 4 Người</li>
+                                                <li>Diện Tích: 35 m2 / 376 ft2</li>
+                                                <li>View: Biển</li>
+                                                <li>Giường lớn kèm 2 giường nhỏ</li>
                                             </ul>
                                         </div>
                                         <div class="col-xs-6 col-md-4">
-                                            <h6>SERVICE ROOM</h6>
+                                            <h6>Dịch Vụ phòng</h6>
                                             <ul>
-                                                <li>Oversized work desk</li>
-                                                <li>Hairdryer</li>
-                                                <li>Iron/ironing board upon request</li>
+                                                <li>Bàn lớn làm viện</li>
+                                                <li>Buffe ăn sáng miễn phí</li>
+                                                <li>Bếp nấu riêng</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -170,7 +168,7 @@
                             <!-- END / OVERVIEW -->
 
                             <!-- AMENITIES -->
-                            <div class="tab-pane fade active in" id="amenities">
+                            <div class="tab-pane fade " id="amenities">
 
                                 <div class="room-detail_amenities">
                                     <p>Located in the heart of Aspen with a unique blend of contemporary luxury and historic heritage, deluxe accommodations, superb amenities, genuine hospitality and dedicated service for an elevated experience in the Rocky Mountains.</p>
@@ -592,15 +590,15 @@
                                 </div>
 
                                 <div class="text">
-                                    <h2><a href="">LUxury room</a></h2>
+                                    <h2><a href="">Phòng Hạng Sang</a></h2>
 
                                     <ul>
-                                        <li><i class="lotus-icon-person"></i> Max: 2 Person(s)</li>
-                                        <li><i class="lotus-icon-bed"></i> Bed: King-size or twin beds</li>
-                                        <li><i class="lotus-icon-view"></i> View: Ocen</li>
+                                        <li><i class="lotus-icon-person"></i> Tối đa: 2 Người(s)</li>
+                                        <li><i class="lotus-icon-bed"></i> Giường Lớn Hoàng Gia</li>
+                                        <li><i class="lotus-icon-view"></i> View: Biển</li>
                                     </ul>
 
-                                    <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                    <a href="#" class="awe-btn awe-btn-default">Xem Chi tiết</a>
 
                                 </div>
 
@@ -616,15 +614,15 @@
                                 </div>
 
                                 <div class="text">
-                                    <h2><a href="">Family Room</a></h2>
+                                    <h2><a href="">Phòng Gia Đình</a></h2>
 
                                     <ul>
-                                        <li><i class="lotus-icon-person"></i> Max: 2 Person(s)</li>
-                                        <li><i class="lotus-icon-bed"></i> Bed: King-size or twin beds</li>
-                                        <li><i class="lotus-icon-view"></i> View: Ocen</li>
+                                        <li><i class="lotus-icon-person"></i> Tối đa: 2 Người(s)</li>
+                                        <li><i class="lotus-icon-bed"></i> Giường Lớn Hoàng Gia</li>
+                                        <li><i class="lotus-icon-view"></i> View: Biển</li>
                                     </ul>
 
-                                    <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                    <a href="#" class="awe-btn awe-btn-default">Xem Chi tiết</a>
 
                                 </div>
 
@@ -640,15 +638,15 @@
                                 </div>
 
                                 <div class="text">
-                                    <h2><a href="">standard Room</a></h2>
+                                    <h2><a href="">Phòng Chuẩn</a></h2>
 
                                     <ul>
-                                        <li><i class="lotus-icon-person"></i> Max: 2 Person(s)</li>
-                                        <li><i class="lotus-icon-bed"></i> Bed: King-size or twin beds</li>
-                                        <li><i class="lotus-icon-view"></i> View: Ocen</li>
+                                        <li><i class="lotus-icon-person"></i> Tối đa: 2 Người(s)</li>
+                                        <li><i class="lotus-icon-bed"></i> Giường Lớn Hoàng Gia</li>
+                                        <li><i class="lotus-icon-view"></i> View: Biển</li>
                                     </ul>
 
-                                    <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                    <a href="#" class="awe-btn awe-btn-default">Xem Chi tiết</a>
 
                                 </div>
 
@@ -664,15 +662,15 @@
                                 </div>
 
                                 <div class="text">
-                                    <h2><a href="">couple Room</a></h2>
+                                    <h2><a href="">Phòng Đôi</a></h2>
 
                                     <ul>
-                                        <li><i class="lotus-icon-person"></i> Max: 2 Person(s)</li>
-                                        <li><i class="lotus-icon-bed"></i> Bed: King-size or twin beds</li>
-                                        <li><i class="lotus-icon-view"></i> View: Ocen</li>
+                                        <li><i class="lotus-icon-person"></i> Tối đa: 2 Người(s)</li>
+                                        <li><i class="lotus-icon-bed"></i> Giường Lớn Hoàng Gia</li>
+                                        <li><i class="lotus-icon-view"></i> View: Biển</li>
                                     </ul>
 
-                                    <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
+                                    <a href="#" class="awe-btn awe-btn-default">Xem Chi tiết</a>
 
                                 </div>
 

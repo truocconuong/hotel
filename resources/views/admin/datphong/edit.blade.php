@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_order">Sửa</button>
+                    <button type="submit" class="btn btn-info btn-flat" id="btn_edit_order">Nhận Phòng</button>
                     <button type="button" class="btn btn-flat btn-danger" data-dismiss="modal">Hủy</button>
                 </div>
             </form>
