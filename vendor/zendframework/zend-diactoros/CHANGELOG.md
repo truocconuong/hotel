@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.1.3 - 2019-07-10
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#363](https://github.com/zendframework/zend-diactoros/issues/363) modifies detection of HTTPS schemas via the `$_SERVER['HTTPS']` value
+  such that an empty HTTPS-key will result in a scheme of `http` and not
+  `https`.
+
+## 2.1.2 - 2019-04-29
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#355](https://github.com/zendframework/zend-diactoros/pull/355) adds `phpdbg` to the list of accepted non-SAPI enviornments for purposes
+  of calling `UploadedFile::moveTo()`.
+
 ## 2.1.1 - 2019-01-05
 
 ### Added
@@ -45,6 +92,29 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Fixed
 
 - Nothing.
+
+## 2.0.3 - 2019-01-05
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#349](https://github.com/zendframework/zend-diactoros/pull/349) fixes an issue when marshaling headers with values of `0` or `0` from the
+  SAPI, ensuring they are detected and injected into the ServerRequest properly.
 
 ## 2.0.2 - 2018-12-20
 
