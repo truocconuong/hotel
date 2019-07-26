@@ -381,14 +381,6 @@ class CarbonPeriod implements Iterator, Countable
     }
 
     /**
-     * Remove all macros.
-     */
-    public static function resetMacros()
-    {
-        static::$macros = array();
-    }
-
-    /**
      * Register macros from a mixin object.
      *
      * @param object $mixin

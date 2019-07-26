@@ -113,6 +113,8 @@
                 <div class="accomd-modations-content_1" >
 
                     <div class="accomd-modations-slide_1" >
+                    @foreach($listroom as $room)
+
 
                         <!-- ITEM -->
                         <div class="accomd-modations-room_1">
@@ -122,72 +124,20 @@
                             </div>
 
                             <div class="text">
-                                <h2><a href="#">Phòng Đôi</a></h2>
+                                <h2><a href="#">{{ $room->tenloaiphong}}</a></h2>
                                 <p class="desc">Tiện nghi,buffe ăn sáng,spa đẳng cấp</p>
                                 <div class="wrap-price">
                                     <p class="price">
-                                        <span class="amout">3.2 triệu</span> /Ngày
+                                        <span class="amout">{{ get_currency_vn($room->giatien)}}    </span> /Ngày
                                     </p>
-                                    <a href="#" class="awe-btn awe-btn-default">Xem Ngay</a>
+                                    <a href="/list-room/" class="awe-btn awe-btn-default">Xem Ngay</a>
                                 </div>
                             </div>
 
                         </div>
                         <!-- END / ITEM -->
-
+ @endforeach
                         <!-- ITEM -->
-                        <div class="accomd-modations-room_1">
-                            <div class="img">
-                                <a href="#"><img src="{{asset('theme/asset/images/room/img-8.jpg')}}" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2><a href="#">Phòng Hạng Sang</a></h2>
-                                <p class="desc">Tiện Nghi,View biển</p>
-                                <div class="wrap-price">
-                                    <p class="price">
-                                        <span class="amout">3.2 triệu</span> /Ngày
-                                    </p>
-                                    <a href="#" class="awe-btn awe-btn-default">Xem Ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
-
-                        <!-- ITEM -->
-                        <div class="accomd-modations-room_1">
-                            <div class="img">
-                                <a href="#"><img src="{{asset('theme/asset/images/room/img-9.jpg')}}" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2><a href="#">Phòng Chuẩn</a></h2>
-                                <p class="desc">Tiện Nghi,View biển</p>
-                                <div class="wrap-price">
-                                    <p class="price">
-                                        <span class="amout">3.2 triệu</span> /Ngày
-                                    </p>
-                                    <a href="#" class="awe-btn awe-btn-default">Xem ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
-
-                        <!-- ITEM -->
-                        <div class="accomd-modations-room_1">
-                            <div class="img">
-                                <a href="#"><img src="{{asset('theme/asset/images/room/img-7.jpg')}}" alt=""></a>
-                            </div>
-                            <div class="text">
-                                <h2><a href="#">Phòng Đôi</a></h2>
-                                <p class="desc">Dành cho cặp đôi</p>
-                                <div class="wrap-price">
-                                    <p class="price">
-                                        <span class="amout">$320</span> /days
-                                    </p>
-                                    <a href="#" class="awe-btn awe-btn-default">VIEW DETAIL</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END / ITEM -->
 
                     </div>
 
@@ -337,5 +287,3 @@
 
 
 @endsection
-
-

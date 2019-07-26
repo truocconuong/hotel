@@ -7,7 +7,9 @@
         <div class="sub-banner">
             <div class="container">
                 <div class="text text-center">
-                    <h2>Phòng Hạng Sang</h2>
+
+                    <h2>{{$listrooms->tenloaiphong}}</h2>
+
                 </div>
             </div>
 
@@ -84,13 +86,13 @@
                                 <h6>Giá chỉ từ</h6>
 
                                 <p class="price">
-                                    <span class="amout">2.3 Triệu VND</span>  /ngày
+                                    <span class="amout">{{ get_currency_vn($listrooms->giatien)}}</span>  /ngày
                                 </p>
                             </div>
                             <form method="POST" id="checkroomform" action="{{ route('frontend.home.checkroom') }}" >
                                 {{ csrf_field() }}
                             <div class="room-detail_form">
-
+                                <input type="hidden" value="{{$listrooms->id}}" name="phong_id">
                                 <label>Ngày Đặt</label>
                                 <input type="text" class="awe-calendar from" name="ngayden" id="ngayden" placeholder="Ngày Đặt">
                                 <label>Ngày Tra</label>

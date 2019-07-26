@@ -22,6 +22,7 @@
             <div class="room-wrap-2">
 
                 <!-- ITEM -->
+                @foreach($listroom as $room)
                 <div class="room_item-2">
 
                     <div class="img">
@@ -29,61 +30,14 @@
                     </div>
 
                     <div class="text">
-                        <h2><a href="#">Phòng Hạng Sang</a></h2>
-                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
+                        <h2><a href="#">{{$room->tenloaiphong}}</a></h2>
+                        <span class="price">Từ <span class="amout">{{ get_currency_vn($room->giatien)}}</span> ngày</span>
                         <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
-                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
+                        <a href="/room-detail/{{$room->id}}" class="awe-btn awe-btn-13">Xem Chi tiết</a>
                     </div>
                 </div>
                 <!-- ITEM -->
-
-                <!-- ITEM -->
-                <div class="room_item-2 img-right">
-
-                    <div class="img">
-                        <a href="#"><img src="{{asset('theme/asset/images/room/room2/img-2.jpg')}}" alt=""></a>
-                    </div>
-
-                    <div class="text">
-                        <h2><a href="#">Phòng gia đình</a></h2>
-                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
-                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
-                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
-                    </div>
-                </div>
-                <!-- ITEM -->
-
-                <!-- ITEM -->
-                <div class="room_item-2">
-
-                    <div class="img">
-                        <a href="#"><img src="{{asset('theme/asset/images/room/room2/img-3.jpg')}}" alt=""></a>
-                    </div>
-
-                    <div class="text">
-                        <h2><a href="#">Phòng Đôi</a></h2>
-                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
-                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
-                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
-                    </div>
-                </div>
-                <!-- ITEM -->
-
-                <!-- ITEM -->
-                <div class="room_item-2 img-right">
-
-                    <div class="img">
-                        <a href="#"><img src="{{asset('theme/asset/images/room/room2/img-4.jpg')}}" alt=""></a>
-                    </div>
-
-                    <div class="text">
-                        <h2><a href="#">Phòng Chuẩn</a></h2>
-                        <span class="price">Từ <span class="amout">1.2 Triệu VND</span> ngày</span>
-                        <p>Sang trọng,View Biển và nhiều hơn thế nữa</p>
-                        <a href="/room-detail" class="awe-btn awe-btn-13">Xem Chi tiết</a>
-                    </div>
-                </div>
-                <!-- ITEM -->
+                @endforeach
 
             </div>
 

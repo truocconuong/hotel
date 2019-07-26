@@ -1121,7 +1121,7 @@ blockquote p:after{
     margin-top:0px;
 }
 .header_top{
-    background:transparent
+    background : 
 }
 .header_top:after{
     display:table;
@@ -1932,7 +1932,7 @@ blockquote p:after{
 }
 .accomd-modations-room_1 .text .price .amout{
     color:#e1bd85;
-    font-size:30px
+    font-size:20px
 }
 .accomd-modations-room_1 .text .wrap-price{
     display:inline-block;
