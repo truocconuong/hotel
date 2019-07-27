@@ -61,8 +61,8 @@
      <div class="header_top">
              <div class="container">
                  <div class="header_left float-left">
-                     <span><i class="lotus-icon-location"></i> 225 Hạ Long, Quảng Ninh</span>
-                     <span><i class="lotus-icon-phone"></i> 1-548-854-8898</span>
+                     <span><i class="lotus-icon-location"></i> undefine</span>
+                     <span><i class="lotus-icon-phone"></i>undefine</span>
                  </div>
                  @if (Auth::guard('customer')->check())
                      <div class="header_right float-right">
@@ -107,14 +107,7 @@
                         <a href="{{ route('frontend.home.listroom') }}">Phòng </a>
 
                     </li>
-                    <li>
-                        <a href="#">Đặt Phòng</a>
-                        <ul class="sub-menu">
-                            <li><a href="reservation-step-1.html">Đặt Phòng </a></li>
-
-                        </ul>
-                    </li>
-                    <li><a href="contact.html">Liên Hệ</a></li>
+                    <li><a href="#">Liên Hệ</a></li>
                 </ul>
                 </nav>
                 <!-- END / HEADER MENU -->
@@ -192,9 +185,9 @@
                                     <a href="#"><img src="{{asset('theme/asset/images/logo-footer.png')}}" alt=""></a>
                                 </div>
                                 <div class="text">
-                                    <p><i class="lotus-icon-location"></i> 225 Hạ Long,Quảng Ninh</p>
-                                    <p><i class="lotus-icon-phone"></i> 1-548-854-8898</p>
-                                    <p><i class="fa fa-envelope-o"></i> <a href="mailto:hello@thelotushotel.com">hello@thelotushotel.com</a></p>
+                                    <p><i class="lotus-icon-location"></i>undefine</p>
+                                    <p><i class="lotus-icon-phone"></i> undefine</p>
+                                    <p><i class="fa fa-envelope-o"></i> <a href="mailto:hello@thelotushotel.com">undefine@gmail.com</a></p>
                                 </div>
                             </div>
                         </div>

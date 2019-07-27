@@ -10,7 +10,6 @@
                     <p>If you no have account in lotus Hotel! Register and feeling</p>
                     <form action="#" class="account_form">
                         <div class="field-form">
-                            <input type="text" class="field-text" placeholder="User name*">
                         </div>
                         <div class="field-form">
                             <input type="text" class="field-text" placeholder="Email*">
